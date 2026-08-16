@@ -1925,13 +1925,24 @@ $0.00
 
 
 <button
-    id="checkoutButton"
+    id="addToCartButton"
     class="pay"
-    onclick="checkout()"
+    onclick="addToCart()"
 >
-Continue to secure checkout →
+🛒 Add to cart
 </button>
 
+<button
+    id="buyNowButton"
+    class="secondary"
+    style="
+        width:100%;
+        margin-top:10px;
+    "
+    onclick="checkout()"
+>
+Buy now →
+</button>
 
 <p
     id="checkoutMessage"
@@ -3023,6 +3034,10 @@ function updateTotal(){
    CART
 ========================================================= */
 
+/* =========================================================
+   ADD TO CART
+========================================================= */
+
 function addToCart(){
 
     if(
@@ -3060,11 +3075,13 @@ function addToCart(){
 
     saveCart();
 
+    updateCartCount();
+
     closeModal(
         "productModal"
     );
 
-    updateCartCount();
+    openCart();
 
 }
 
@@ -3114,11 +3131,19 @@ function openCart(){
     renderCart();
 
 
-    document.getElementById(
-        "cartModal"
-    ).classList.remove(
-        "hidden"
-    );
+    const cartModal =
+        document.getElementById(
+            "cartModal"
+        );
+
+
+    if(cartModal){
+
+        cartModal.classList.remove(
+            "hidden"
+        );
+
+    }
 
 }
 
@@ -3133,6 +3158,11 @@ function renderCart(){
         document.getElementById(
             "cartItems"
         );
+
+
+    if(!container){
+        return;
+    }
 
 
     if(!cart.length){
@@ -3158,10 +3188,18 @@ function renderCart(){
         `;
 
 
-        document.getElementById(
-            "cartTotal"
-        ).textContent =
-            "$0.00";
+        const cartTotal =
+            document.getElementById(
+                "cartTotal"
+            );
+
+
+        if(cartTotal){
+
+            cartTotal.textContent =
+                "$0.00";
+
+        }
 
 
         return;
@@ -3177,9 +3215,15 @@ function renderCart(){
 
     cart.forEach(item => {
 
-        total +=
-            Number(item.amount) +
+        const amount =
+            Number(item.amount);
+
+        const fee =
             Number(item.fee);
+
+
+        total +=
+            amount + fee;
 
 
         const row =
@@ -3208,18 +3252,17 @@ function renderCart(){
                     </strong>
 
                     <div
-                        style="color:#888"
+                        style="
+                            color:#888;
+                            margin-top:4px;
+                        "
                     >
 
-                        $${Number(
-                            item.amount
-                        ).toFixed(2)}
+                        $${amount.toFixed(2)}
 
                         +
 
-                        $${Number(
-                            item.fee
-                        ).toFixed(2)}
+                        $${fee.toFixed(2)}
 
                         fee
 
@@ -3247,13 +3290,21 @@ function renderCart(){
     });
 
 
-    document.getElementById(
-        "cartTotal"
-    ).textContent =
-        formatCurrency(
-            total,
-            "USD"
+    const cartTotal =
+        document.getElementById(
+            "cartTotal"
         );
+
+
+    if(cartTotal){
+
+        cartTotal.textContent =
+            formatCurrency(
+                total,
+                "USD"
+            );
+
+    }
 
 }
 
@@ -3281,15 +3332,15 @@ function removeCartItem(id){
 
 
 /* =========================================================
-   CHECKOUT
+   BUY NOW
 ========================================================= */
 
 async function checkout(){
 
-    const email =
+    const emailInput =
         document.getElementById(
             "customerEmail"
-        ).value.trim();
+        );
 
 
     const message =
@@ -3300,8 +3351,23 @@ async function checkout(){
 
     const button =
         document.getElementById(
-            "checkoutButton"
+            "buyNowButton"
         );
+
+
+    if(!emailInput){
+
+        console.error(
+            "Customer email input not found."
+        );
+
+        return;
+
+    }
+
+
+    const email =
+        emailInput.value.trim();
 
 
     if(
@@ -3309,8 +3375,12 @@ async function checkout(){
         !email.includes("@")
     ){
 
-        message.textContent =
-            "Please enter a valid email address.";
+        if(message){
+
+            message.textContent =
+                "Please enter a valid email address.";
+
+        }
 
         return;
 
@@ -3322,20 +3392,34 @@ async function checkout(){
         !selectedAmount
     ){
 
-        message.textContent =
-            "Please choose a gift card amount.";
+        if(message){
+
+            message.textContent =
+                "Please choose a gift card amount.";
+
+        }
 
         return;
 
     }
 
 
-    message.textContent =
-        "Creating secure checkout...";
+    if(message){
+
+        message.textContent =
+            "Creating secure checkout...";
+
+    }
 
 
-    button.disabled =
-        true;
+    if(button){
+
+        button.disabled = true;
+
+        button.textContent =
+            "Creating checkout...";
+
+    }
 
 
     try{
@@ -3346,7 +3430,8 @@ async function checkout(){
                 "/create-checkout-session",
                 {
 
-                    method:"POST",
+                    method:
+                        "POST",
 
                     headers:{
 
@@ -3399,8 +3484,8 @@ async function checkout(){
         /*
          * Stripe receives USD.
          *
-         * The selected currency is
-         * display-only.
+         * Currency selection on GIFty
+         * is display-only for now.
          */
 
         window.location.href =
@@ -3415,13 +3500,24 @@ async function checkout(){
         );
 
 
-        message.textContent =
-            error.message ||
-            "Something went wrong.";
+        if(message){
+
+            message.textContent =
+                error.message ||
+                "Something went wrong.";
+
+        }
 
 
-        button.disabled =
-            false;
+        if(button){
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Buy now →";
+
+        }
 
     }
 
@@ -3446,12 +3542,15 @@ function checkoutCart(){
 
 
     /*
-     * Your current backend accepts
-     * one product per checkout session.
+     * The current backend only accepts
+     * ONE gift card per Stripe session.
      *
-     * Therefore, until the backend is
-     * upgraded for multi-item Stripe
-     * checkout, we open the first item.
+     * We leave this here temporarily.
+     *
+     * The backend needs a new
+     * /create-cart-checkout-session
+     * endpoint before multiple items
+     * can be checked out together.
      */
 
     const first =
@@ -3526,9 +3625,15 @@ function filterCategory(
    SEARCH
 ========================================================= */
 
-document
-    .getElementById("search")
-    .addEventListener(
+const searchInput =
+    document.getElementById(
+        "search"
+    );
+
+
+if(searchInput){
+
+    searchInput.addEventListener(
         "input",
         function(){
 
@@ -3568,6 +3673,8 @@ document
         }
     );
 
+}
+
 
 /* =========================================================
    NAVIGATION
@@ -3577,9 +3684,11 @@ function goHome(){
 
     window.scrollTo({
 
-        top:0,
+        top:
+            0,
 
-        behavior:"smooth"
+        behavior:
+            "smooth"
 
     });
 
@@ -3588,24 +3697,41 @@ function goHome(){
 
 function scrollShop(){
 
-    document
-        .getElementById("shop")
-        .scrollIntoView({
+    const shop =
+        document.getElementById(
+            "shop"
+        );
 
-            behavior:"smooth"
+
+    if(shop){
+
+        shop.scrollIntoView({
+
+            behavior:
+                "smooth"
 
         });
+
+    }
 
 }
 
 
 function closeModal(id){
 
-    document
-        .getElementById(id)
-        .classList.add(
+    const modal =
+        document.getElementById(
+            id
+        );
+
+
+    if(modal){
+
+        modal.classList.add(
             "hidden"
         );
+
+    }
 
 }
 
@@ -3615,28 +3741,32 @@ function closeModal(id){
 ========================================================= */
 
 document
-    .querySelectorAll(".modal")
-    .forEach(modal => {
+    .querySelectorAll(
+        ".modal"
+    )
+    .forEach(
+        modal => {
 
-        modal.addEventListener(
-            "click",
-            event => {
+            modal.addEventListener(
+                "click",
+                event => {
 
-                if(
-                    event.target ===
-                    modal
-                ){
+                    if(
+                        event.target ===
+                        modal
+                    ){
 
-                    modal.classList.add(
-                        "hidden"
-                    );
+                        modal.classList.add(
+                            "hidden"
+                        );
+
+                    }
 
                 }
+            );
 
-            }
-        );
-
-    });
+        }
+    );
 
 
 /* =========================================================
@@ -3648,7 +3778,8 @@ document.addEventListener(
     event => {
 
         if(
-            event.key === "Escape"
+            event.key ===
+            "Escape"
         ){
 
             document
@@ -3679,8 +3810,3 @@ updateCartCount();
 loadExchangeRates();
 
 </script>
-
-
-</body>
-
-</html>
