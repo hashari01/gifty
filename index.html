@@ -20,62 +20,87 @@
 <style>
 
 :root{
+
     --bg:#07070c;
     --panel:#101019;
     --panel2:#151521;
+
     --border:rgba(255,255,255,.09);
+
     --text:#fff;
     --muted:#9999aa;
+
     --purple:#9b5cff;
     --pink:#ff4fc3;
     --blue:#55a8ff;
     --green:#36e58b;
     --danger:#ff5f6d;
+
     --radius:22px;
+
 }
 
 *{
+
     box-sizing:border-box;
     margin:0;
     padding:0;
+
 }
 
 html{
+
     scroll-behavior:smooth;
+
 }
 
 body{
-    font-family:Inter,Arial,sans-serif;
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
     color:var(--text);
 
     background:
+
         radial-gradient(
             circle at 10% 0%,
             rgba(155,92,255,.18),
             transparent 30%
         ),
+
         radial-gradient(
             circle at 90% 5%,
             rgba(255,79,195,.13),
             transparent 28%
         ),
+
         var(--bg);
 
     min-height:100vh;
+
 }
 
 button,
 input,
 select{
+
     font:inherit;
+
 }
 
 button{
+
     cursor:pointer;
+
 }
 
 .hidden{
+
     display:none!important;
+
 }
 
 /* =========================================================
@@ -83,9 +108,13 @@ button{
 ========================================================= */
 
 .topbar{
+
     text-align:center;
+
     padding:9px;
+
     font-size:12px;
+
     color:#ddd;
 
     background:
@@ -95,7 +124,9 @@ button{
             rgba(255,79,195,.12)
         );
 
-    border-bottom:1px solid var(--border);
+    border-bottom:
+        1px solid var(--border);
+
 }
 
 /* =========================================================
@@ -103,34 +134,52 @@ button{
 ========================================================= */
 
 .navbar{
+
     position:sticky;
+
     top:0;
+
     z-index:1000;
 
     display:flex;
+
     align-items:center;
+
     gap:20px;
 
     padding:15px 5%;
 
-    background:rgba(7,7,12,.82);
+    background:
+        rgba(7,7,12,.82);
 
-    backdrop-filter:blur(20px);
+    backdrop-filter:
+        blur(20px);
 
-    border-bottom:1px solid var(--border);
+    border-bottom:
+        1px solid var(--border);
+
 }
 
 .logo{
+
     border:0;
+
     background:none;
+
     color:white;
+
     font-weight:950;
+
     font-size:28px;
+
     letter-spacing:-1.5px;
+
     white-space:nowrap;
+
 }
 
 .logo span{
+
     background:
         linear-gradient(
             90deg,
@@ -140,58 +189,91 @@ button{
         );
 
     -webkit-background-clip:text;
+
     background-clip:text;
+
     color:transparent;
+
 }
 
 .search{
+
     flex:1;
+
     max-width:600px;
 
     padding:13px 16px;
 
-    border:1px solid var(--border);
+    border:
+        1px solid var(--border);
+
     border-radius:15px;
 
     outline:none;
+
     color:white;
+
     background:#11111a;
+
 }
 
 .search:focus{
-    border-color:rgba(155,92,255,.7);
+
+    border-color:
+        rgba(155,92,255,.7);
+
 }
 
 .nav-actions{
+
     margin-left:auto;
 
     display:flex;
+
     align-items:center;
+
     gap:10px;
+
 }
 
 .nav-btn,
 .cart-btn{
+
     border:0;
+
     color:white;
+
     background:transparent;
+
     padding:10px 12px;
+
     font-weight:800;
+
 }
 
 .cart-btn{
+
     background:#151521;
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius:13px;
+
 }
 
 .cart-count{
+
     display:inline-flex;
+
     justify-content:center;
+
     align-items:center;
 
     min-width:21px;
+
     height:21px;
+
     margin-left:5px;
 
     border-radius:50%;
@@ -204,6 +286,7 @@ button{
         );
 
     font-size:11px;
+
 }
 
 /* =========================================================
@@ -211,17 +294,24 @@ button{
 ========================================================= */
 
 .categories{
+
     display:flex;
+
     gap:8px;
+
     overflow-x:auto;
 
     padding:12px 5%;
 
-    border-bottom:1px solid var(--border);
+    border-bottom:
+        1px solid var(--border);
+
 }
 
 .category{
+
     border:0;
+
     border-radius:12px;
 
     padding:9px 15px;
@@ -229,13 +319,16 @@ button{
     white-space:nowrap;
 
     color:#aaaabd;
+
     background:transparent;
 
     font-weight:800;
+
 }
 
 .category.active,
 .category:hover{
+
     color:white;
 
     background:
@@ -244,6 +337,7 @@ button{
             #8d4cff,
             #e946b8
         );
+
 }
 
 /* =========================================================
@@ -251,9 +345,13 @@ button{
 ========================================================= */
 
 .container{
+
     width:90%;
+
     max-width:1400px;
+
     margin:auto;
+
 }
 
 /* =========================================================
@@ -261,22 +359,33 @@ button{
 ========================================================= */
 
 .hero{
+
     min-height:620px;
 
     display:grid;
-    grid-template-columns:1.1fr .9fr;
+
+    grid-template-columns:
+        1.1fr .9fr;
 
     gap:50px;
+
     align-items:center;
+
 }
 
 .hero h1{
-    font-size:clamp(48px,7vw,88px);
+
+    font-size:
+        clamp(48px,7vw,88px);
+
     line-height:.94;
+
     letter-spacing:-5px;
+
 }
 
 .gradient{
+
     background:
         linear-gradient(
             90deg,
@@ -286,38 +395,54 @@ button{
         );
 
     -webkit-background-clip:text;
+
     background-clip:text;
 
     color:transparent;
+
 }
 
 .hero p{
+
     max-width:620px;
+
     margin-top:25px;
 
     color:#a4a4b5;
 
     font-size:18px;
+
     line-height:1.7;
+
 }
 
 .hero-actions{
+
     display:flex;
+
     gap:12px;
+
     flex-wrap:wrap;
 
     margin-top:30px;
+
 }
 
 .primary,
 .secondary{
+
     border-radius:14px;
+
     padding:15px 22px;
+
     font-weight:900;
+
 }
 
 .primary{
+
     color:white;
+
     border:0;
 
     background:
@@ -330,12 +455,18 @@ button{
     box-shadow:
         0 12px 40px
         rgba(155,92,255,.25);
+
 }
 
 .secondary{
+
     color:white;
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     background:#12121c;
+
 }
 
 /* =========================================================
@@ -343,12 +474,16 @@ button{
 ========================================================= */
 
 .hero-card{
+
     min-height:420px;
 
     position:relative;
+
     overflow:hidden;
 
-    border:1px solid var(--border);
+    border:
+        1px solid var(--border);
+
     border-radius:32px;
 
     background:
@@ -366,64 +501,95 @@ button{
         ),
 
         #10101b;
+
 }
 
 .float{
+
     position:absolute;
 
     padding:22px;
 
-    border:1px solid rgba(255,255,255,.13);
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
     border-radius:22px;
 
-    background:rgba(255,255,255,.06);
+    background:
+        rgba(255,255,255,.06);
 
-    backdrop-filter:blur(15px);
+    backdrop-filter:
+        blur(15px);
 
     box-shadow:
         0 25px 70px
         rgba(0,0,0,.4);
+
 }
 
 .float img{
+
     width:55px;
+
     height:55px;
 
     object-fit:contain;
+
     margin-bottom:12px;
+
 }
 
 .float strong{
+
     display:block;
+
     font-size:19px;
+
 }
 
 .float small{
+
     color:#aaa;
+
 }
 
 .f1{
+
     width:210px;
+
     top:50px;
+
     left:40px;
+
     transform:rotate(-7deg);
+
 }
 
 .f2{
+
     width:210px;
+
     top:110px;
+
     right:40px;
+
     transform:rotate(7deg);
+
 }
 
 .f3{
+
     width:230px;
+
     bottom:40px;
+
     left:50%;
 
     transform:
         translateX(-50%)
         rotate(-2deg);
+
 }
 
 /* =========================================================
@@ -431,23 +597,33 @@ button{
 ========================================================= */
 
 .shop{
+
     padding:60px 0 100px;
+
 }
 
 .heading{
+
     margin-bottom:25px;
+
 }
 
 .heading h2{
+
     font-size:35px;
+
 }
 
 .heading p{
+
     color:var(--muted);
+
     margin-top:7px;
+
 }
 
 .grid{
+
     display:grid;
 
     grid-template-columns:
@@ -457,16 +633,22 @@ button{
         );
 
     gap:20px;
+
 }
 
 .product{
+
     position:relative;
 
     padding:22px;
+
     min-height:340px;
+
     overflow:hidden;
 
-    border:1px solid var(--border);
+    border:
+        1px solid var(--border);
+
     border-radius:23px;
 
     background:
@@ -477,10 +659,13 @@ button{
         );
 
     transition:.25s;
+
 }
 
 .product:hover{
-    transform:translateY(-7px);
+
+    transform:
+        translateY(-7px);
 
     border-color:
         rgba(255,255,255,.18);
@@ -488,16 +673,24 @@ button{
     box-shadow:
         0 25px 60px
         rgba(0,0,0,.35);
+
 }
 
 .product-top{
+
     display:flex;
-    justify-content:space-between;
+
+    justify-content:
+        space-between;
+
     align-items:start;
+
 }
 
 .product-logo{
+
     width:70px;
+
     height:70px;
 
     padding:14px;
@@ -507,14 +700,17 @@ button{
     border-radius:18px;
 
     background:#191923;
+
 }
 
 .badge{
+
     padding:6px 9px;
 
     border-radius:20px;
 
     font-size:10px;
+
     font-weight:900;
 
     background:
@@ -523,14 +719,19 @@ button{
             #ec46b9,
             #8f4cff
         );
+
 }
 
 .product h3{
+
     margin-top:22px;
+
     font-size:22px;
+
 }
 
 .product p{
+
     min-height:45px;
 
     margin-top:8px;
@@ -538,29 +739,39 @@ button{
     color:var(--muted);
 
     line-height:1.5;
+
     font-size:14px;
+
 }
 
 .price{
+
     margin-top:18px;
 
     font-size:18px;
+
     font-weight:950;
+
 }
 
 .product button{
+
     width:100%;
 
     margin-top:16px;
+
     padding:13px;
 
     border:0;
+
     border-radius:13px;
 
     color:#09090f;
+
     background:white;
 
     font-weight:900;
+
 }
 
 /* =========================================================
@@ -568,31 +779,44 @@ button{
 ========================================================= */
 
 .modal{
+
     position:fixed;
+
     inset:0;
+
     z-index:2000;
 
     display:flex;
+
     align-items:center;
+
     justify-content:center;
 
     padding:20px;
 
-    background:rgba(0,0,0,.72);
+    background:
+        rgba(0,0,0,.72);
 
-    backdrop-filter:blur(12px);
+    backdrop-filter:
+        blur(12px);
+
 }
 
 .modal-box{
+
     width:100%;
+
     max-width:500px;
+
     max-height:90vh;
 
     overflow:auto;
 
     padding:28px;
 
-    border:1px solid var(--border);
+    border:
+        1px solid var(--border);
+
     border-radius:25px;
 
     background:#101019;
@@ -600,53 +824,80 @@ button{
     box-shadow:
         0 30px 100px
         rgba(0,0,0,.6);
+
 }
 
 .close{
+
     float:right;
 
     border:0;
+
     color:white;
+
     background:transparent;
 
     font-size:25px;
+
 }
 
 .modal h2{
+
     font-size:30px;
+
 }
 
 .modal-muted{
+
     color:var(--muted);
+
     margin-top:7px;
+
 }
 
 .amounts{
+
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
 
     gap:10px;
 
     margin-top:20px;
+
 }
 
 .amount{
+
     padding:14px;
 
-    border:1px solid var(--border);
+    border:
+        1px solid var(--border);
+
     border-radius:13px;
 
     color:white;
+
     background:#151521;
 
     font-weight:900;
+
+}
+
+.amount:hover{
+
+    border-color:var(--purple);
+
 }
 
 .amount.selected{
+
     border-color:var(--purple);
 
     background:
         rgba(155,92,255,.2);
+
 }
 
 /* =========================================================
@@ -654,10 +905,13 @@ button{
 ========================================================= */
 
 .field{
+
     margin-top:18px;
+
 }
 
 .field label{
+
     display:block;
 
     margin-bottom:7px;
@@ -665,25 +919,35 @@ button{
     color:#c8c8d5;
 
     font-size:13px;
+
     font-weight:800;
+
 }
 
 .field input{
+
     width:100%;
 
     padding:14px;
 
     color:white;
+
     background:#11111a;
 
-    border:1px solid var(--border);
+    border:
+        1px solid var(--border);
+
     border-radius:13px;
 
     outline:none;
+
 }
 
 .field input:focus{
-    border-color:rgba(155,92,255,.7);
+
+    border-color:
+        rgba(155,92,255,.7);
+
 }
 
 /* =========================================================
@@ -691,6 +955,7 @@ button{
 ========================================================= */
 
 .total-box{
+
     margin-top:20px;
 
     padding:17px;
@@ -698,12 +963,15 @@ button{
     border-radius:16px;
 
     background:#151521;
+
 }
 
 .line{
+
     display:flex;
 
     justify-content:space-between;
+
     align-items:center;
 
     gap:15px;
@@ -711,63 +979,82 @@ button{
     margin-top:8px;
 
     color:#aaaabd;
+
 }
 
 .line:first-child{
+
     margin-top:0;
+
 }
 
 .currency-select{
+
     padding:9px 12px;
 
-    max-width:220px;
+    border:
+        1px solid var(--border);
 
-    border:1px solid var(--border);
     border-radius:10px;
 
     color:white;
+
     background:#11111a;
 
     outline:none;
 
     font-weight:800;
+
 }
 
 .currency-select:focus{
+
     border-color:var(--purple);
+
 }
 
 .converted{
-    color:var(--green);
+
+    color:
+        var(--green);
+
 }
 
 .total{
+
     display:flex;
 
     justify-content:space-between;
 
     padding-top:15px;
+
     margin-top:15px;
 
-    border-top:1px solid var(--border);
+    border-top:
+        1px solid var(--border);
 
     font-size:21px;
+
     font-weight:950;
 
     color:white;
+
 }
 
 /* =========================================================
-   PAYMENT BUTTON
+   PAYMENT BUTTONS
 ========================================================= */
 
 .pay{
+
     width:100%;
 
     margin-top:20px;
+
     padding:15px;
 
     border:0;
+
     border-radius:14px;
 
     color:white;
@@ -780,11 +1067,45 @@ button{
         );
 
     font-weight:950;
+
 }
 
 .pay:disabled{
+
     opacity:.6;
+
     cursor:not-allowed;
+
+}
+
+.add-cart{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:15px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:14px;
+
+    color:white;
+
+    background:#151521;
+
+    font-weight:950;
+
+}
+
+.add-cart:hover{
+
+    border-color:
+        rgba(155,92,255,.7);
+
+    background:#1b1b29;
+
 }
 
 /* =========================================================
@@ -792,27 +1113,36 @@ button{
 ========================================================= */
 
 .cart-item{
+
     display:flex;
 
     justify-content:space-between;
+
     align-items:center;
 
     gap:15px;
 
     padding:14px 0;
 
-    border-bottom:1px solid var(--border);
+    border-bottom:
+        1px solid var(--border);
+
 }
 
 .cart-item-info{
+
     display:flex;
 
     gap:12px;
+
     align-items:center;
+
 }
 
 .cart-item img{
+
     width:45px;
+
     height:45px;
 
     padding:7px;
@@ -822,15 +1152,19 @@ button{
     background:#181822;
 
     object-fit:contain;
+
 }
 
 .remove{
+
     border:0;
 
     color:#ff7180;
+
     background:transparent;
 
     font-weight:800;
+
 }
 
 /* =========================================================
@@ -838,9 +1172,11 @@ button{
 ========================================================= */
 
 .loading{
+
     display:flex;
 
     align-items:center;
+
     justify-content:center;
 
     gap:10px;
@@ -848,25 +1184,37 @@ button{
     padding:50px;
 
     color:#9999aa;
+
 }
 
 .spinner{
+
     width:18px;
+
     height:18px;
 
-    border:2px solid rgba(255,255,255,.15);
+    border:
+        2px solid
+        rgba(255,255,255,.15);
 
-    border-top-color:var(--purple);
+    border-top-color:
+        var(--purple);
 
     border-radius:50%;
 
-    animation:spin .7s linear infinite;
+    animation:
+        spin .7s linear infinite;
+
 }
 
 @keyframes spin{
+
     to{
+
         transform:rotate(360deg);
+
     }
+
 }
 
 /* =========================================================
@@ -874,15 +1222,20 @@ button{
 ========================================================= */
 
 footer{
+
     padding:50px 5%;
 
-    border-top:1px solid var(--border);
+    border-top:
+        1px solid var(--border);
 
     color:#777789;
+
 }
 
 .footer-inner{
+
     max-width:1400px;
+
     margin:auto;
 
     display:flex;
@@ -892,13 +1245,17 @@ footer{
     gap:30px;
 
     flex-wrap:wrap;
+
 }
 
 .footer-brand{
+
     color:white;
 
     font-weight:950;
+
     font-size:20px;
+
 }
 
 /* =========================================================
@@ -908,61 +1265,89 @@ footer{
 @media(max-width:850px){
 
     .navbar{
+
         flex-wrap:wrap;
+
     }
 
     .search{
+
         order:3;
 
         flex-basis:100%;
+
         max-width:none;
+
     }
 
     .hero{
+
         grid-template-columns:1fr;
 
         padding:70px 0;
+
     }
 
     .hero-card{
+
         min-height:340px;
+
     }
 
     .nav-btn{
+
         display:none;
+
     }
+
 }
 
 @media(max-width:600px){
 
     .hero h1{
+
         font-size:50px;
+
         letter-spacing:-3px;
+
     }
 
     .hero p{
+
         font-size:16px;
+
     }
 
     .f1{
+
         left:12px;
+
     }
 
     .f2{
+
         right:12px;
+
     }
 
     .f3{
+
         bottom:20px;
+
     }
 
     .line{
+
         align-items:flex-start;
+
     }
 
     .currency-select{
-        max-width:170px;
+
+        max-width:150px;
+
     }
+
 }
 
 </style>
@@ -1345,77 +1730,31 @@ Display currency
     onchange="changeCurrency()"
 >
 
-    <option value="USD">🇺🇸 USD — US Dollar</option>
-    <option value="EUR">🇪🇺 EUR — Euro</option>
-    <option value="GBP">🇬🇧 GBP — British Pound</option>
-    <option value="CAD">🇨🇦 CAD — Canadian Dollar</option>
-    <option value="AUD">🇦🇺 AUD — Australian Dollar</option>
-
-    <option value="TND">🇹🇳 TND — Tunisian Dinar</option>
-    <option value="DZD">🇩🇿 DZD — Algerian Dinar</option>
-    <option value="MAD">🇲🇦 MAD — Moroccan Dirham</option>
-    <option value="EGP">🇪🇬 EGP — Egyptian Pound</option>
-
-    <option value="NGN">🇳🇬 NGN — Nigerian Naira</option>
-    <option value="GHS">🇬🇭 GHS — Ghanaian Cedi</option>
-    <option value="KES">🇰🇪 KES — Kenyan Shilling</option>
-    <option value="TZS">🇹🇿 TZS — Tanzanian Shilling</option>
-    <option value="UGX">🇺🇬 UGX — Ugandan Shilling</option>
-    <option value="RWF">🇷🇼 RWF — Rwandan Franc</option>
-
-    <option value="XOF">🌍 XOF — West African CFA Franc</option>
-    <option value="XAF">🌍 XAF — Central African CFA Franc</option>
-
-    <option value="ZAR">🇿🇦 ZAR — South African Rand</option>
-    <option value="ETB">🇪🇹 ETB — Ethiopian Birr</option>
-
-    <option value="INR">🇮🇳 INR — Indian Rupee</option>
-    <option value="PKR">🇵🇰 PKR — Pakistani Rupee</option>
-    <option value="BDT">🇧🇩 BDT — Bangladeshi Taka</option>
-    <option value="LKR">🇱🇰 LKR — Sri Lankan Rupee</option>
-    <option value="NPR">🇳🇵 NPR — Nepalese Rupee</option>
-
-    <option value="PHP">🇵🇭 PHP — Philippine Peso</option>
-    <option value="IDR">🇮🇩 IDR — Indonesian Rupiah</option>
-    <option value="MYR">🇲🇾 MYR — Malaysian Ringgit</option>
-    <option value="THB">🇹🇭 THB — Thai Baht</option>
-    <option value="VND">🇻🇳 VND — Vietnamese Dong</option>
-    <option value="SGD">🇸🇬 SGD — Singapore Dollar</option>
-
-    <option value="JPY">🇯🇵 JPY — Japanese Yen</option>
-    <option value="CNY">🇨🇳 CNY — Chinese Yuan</option>
-    <option value="KRW">🇰🇷 KRW — South Korean Won</option>
-
-    <option value="TRY">🇹🇷 TRY — Turkish Lira</option>
-
-    <option value="SAR">🇸🇦 SAR — Saudi Riyal</option>
-    <option value="AED">🇦🇪 AED — UAE Dirham</option>
-    <option value="QAR">🇶🇦 QAR — Qatari Riyal</option>
-    <option value="KWD">🇰🇼 KWD — Kuwaiti Dinar</option>
-    <option value="BHD">🇧🇭 BHD — Bahraini Dinar</option>
-    <option value="OMR">🇴🇲 OMR — Omani Rial</option>
-    <option value="JOD">🇯🇴 JOD — Jordanian Dinar</option>
-    <option value="ILS">🇮🇱 ILS — Israeli Shekel</option>
-
-    <option value="CHF">🇨🇭 CHF — Swiss Franc</option>
-    <option value="SEK">🇸🇪 SEK — Swedish Krona</option>
-    <option value="NOK">🇳🇴 NOK — Norwegian Krone</option>
-    <option value="DKK">🇩🇰 DKK — Danish Krone</option>
-    <option value="PLN">🇵🇱 PLN — Polish Zloty</option>
-    <option value="CZK">🇨🇿 CZK — Czech Koruna</option>
-    <option value="HUF">🇭🇺 HUF — Hungarian Forint</option>
-    <option value="RON">🇷🇴 RON — Romanian Leu</option>
-    <option value="BGN">🇧🇬 BGN — Bulgarian Lev</option>
-    <option value="UAH">🇺🇦 UAH — Ukrainian Hryvnia</option>
-    <option value="ISK">🇮🇸 ISK — Icelandic Krona</option>
-
-    <option value="BRL">🇧🇷 BRL — Brazilian Real</option>
-    <option value="MXN">🇲🇽 MXN — Mexican Peso</option>
-    <option value="ARS">🇦🇷 ARS — Argentine Peso</option>
-    <option value="CLP">🇨🇱 CLP — Chilean Peso</option>
-    <option value="COP">🇨🇴 COP — Colombian Peso</option>
-    <option value="PEN">🇵🇪 PEN — Peruvian Sol</option>
-    <option value="UYU">🇺🇾 UYU — Uruguayan Peso</option>
+<option value="USD">🇺🇸 USD</option>
+<option value="EUR">🇪🇺 EUR</option>
+<option value="GBP">🇬🇧 GBP</option>
+<option value="CAD">🇨🇦 CAD</option>
+<option value="AUD">🇦🇺 AUD</option>
+<option value="TND">🇹🇳 TND</option>
+<option value="DZD">🇩🇿 DZD</option>
+<option value="MAD">🇲🇦 MAD</option>
+<option value="EGP">🇪🇬 EGP</option>
+<option value="SAR">🇸🇦 SAR</option>
+<option value="AED">🇦🇪 AED</option>
+<option value="QAR">🇶🇦 QAR</option>
+<option value="KWD">🇰🇼 KWD</option>
+<option value="JOD">🇯🇴 JOD</option>
+<option value="TRY">🇹🇷 TRY</option>
+<option value="JPY">🇯🇵 JPY</option>
+<option value="CNY">🇨🇳 CNY</option>
+<option value="INR">🇮🇳 INR</option>
+<option value="CHF">🇨🇭 CHF</option>
+<option value="SEK">🇸🇪 SEK</option>
+<option value="NOK">🇳🇴 NOK</option>
+<option value="PLN">🇵🇱 PLN</option>
+<option value="BRL">🇧🇷 BRL</option>
+<option value="MXN">🇲🇽 MXN</option>
+<option value="ZAR">🇿🇦 ZAR</option>
 
 </select>
 
@@ -1450,24 +1789,24 @@ $0.00
 
 </div>
 
-<button
-    id="addToCartButton"
-    class="pay"
-    onclick="addToCart()"
->
-🛒 Add to cart
-</button>
+<!-- BUY NOW -->
 
 <button
     id="buyNowButton"
-    class="secondary"
-    style="
-        width:100%;
-        margin-top:10px;
-    "
+    class="pay"
     onclick="checkout()"
 >
 Buy now →
+</button>
+
+<!-- ADD TO CART -->
+
+<button
+    id="addToCartButton"
+    class="add-cart"
+    onclick="addToCart()"
+>
+🛒 Add to cart
 </button>
 
 <p
@@ -1524,6 +1863,7 @@ $0.00
 </div>
 
 <button
+    id="cartCheckoutButton"
     class="pay"
     onclick="checkoutCart()"
 >
@@ -1617,7 +1957,7 @@ const products = [
         name:"Riot Games",
         category:"gaming",
         description:"Riot Points and digital credit for Riot Games.",
-        logo:"https://cdn.simpleicons.org/riot/ffffff",
+        logo:"https://cdn.simpleicons.org/riotgames/ffffff",
         values:[10,20,25,50,100],
         fee:1.49
     },
@@ -1810,6 +2150,7 @@ const products = [
 ========================================================= */
 
 let selectedProduct = null;
+
 let selectedAmount = null;
 
 let exchangeRates = {
@@ -1817,7 +2158,9 @@ let exchangeRates = {
 };
 
 let exchangeRateDate = null;
+
 let ratesLoaded = false;
+
 let ratesLoading = false;
 
 let cart = JSON.parse(
@@ -1834,15 +2177,11 @@ const savedCurrency =
 if(savedCurrency){
 
     const selector =
-        document.getElementById("currencySelect");
+        document.getElementById(
+            "currencySelect"
+        );
 
-    if(
-        selector &&
-        [...selector.options].some(
-            option =>
-                option.value === savedCurrency
-        )
-    ){
+    if(selector){
 
         selector.value =
             savedCurrency;
@@ -1858,7 +2197,9 @@ if(savedCurrency){
 async function loadExchangeRates(){
 
     if(ratesLoading){
+
         return;
+
     }
 
     const cached =
@@ -1882,10 +2223,7 @@ async function loadExchangeRates(){
                 30 * 60 * 1000
             ){
 
-                if(
-                    parsed.rates &&
-                    typeof parsed.rates.USD === "number"
-                ){
+                if(parsed.rates){
 
                     exchangeRates =
                         parsed.rates;
@@ -2009,17 +2347,8 @@ function formatCurrency(
             {
                 style:"currency",
                 currency:currency,
-
                 maximumFractionDigits:
-                    [
-                        "JPY",
-                        "KRW",
-                        "VND",
-                        "IDR",
-                        "CLP",
-                        "COP",
-                        "ISK"
-                    ].includes(currency)
+                    currency === "JPY"
                     ? 0
                     : 2
             }
@@ -2028,7 +2357,7 @@ function formatCurrency(
     }catch(error){
 
         return (
-            Number(amount).toFixed(2) +
+            amount.toFixed(2) +
             " " +
             currency
         );
@@ -2062,10 +2391,7 @@ function updateConvertedPrice(){
             "convertedPrice"
         );
 
-    if(
-        !selector ||
-        !output
-    ){
+    if(!selector || !output){
 
         return;
 
@@ -2081,7 +2407,9 @@ function updateConvertedPrice(){
         selectedAmount +
         selectedProduct.fee;
 
-    if(currency === "USD"){
+    if(
+        currency === "USD"
+    ){
 
         output.textContent =
             formatCurrency(
@@ -2155,7 +2483,9 @@ function renderProducts(
         );
 
     if(!grid){
+
         return;
+
     }
 
     grid.innerHTML = "";
@@ -2224,15 +2554,11 @@ function renderProducts(
 
                 ${
                     product.badge
-
                     ? `
-
                         <span class="badge">
                             ${product.badge}
                         </span>
-
-                    `
-
+                      `
                     : ""
                 }
 
@@ -2254,6 +2580,7 @@ function renderProducts(
             </div>
 
             <button
+                type="button"
                 onclick="openProduct('${product.id}')"
             >
                 Choose amount →
@@ -2280,26 +2607,57 @@ function openProduct(id){
         );
 
     if(!selectedProduct){
+
+        console.error(
+            "Product not found:",
+            id
+        );
+
         return;
+
     }
 
     selectedAmount =
         selectedProduct.values[0];
 
-    document.getElementById(
-        "modalName"
-    ).textContent =
-        selectedProduct.name;
+    const modalName =
+        document.getElementById(
+            "modalName"
+        );
 
-    document.getElementById(
-        "modalDescription"
-    ).textContent =
-        selectedProduct.description;
+    const modalDescription =
+        document.getElementById(
+            "modalDescription"
+        );
+
+    if(modalName){
+
+        modalName.textContent =
+            selectedProduct.name;
+
+    }
+
+    if(modalDescription){
+
+        modalDescription.textContent =
+            selectedProduct.description;
+
+    }
 
     const amounts =
         document.getElementById(
             "amounts"
         );
+
+    if(!amounts){
+
+        console.error(
+            "Amounts container missing."
+        );
+
+        return;
+
+    }
 
     amounts.innerHTML = "";
 
@@ -2310,6 +2668,9 @@ function openProduct(id){
                 document.createElement(
                     "button"
                 );
+
+            button.type =
+                "button";
 
             button.className =
                 "amount";
@@ -2359,25 +2720,39 @@ function openProduct(id){
         }
     );
 
-    document.getElementById(
-        "customerEmail"
-    ).value = "";
+    const email =
+        document.getElementById(
+            "customerEmail"
+        );
 
-    document.getElementById(
-        "checkoutMessage"
-    ).textContent = "";
+    if(email){
 
-    const checkoutButton =
+        email.value = "";
+
+    }
+
+    const message =
+        document.getElementById(
+            "checkoutMessage"
+        );
+
+    if(message){
+
+        message.textContent = "";
+
+    }
+
+    const buyButton =
         document.getElementById(
             "buyNowButton"
         );
 
-    if(checkoutButton){
+    if(buyButton){
 
-        checkoutButton.disabled =
+        buyButton.disabled =
             false;
 
-        checkoutButton.textContent =
+        buyButton.textContent =
             "Buy now →";
 
     }
@@ -2399,11 +2774,18 @@ function openProduct(id){
 
     updateTotal();
 
-    document.getElementById(
-        "productModal"
-    ).classList.remove(
-        "hidden"
-    );
+    const productModal =
+        document.getElementById(
+            "productModal"
+        );
+
+    if(productModal){
+
+        productModal.classList.remove(
+            "hidden"
+        );
+
+    }
 
     if(!ratesLoaded){
 
@@ -2421,7 +2803,7 @@ function updateTotal(){
 
     if(
         !selectedProduct ||
-        !selectedAmount
+        selectedAmount === null
     ){
 
         return;
@@ -2429,37 +2811,58 @@ function updateTotal(){
     }
 
     const gift =
-        selectedAmount;
+        Number(selectedAmount);
 
     const fee =
-        selectedProduct.fee;
+        Number(selectedProduct.fee);
 
     const total =
         gift + fee;
 
-    document.getElementById(
-        "giftPrice"
-    ).textContent =
-        formatCurrency(
-            gift,
-            "USD"
+    const giftPrice =
+        document.getElementById(
+            "giftPrice"
         );
 
-    document.getElementById(
-        "fee"
-    ).textContent =
-        formatCurrency(
-            fee,
-            "USD"
+    const feeElement =
+        document.getElementById(
+            "fee"
         );
 
-    document.getElementById(
-        "total"
-    ).textContent =
-        formatCurrency(
-            total,
-            "USD"
+    const totalElement =
+        document.getElementById(
+            "total"
         );
+
+    if(giftPrice){
+
+        giftPrice.textContent =
+            formatCurrency(
+                gift,
+                "USD"
+            );
+
+    }
+
+    if(feeElement){
+
+        feeElement.textContent =
+            formatCurrency(
+                fee,
+                "USD"
+            );
+
+    }
+
+    if(totalElement){
+
+        totalElement.textContent =
+            formatCurrency(
+                total,
+                "USD"
+            );
+
+    }
 
     updateConvertedPrice();
 
@@ -2473,34 +2876,89 @@ function addToCart(){
 
     if(
         !selectedProduct ||
-        !selectedAmount
+        selectedAmount === null
     ){
 
         return;
 
     }
 
-    cart.push({
+    const emailInput =
+        document.getElementById(
+            "customerEmail"
+        );
 
-        id:
-            Date.now(),
+    const email =
+        emailInput
+        ? emailInput.value.trim()
+        : "";
 
-        product:
-            selectedProduct.id,
+    if(
+        !email ||
+        !email.includes("@")
+    ){
 
-        name:
-            selectedProduct.name,
+        const message =
+            document.getElementById(
+                "checkoutMessage"
+            );
 
-        amount:
-            selectedAmount,
+        if(message){
 
-        fee:
-            selectedProduct.fee,
+            message.textContent =
+                "Please enter your email address before adding the gift card to your cart.";
 
-        logo:
-            selectedProduct.logo
+        }
 
-    });
+        return;
+
+    }
+
+    const existingItem =
+        cart.find(
+            item =>
+                item.product ===
+                selectedProduct.id &&
+                Number(item.amount) ===
+                Number(selectedAmount) &&
+                item.email ===
+                email
+        );
+
+    if(existingItem){
+
+        existingItem.quantity =
+            (existingItem.quantity || 1) + 1;
+
+    }else{
+
+        cart.push({
+
+            id:
+                Date.now() +
+                Math.random(),
+
+            product:
+                selectedProduct.id,
+
+            name:
+                selectedProduct.name,
+
+            amount:
+                Number(selectedAmount),
+
+            fee:
+                Number(selectedProduct.fee),
+
+            logo:
+                selectedProduct.logo,
+
+            email:
+                email
+
+        });
+
+    }
 
     saveCart();
 
@@ -2540,8 +2998,17 @@ function updateCartCount(){
 
     if(count){
 
+        let itemCount = 0;
+
+        cart.forEach(item => {
+
+            itemCount +=
+                Number(item.quantity || 1);
+
+        });
+
         count.textContent =
-            cart.length;
+            itemCount;
 
     }
 
@@ -2582,7 +3049,9 @@ function renderCart(){
         );
 
     if(!container){
+
         return;
+
     }
 
     if(!cart.length){
@@ -2635,8 +3104,12 @@ function renderCart(){
         const fee =
             Number(item.fee);
 
+        const quantity =
+            Number(item.quantity || 1);
+
         total +=
-            amount + fee;
+            (amount + fee) *
+            quantity;
 
         const row =
             document.createElement(
@@ -2676,6 +3149,24 @@ function renderCart(){
 
                         fee
 
+                        ${
+                            quantity > 1
+                            ? ` × ${quantity}`
+                            : ""
+                        }
+
+                    </div>
+
+                    <div
+                        style="
+                            color:#777;
+                            margin-top:3px;
+                            font-size:12px;
+                        "
+                    >
+
+                        ${item.email || ""}
+
                     </div>
 
                 </div>
@@ -2683,6 +3174,7 @@ function renderCart(){
             </div>
 
             <button
+                type="button"
                 class="remove"
                 onclick="removeCartItem(${item.id})"
             >
@@ -2723,7 +3215,7 @@ function removeCartItem(id){
     cart =
         cart.filter(
             item =>
-                item.id !== id
+                item.id != id
         );
 
     saveCart();
@@ -2786,7 +3278,7 @@ async function checkout(){
 
     if(
         !selectedProduct ||
-        !selectedAmount
+        selectedAmount === null
     ){
 
         if(message){
@@ -2840,7 +3332,7 @@ async function checkout(){
                                 selectedProduct.id,
 
                             amount:
-                                selectedAmount,
+                                Number(selectedAmount),
 
                             email:
                                 email,
@@ -2855,14 +3347,24 @@ async function checkout(){
                 }
             );
 
-        const data =
-            await response.json();
+        let data;
+
+        try{
+
+            data =
+                await response.json();
+
+        }catch(error){
+
+            data = {};
+
+        }
 
         if(!response.ok){
 
             throw new Error(
                 data.error ||
-                "Checkout failed."
+                `Checkout failed (${response.status}).`
             );
 
         }
@@ -2874,13 +3376,6 @@ async function checkout(){
             );
 
         }
-
-        /*
-         * Stripe currently receives USD.
-         *
-         * The selected currency is
-         * display-only.
-         */
 
         window.location.href =
             data.url;
@@ -2918,7 +3413,7 @@ async function checkout(){
    CART CHECKOUT
 ========================================================= */
 
-function checkoutCart(){
+async function checkoutCart(){
 
     if(!cart.length){
 
@@ -2931,28 +3426,132 @@ function checkoutCart(){
     }
 
     /*
-     * The current backend supports
-     * one gift card per Stripe session.
+     * IMPORTANT:
      *
-     * For now, open the first item.
-     *
-     * Later we can add:
-     *
+     * Your backend currently needs a
      * /create-cart-checkout-session
-     *
-     * to checkout the entire cart.
+     * endpoint for true multi-item checkout.
      */
 
-    const first =
-        cart[0];
+    const button =
+        document.getElementById(
+            "cartCheckoutButton"
+        );
 
-    closeModal(
-        "cartModal"
-    );
+    if(button){
 
-    openProduct(
-        first.product
-    );
+        button.disabled =
+            true;
+
+        button.textContent =
+            "Creating checkout...";
+
+    }
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/create-cart-checkout-session",
+                {
+
+                    method:
+                        "POST",
+
+                    headers:{
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            items:
+                                cart.map(
+                                    item => ({
+
+                                        productId:
+                                            item.product,
+
+                                        amount:
+                                            Number(item.amount),
+
+                                        fee:
+                                            Number(item.fee),
+
+                                        email:
+                                            item.email
+
+                                    })
+                                )
+
+                        })
+
+                }
+            );
+
+        let data;
+
+        try{
+
+            data =
+                await response.json();
+
+        }catch(error){
+
+            data = {};
+
+        }
+
+        if(!response.ok){
+
+            throw new Error(
+                data.error ||
+                `Cart checkout failed (${response.status}).`
+            );
+
+        }
+
+        if(!data.url){
+
+            throw new Error(
+                "Stripe checkout URL missing."
+            );
+
+        }
+
+        window.location.href =
+            data.url;
+
+    }catch(error){
+
+        console.error(
+            "Cart checkout error:",
+            error
+        );
+
+        /*
+         * Until the backend has the cart endpoint,
+         * show a useful message instead of silently failing.
+         */
+
+        alert(
+            error.message ||
+            "Cart checkout is not available yet. The backend needs the /create-cart-checkout-session endpoint."
+        );
+
+        if(button){
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Checkout →";
+
+        }
+
+    }
 
 }
 
@@ -3062,9 +3661,11 @@ function goHome(){
 
     window.scrollTo({
 
-        top:0,
+        top:
+            0,
 
-        behavior:"smooth"
+        behavior:
+            "smooth"
 
     });
 
@@ -3081,7 +3682,8 @@ function scrollShop(){
 
         shop.scrollIntoView({
 
-            behavior:"smooth"
+            behavior:
+                "smooth"
 
         });
 
