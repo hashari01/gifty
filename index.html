@@ -775,7 +775,7 @@ button{
 }
 
 /* =========================================================
-   MODAL
+   MODALS
 ========================================================= */
 
 .modal{
@@ -1137,6 +1137,8 @@ button{
 
     align-items:center;
 
+    min-width:0;
+
 }
 
 .cart-item img{
@@ -1153,6 +1155,8 @@ button{
 
     object-fit:contain;
 
+    flex-shrink:0;
+
 }
 
 .remove{
@@ -1164,6 +1168,66 @@ button{
     background:transparent;
 
     font-weight:800;
+
+    flex-shrink:0;
+
+}
+
+.cart-email{
+
+    margin-top:20px;
+
+}
+
+.cart-email label{
+
+    display:block;
+
+    margin-bottom:8px;
+
+    color:#c8c8d5;
+
+    font-size:13px;
+
+    font-weight:800;
+
+}
+
+.cart-email input{
+
+    width:100%;
+
+    padding:14px;
+
+    color:white;
+
+    background:#11111a;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:13px;
+
+    outline:none;
+
+}
+
+.cart-email input:focus{
+
+    border-color:
+        rgba(155,92,255,.7);
+
+}
+
+.cart-message{
+
+    margin-top:10px;
+
+    text-align:center;
+
+    color:#ff7180;
+
+    font-size:13px;
 
 }
 
@@ -1789,8 +1853,6 @@ $0.00
 
 </div>
 
-<!-- BUY NOW -->
-
 <button
     id="buyNowButton"
     class="pay"
@@ -1798,8 +1860,6 @@ $0.00
 >
 Buy now →
 </button>
-
-<!-- ADD TO CART -->
 
 <button
     id="addToCartButton"
@@ -1844,7 +1904,35 @@ Buy now →
 Your cart 🛒
 </h2>
 
+<p
+    class="modal-muted"
+>
+Review your gift cards before checkout.
+</p>
+
 <div id="cartItems"></div>
+
+<!-- CART EMAIL -->
+
+<div class="cart-email">
+
+<label for="cartCustomerEmail">
+Email address for your gift cards
+</label>
+
+<input
+    id="cartCustomerEmail"
+    type="email"
+    placeholder="you@example.com"
+    autocomplete="email"
+>
+
+</div>
+
+<p
+    id="cartCheckoutMessage"
+    class="cart-message"
+></p>
 
 <div class="total-box">
 
@@ -1867,7 +1955,7 @@ $0.00
     class="pay"
     onclick="checkoutCart()"
 >
-Checkout →
+Checkout → Stripe
 </button>
 
 </div>
@@ -2374,7 +2462,7 @@ function updateConvertedPrice(){
 
     if(
         !selectedProduct ||
-        !selectedAmount
+        selectedAmount === null
     ){
 
         return;
@@ -2651,10 +2739,6 @@ function openProduct(id){
 
     if(!amounts){
 
-        console.error(
-            "Amounts container missing."
-        );
-
         return;
 
     }
@@ -2757,21 +2841,6 @@ function openProduct(id){
 
     }
 
-    const addButton =
-        document.getElementById(
-            "addToCartButton"
-        );
-
-    if(addButton){
-
-        addButton.disabled =
-            false;
-
-        addButton.textContent =
-            "🛒 Add to cart";
-
-    }
-
     updateTotal();
 
     const productModal =
@@ -2869,6 +2938,18 @@ function updateTotal(){
 }
 
 /* =========================================================
+   VALIDATE EMAIL
+========================================================= */
+
+function isValidEmail(email){
+
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(
+        email
+    );
+
+}
+
+/* =========================================================
    ADD TO CART
 ========================================================= */
 
@@ -2893,20 +2974,17 @@ function addToCart(){
         ? emailInput.value.trim()
         : "";
 
-    if(
-        !email ||
-        !email.includes("@")
-    ){
+    const message =
+        document.getElementById(
+            "checkoutMessage"
+        );
 
-        const message =
-            document.getElementById(
-                "checkoutMessage"
-            );
+    if(!isValidEmail(email)){
 
         if(message){
 
             message.textContent =
-                "Please enter your email address before adding the gift card to your cart.";
+                "Please enter a valid email address.";
 
         }
 
@@ -2921,14 +2999,15 @@ function addToCart(){
                 selectedProduct.id &&
                 Number(item.amount) ===
                 Number(selectedAmount) &&
-                item.email ===
-                email
+                item.email &&
+                item.email.toLowerCase() ===
+                email.toLowerCase()
         );
 
     if(existingItem){
 
         existingItem.quantity =
-            (existingItem.quantity || 1) + 1;
+            Number(existingItem.quantity || 1) + 1;
 
     }else{
 
@@ -2954,7 +3033,10 @@ function addToCart(){
                 selectedProduct.logo,
 
             email:
-                email
+                email,
+
+            quantity:
+                1
 
         });
 
@@ -3051,6 +3133,36 @@ function renderCart(){
     if(!container){
 
         return;
+
+    }
+
+    const emailInput =
+        document.getElementById(
+            "cartCustomerEmail"
+        );
+
+    /*
+     * If the cart already contains an email,
+     * automatically put it into the cart email box.
+     */
+
+    if(
+        emailInput &&
+        !emailInput.value &&
+        cart.length
+    ){
+
+        const firstEmail =
+            cart.find(
+                item => item.email
+            );
+
+        if(firstEmail){
+
+            emailInput.value =
+                firstEmail.email;
+
+        }
 
     }
 
@@ -3157,18 +3269,6 @@ function renderCart(){
 
                     </div>
 
-                    <div
-                        style="
-                            color:#777;
-                            margin-top:3px;
-                            font-size:12px;
-                        "
-                    >
-
-                        ${item.email || ""}
-
-                    </div>
-
                 </div>
 
             </div>
@@ -3260,10 +3360,7 @@ async function checkout(){
     const email =
         emailInput.value.trim();
 
-    if(
-        !email ||
-        !email.includes("@")
-    ){
+    if(!isValidEmail(email)){
 
         if(message){
 
@@ -3271,6 +3368,8 @@ async function checkout(){
                 "Please enter a valid email address.";
 
         }
+
+        emailInput.focus();
 
         return;
 
@@ -3295,7 +3394,7 @@ async function checkout(){
     if(message){
 
         message.textContent =
-            "Creating secure checkout...";
+            "Creating secure Stripe checkout...";
 
     }
 
@@ -3311,14 +3410,18 @@ async function checkout(){
 
     try{
 
+        const currencyElement =
+            document.getElementById(
+                "currencySelect"
+            );
+
         const response =
             await fetch(
                 API_URL +
                 "/create-checkout-session",
                 {
 
-                    method:
-                        "POST",
+                    method:"POST",
 
                     headers:{
                         "Content-Type":
@@ -3338,16 +3441,16 @@ async function checkout(){
                                 email,
 
                             displayCurrency:
-                                document.getElementById(
-                                    "currencySelect"
-                                ).value
+                                currencyElement
+                                ? currencyElement.value
+                                : "USD"
 
                         })
 
                 }
             );
 
-        let data;
+        let data = {};
 
         try{
 
@@ -3356,7 +3459,10 @@ async function checkout(){
 
         }catch(error){
 
-            data = {};
+            console.error(
+                "Invalid server response.",
+                error
+            );
 
         }
 
@@ -3410,7 +3516,7 @@ async function checkout(){
 }
 
 /* =========================================================
-   CART CHECKOUT
+   CART CHECKOUT → STRIPE
 ========================================================= */
 
 async function checkoutCart(){
@@ -3425,18 +3531,65 @@ async function checkoutCart(){
 
     }
 
-    /*
-     * IMPORTANT:
-     *
-     * Your backend currently needs a
-     * /create-cart-checkout-session
-     * endpoint for true multi-item checkout.
-     */
+    const emailInput =
+        document.getElementById(
+            "cartCustomerEmail"
+        );
+
+    const message =
+        document.getElementById(
+            "cartCheckoutMessage"
+        );
 
     const button =
         document.getElementById(
             "cartCheckoutButton"
         );
+
+    const email =
+        emailInput
+        ? emailInput.value.trim()
+        : "";
+
+    /* -----------------------------------------
+       VALIDATE EMAIL
+    ----------------------------------------- */
+
+    if(!isValidEmail(email)){
+
+        if(message){
+
+            message.textContent =
+                "Please enter a valid email address.";
+
+        }
+
+        if(emailInput){
+
+            emailInput.focus();
+
+        }
+
+        return;
+
+    }
+
+    /* -----------------------------------------
+       SAVE EMAIL TO CART
+    ----------------------------------------- */
+
+    cart.forEach(item => {
+
+        item.email =
+            email;
+
+    });
+
+    saveCart();
+
+    /* -----------------------------------------
+       DISABLE BUTTON
+    ----------------------------------------- */
 
     if(button){
 
@@ -3444,11 +3597,40 @@ async function checkoutCart(){
             true;
 
         button.textContent =
-            "Creating checkout...";
+            "Creating Stripe checkout...";
+
+    }
+
+    if(message){
+
+        message.textContent =
+            "Connecting to secure Stripe checkout...";
 
     }
 
     try{
+
+        /* -----------------------------------------
+           GET CURRENCY
+        ----------------------------------------- */
+
+        const currencyElement =
+            document.getElementById(
+                "currencySelect"
+            );
+
+        const displayCurrency =
+            currencyElement
+            ? currencyElement.value
+            : (
+                localStorage.getItem(
+                    "gifty_currency"
+                ) || "USD"
+            );
+
+        /* -----------------------------------------
+           SEND CART TO SERVER
+        ----------------------------------------- */
 
         const response =
             await fetch(
@@ -3456,8 +3638,7 @@ async function checkoutCart(){
                 "/create-cart-checkout-session",
                 {
 
-                    method:
-                        "POST",
+                    method:"POST",
 
                     headers:{
                         "Content-Type":
@@ -3467,6 +3648,12 @@ async function checkoutCart(){
                     body:
                         JSON.stringify({
 
+                            email:
+                                email,
+
+                            displayCurrency:
+                                displayCurrency,
+
                             items:
                                 cart.map(
                                     item => ({
@@ -3475,13 +3662,19 @@ async function checkoutCart(){
                                             item.product,
 
                                         amount:
-                                            Number(item.amount),
+                                            Number(
+                                                item.amount
+                                            ),
 
                                         fee:
-                                            Number(item.fee),
+                                            Number(
+                                                item.fee
+                                            ),
 
-                                        email:
-                                            item.email
+                                        quantity:
+                                            Number(
+                                                item.quantity || 1
+                                            )
 
                                     })
                                 )
@@ -3491,7 +3684,11 @@ async function checkoutCart(){
                 }
             );
 
-        let data;
+        /* -----------------------------------------
+           READ RESPONSE
+        ----------------------------------------- */
+
+        let data = {};
 
         try{
 
@@ -3500,9 +3697,16 @@ async function checkoutCart(){
 
         }catch(error){
 
-            data = {};
+            console.error(
+                "Could not parse checkout response:",
+                error
+            );
 
         }
+
+        /* -----------------------------------------
+           SERVER ERROR
+        ----------------------------------------- */
 
         if(!response.ok){
 
@@ -3513,6 +3717,10 @@ async function checkoutCart(){
 
         }
 
+        /* -----------------------------------------
+           STRIPE URL
+        ----------------------------------------- */
+
         if(!data.url){
 
             throw new Error(
@@ -3521,25 +3729,35 @@ async function checkoutCart(){
 
         }
 
+        /*
+         * IMPORTANT:
+         *
+         * Do NOT clear the cart before Stripe
+         * finishes loading. The server needs the
+         * request first.
+         */
+
+        /* -----------------------------------------
+           GO TO STRIPE
+        ----------------------------------------- */
+
         window.location.href =
             data.url;
 
     }catch(error){
 
         console.error(
-            "Cart checkout error:",
+            "Cart Stripe checkout error:",
             error
         );
 
-        /*
-         * Until the backend has the cart endpoint,
-         * show a useful message instead of silently failing.
-         */
+        if(message){
 
-        alert(
-            error.message ||
-            "Cart checkout is not available yet. The backend needs the /create-cart-checkout-session endpoint."
-        );
+            message.textContent =
+                error.message ||
+                "Unable to create Stripe checkout.";
+
+        }
 
         if(button){
 
@@ -3547,7 +3765,7 @@ async function checkoutCart(){
                 false;
 
             button.textContent =
-                "Checkout →";
+                "Checkout → Stripe";
 
         }
 
@@ -3661,11 +3879,9 @@ function goHome(){
 
     window.scrollTo({
 
-        top:
-            0,
+        top:0,
 
-        behavior:
-            "smooth"
+        behavior:"smooth"
 
     });
 
@@ -3682,8 +3898,7 @@ function scrollShop(){
 
         shop.scrollIntoView({
 
-            behavior:
-                "smooth"
+            behavior:"smooth"
 
         });
 
