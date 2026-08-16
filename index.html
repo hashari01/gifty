@@ -1831,63 +1831,31 @@ Display currency
     class="currency-select"
     onchange="changeCurrency()"
 >
-
-<option value="USD">
-🇺🇸 USD
-</option>
-
-<option value="TND">
-🇹🇳 TND
-</option>
-
-<option value="EUR">
-🇪🇺 EUR
-</option>
-
-<option value="GBP">
-🇬🇧 GBP
-</option>
-
-<option value="CAD">
-🇨🇦 CAD
-</option>
-
-<option value="AUD">
-🇦🇺 AUD
-</option>
-
-<option value="AED">
-🇦🇪 AED
-</option>
-
-<option value="SAR">
-🇸🇦 SAR
-</option>
-
-<option value="MAD">
-🇲🇦 MAD
-</option>
-
-<option value="DZD">
-🇩🇿 DZD
-</option>
-
-<option value="EGP">
-🇪🇬 EGP
-</option>
-
-<option value="TRY">
-🇹🇷 TRY
-</option>
-
-<option value="JPY">
-🇯🇵 JPY
-</option>
-
-<option value="CHF">
-🇨🇭 CHF
-</option>
-
+    <option value="USD">🇺🇸 USD</option>
+    <option value="EUR">🇪🇺 EUR</option>
+    <option value="GBP">🇬🇧 GBP</option>
+    <option value="CAD">🇨🇦 CAD</option>
+    <option value="AUD">🇦🇺 AUD</option>
+    <option value="TND">🇹🇳 TND</option>
+    <option value="DZD">🇩🇿 DZD</option>
+    <option value="MAD">🇲🇦 MAD</option>
+    <option value="EGP">🇪🇬 EGP</option>
+    <option value="SAR">🇸🇦 SAR</option>
+    <option value="AED">🇦🇪 AED</option>
+    <option value="QAR">🇶🇦 QAR</option>
+    <option value="KWD">🇰🇼 KWD</option>
+    <option value="JOD">🇯🇴 JOD</option>
+    <option value="TRY">🇹🇷 TRY</option>
+    <option value="JPY">🇯🇵 JPY</option>
+    <option value="CNY">🇨🇳 CNY</option>
+    <option value="INR">🇮🇳 INR</option>
+    <option value="CHF">🇨🇭 CHF</option>
+    <option value="SEK">🇸🇪 SEK</option>
+    <option value="NOK">🇳🇴 NOK</option>
+    <option value="PLN">🇵🇱 PLN</option>
+    <option value="BRL">🇧🇷 BRL</option>
+    <option value="MXN">🇲🇽 MXN</option>
+    <option value="ZAR">🇿🇦 ZAR</option>
 </select>
 
 </div>
@@ -3440,19 +3408,24 @@ async function checkout(){
 
                     },
 
-                    body:
-                        JSON.stringify({
+body:
+    JSON.stringify({
 
-                            productId:
-                                selectedProduct.id,
+        productId:
+            selectedProduct.id,
 
-                            amount:
-                                selectedAmount,
+        amount:
+            selectedAmount,
 
-                            email:
-                                email
+        email:
+            email,
 
-                        })
+        displayCurrency:
+            document.getElementById(
+                "currencySelect"
+            ).value
+
+    })
 
                 }
             );
