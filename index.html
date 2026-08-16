@@ -695,6 +695,14 @@ Shop
 📱 Apps
 </button>
 
+<button class="category" onclick="filterCategory('shopping',this)">
+🛍️ Shopping
+</button>
+
+<button class="category" onclick="filterCategory('travel',this)">
+✈️ Travel
+</button>
+
 </div>
 
 <main>
@@ -897,6 +905,8 @@ Checkout →
 
 const products = [
 
+/* GAMING */
+
 {
     id:"steam",
     name:"Steam",
@@ -950,6 +960,59 @@ const products = [
 },
 
 {
+    id:"razergold",
+    name:"Razer Gold",
+    category:"gaming",
+    description:"Digital credit for games and gaming content.",
+    logo:"https://cdn.simpleicons.org/razer/ffffff",
+    values:[10,20,50,100],
+    fee:1.49,
+    badge:"POPULAR"
+},
+
+{
+    id:"riotgames",
+    name:"Riot Games",
+    category:"gaming",
+    description:"Riot Points and digital credit for Riot Games.",
+    logo:"https://cdn.simpleicons.org/riotgames/ffffff",
+    values:[10,20,25,50,100],
+    fee:1.49
+},
+
+{
+    id:"epicgames",
+    name:"Epic Games",
+    category:"gaming",
+    description:"Digital credit for Epic Games purchases.",
+    logo:"https://cdn.simpleicons.org/epicgames/ffffff",
+    values:[10,20,25,50,100],
+    fee:1.49
+},
+
+{
+    id:"minecraft",
+    name:"Minecraft",
+    category:"gaming",
+    description:"Digital Minecraft gift credit.",
+    logo:"https://cdn.simpleicons.org/minecraft/ffffff",
+    values:[10,20,30,50],
+    fee:1.49
+},
+
+{
+    id:"pubgmobile",
+    name:"PUBG Mobile",
+    category:"gaming",
+    description:"Digital credit for PUBG Mobile purchases.",
+    logo:"https://cdn.simpleicons.org/pubg/ffffff",
+    values:[10,20,30,50,100],
+    fee:1.49
+},
+
+/* MUSIC */
+
+{
     id:"spotify",
     name:"Spotify",
     category:"music",
@@ -958,6 +1021,8 @@ const products = [
     values:[10,20,30,50],
     fee:1.49
 },
+
+/* APPS */
 
 {
     id:"apple",
@@ -980,6 +1045,28 @@ const products = [
 },
 
 {
+    id:"discord",
+    name:"Discord",
+    category:"apps",
+    description:"Digital credit for Discord purchases.",
+    logo:"https://cdn.simpleicons.org/discord/ffffff",
+    values:[10,20,50],
+    fee:1.49
+},
+
+{
+    id:"microsoft",
+    name:"Microsoft",
+    category:"apps",
+    description:"Microsoft digital credit for games, apps and services.",
+    logo:"https://cdn.simpleicons.org/microsoft/ffffff",
+    values:[10,25,50,100],
+    fee:1.49
+},
+
+/* STREAMING */
+
+{
     id:"netflix",
     name:"Netflix",
     category:"streaming",
@@ -990,13 +1077,98 @@ const products = [
 },
 
 {
-    id:"discord",
-    name:"Discord",
-    category:"apps",
-    description:"Digital credit for Discord purchases.",
-    logo:"https://cdn.simpleicons.org/discord/ffffff",
-    values:[10,20,50],
+    id:"crunchyroll",
+    name:"Crunchyroll",
+    category:"streaming",
+    description:"Anime streaming credit for Crunchyroll.",
+    logo:"https://cdn.simpleicons.org/crunchyroll/ffffff",
+    values:[10,25,50],
     fee:1.49
+},
+
+{
+    id:"youtube",
+    name:"YouTube",
+    category:"streaming",
+    description:"Digital credit for YouTube and eligible services.",
+    logo:"https://cdn.simpleicons.org/youtube/ffffff",
+    values:[10,20,25,50,100],
+    fee:1.49
+},
+
+/* SHOPPING */
+
+{
+    id:"amazon",
+    name:"Amazon",
+    category:"shopping",
+    description:"Amazon digital gift credit.",
+    logo:"https://cdn.simpleicons.org/amazon/ffffff",
+    values:[10,25,50,100],
+    fee:1.99,
+    badge:"POPULAR"
+},
+
+{
+    id:"ikea",
+    name:"IKEA",
+    category:"shopping",
+    description:"Digital IKEA gift credit where supported.",
+    logo:"https://cdn.simpleicons.org/ikea/ffffff",
+    values:[10,25,50,100],
+    fee:1.99
+},
+
+{
+    id:"zalando",
+    name:"Zalando",
+    category:"shopping",
+    description:"Digital shopping credit for Zalando where supported.",
+    logo:"https://cdn.simpleicons.org/zalando/ffffff",
+    values:[10,25,50,100],
+    fee:1.99
+},
+
+/* TRAVEL & SERVICES */
+
+{
+    id:"uber",
+    name:"Uber",
+    category:"travel",
+    description:"Digital Uber gift credit where supported.",
+    logo:"https://cdn.simpleicons.org/uber/ffffff",
+    values:[10,20,50,100],
+    fee:1.99
+},
+
+{
+    id:"ubereats",
+    name:"Uber Eats",
+    category:"travel",
+    description:"Digital Uber Eats gift credit where supported.",
+    logo:"https://cdn.simpleicons.org/ubereats/ffffff",
+    values:[10,20,50,100],
+    fee:1.99
+},
+
+{
+    id:"airbnb",
+    name:"Airbnb",
+    category:"travel",
+    description:"Digital Airbnb gift credit where supported.",
+    logo:"https://cdn.simpleicons.org/airbnb/ffffff",
+    values:[25,50,100,200],
+    fee:2.49
+},
+
+{
+    id:"booking",
+    name:"Booking.com",
+    category:"travel",
+    description:"Digital travel credit where supported.",
+    logo:"https://cdn.simpleicons.org/bookingdotcom/ffffff",
+    values:[25,50,100,200],
+    fee:2.49
 }
 
 ];
@@ -1198,12 +1370,6 @@ function updateTotal(){
         .textContent =
         `$${total.toFixed(2)}`;
 
-    /*
-       TND is intentionally approximate on the frontend.
-       Your backend should be the source of truth for
-       real transaction/accounting rates.
-    */
-
     const estimatedRate = 2.95;
 
     document.getElementById("tndPrice")
@@ -1392,11 +1558,6 @@ async function checkout(){
         return;
     }
 
-    /*
-       Your backend endpoint.
-       Replace with your deployed backend URL.
-    */
-
     const API_URL =
          "https://gifty-backend-mufw.onrender.com";
 
@@ -1479,21 +1640,11 @@ async function checkoutCart(){
         return;
     }
 
-    /*
-       For the first production version,
-       single-product checkout is recommended.
-
-       This prevents accidentally processing
-       multiple digital codes without a proper
-       backend order system.
-    */
-
     const first = cart[0];
 
     closeModal("cartModal");
 
     openProduct(first.product);
-
 }
 
 
