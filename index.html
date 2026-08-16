@@ -20,108 +20,72 @@
 <style>
 
 :root{
-
     --bg:#07070c;
     --panel:#101019;
     --panel2:#151521;
-
     --border:rgba(255,255,255,.09);
-
     --text:#fff;
     --muted:#9999aa;
-
     --purple:#9b5cff;
     --pink:#ff4fc3;
     --blue:#55a8ff;
     --green:#36e58b;
     --danger:#ff5f6d;
-
     --radius:22px;
-
 }
 
-
 *{
-
     box-sizing:border-box;
     margin:0;
     padding:0;
-
 }
-
 
 html{
-
     scroll-behavior:smooth;
-
 }
 
-
 body{
-
-    font-family:
-        Inter,
-        Arial,
-        sans-serif;
-
+    font-family:Inter,Arial,sans-serif;
     color:var(--text);
 
     background:
-
         radial-gradient(
             circle at 10% 0%,
             rgba(155,92,255,.18),
             transparent 30%
         ),
-
         radial-gradient(
             circle at 90% 5%,
             rgba(255,79,195,.13),
             transparent 28%
         ),
-
         var(--bg);
 
     min-height:100vh;
-
 }
-
 
 button,
 input,
 select{
-
     font:inherit;
-
 }
-
 
 button{
-
     cursor:pointer;
-
 }
-
 
 .hidden{
-
     display:none!important;
-
 }
-
 
 /* =========================================================
    TOP BAR
 ========================================================= */
 
 .topbar{
-
     text-align:center;
-
     padding:9px;
-
     font-size:12px;
-
     color:#ddd;
 
     background:
@@ -131,65 +95,42 @@ button{
             rgba(255,79,195,.12)
         );
 
-    border-bottom:
-        1px solid var(--border);
-
+    border-bottom:1px solid var(--border);
 }
-
 
 /* =========================================================
    NAVBAR
 ========================================================= */
 
 .navbar{
-
     position:sticky;
-
     top:0;
-
     z-index:1000;
 
     display:flex;
-
     align-items:center;
-
     gap:20px;
 
     padding:15px 5%;
 
-    background:
-        rgba(7,7,12,.82);
+    background:rgba(7,7,12,.82);
 
-    backdrop-filter:
-        blur(20px);
+    backdrop-filter:blur(20px);
 
-    border-bottom:
-        1px solid var(--border);
-
+    border-bottom:1px solid var(--border);
 }
-
 
 .logo{
-
     border:0;
-
     background:none;
-
     color:white;
-
     font-weight:950;
-
     font-size:28px;
-
     letter-spacing:-1.5px;
-
     white-space:nowrap;
-
 }
 
-
 .logo span{
-
     background:
         linear-gradient(
             90deg,
@@ -199,97 +140,58 @@ button{
         );
 
     -webkit-background-clip:text;
-
     background-clip:text;
-
     color:transparent;
-
 }
 
-
 .search{
-
     flex:1;
-
     max-width:600px;
 
     padding:13px 16px;
 
-    border:
-        1px solid var(--border);
-
+    border:1px solid var(--border);
     border-radius:15px;
 
     outline:none;
-
     color:white;
-
     background:#11111a;
-
 }
-
 
 .search:focus{
-
-    border-color:
-        rgba(155,92,255,.7);
-
+    border-color:rgba(155,92,255,.7);
 }
 
-
 .nav-actions{
-
     margin-left:auto;
 
     display:flex;
-
     align-items:center;
-
     gap:10px;
-
 }
-
 
 .nav-btn,
 .cart-btn{
-
     border:0;
-
     color:white;
-
     background:transparent;
-
     padding:10px 12px;
-
     font-weight:800;
-
 }
-
 
 .cart-btn{
-
     background:#151521;
-
-    border:
-        1px solid var(--border);
-
+    border:1px solid var(--border);
     border-radius:13px;
-
 }
 
-
 .cart-count{
-
     display:inline-flex;
-
     justify-content:center;
-
     align-items:center;
 
     min-width:21px;
-
     height:21px;
-
     margin-left:5px;
 
     border-radius:50%;
@@ -302,34 +204,24 @@ button{
         );
 
     font-size:11px;
-
 }
-
 
 /* =========================================================
    CATEGORIES
 ========================================================= */
 
 .categories{
-
     display:flex;
-
     gap:8px;
-
     overflow-x:auto;
 
     padding:12px 5%;
 
-    border-bottom:
-        1px solid var(--border);
-
+    border-bottom:1px solid var(--border);
 }
 
-
 .category{
-
     border:0;
-
     border-radius:12px;
 
     padding:9px 15px;
@@ -337,17 +229,13 @@ button{
     white-space:nowrap;
 
     color:#aaaabd;
-
     background:transparent;
 
     font-weight:800;
-
 }
-
 
 .category.active,
 .category:hover{
-
     color:white;
 
     background:
@@ -356,59 +244,39 @@ button{
             #8d4cff,
             #e946b8
         );
-
 }
-
 
 /* =========================================================
    CONTAINER
 ========================================================= */
 
 .container{
-
     width:90%;
-
     max-width:1400px;
-
     margin:auto;
-
 }
-
 
 /* =========================================================
    HERO
 ========================================================= */
 
 .hero{
-
     min-height:620px;
 
     display:grid;
-
-    grid-template-columns:
-        1.1fr .9fr;
+    grid-template-columns:1.1fr .9fr;
 
     gap:50px;
-
     align-items:center;
-
 }
-
 
 .hero h1{
-
-    font-size:
-        clamp(48px,7vw,88px);
-
+    font-size:clamp(48px,7vw,88px);
     line-height:.94;
-
     letter-spacing:-5px;
-
 }
 
-
 .gradient{
-
     background:
         linear-gradient(
             90deg,
@@ -418,58 +286,38 @@ button{
         );
 
     -webkit-background-clip:text;
-
     background-clip:text;
 
     color:transparent;
-
 }
 
-
 .hero p{
-
     max-width:620px;
-
     margin-top:25px;
 
     color:#a4a4b5;
 
     font-size:18px;
-
     line-height:1.7;
-
 }
 
-
 .hero-actions{
-
     display:flex;
-
     gap:12px;
-
     flex-wrap:wrap;
 
     margin-top:30px;
-
 }
-
 
 .primary,
 .secondary{
-
     border-radius:14px;
-
     padding:15px 22px;
-
     font-weight:900;
-
 }
 
-
 .primary{
-
     color:white;
-
     border:0;
 
     background:
@@ -482,37 +330,25 @@ button{
     box-shadow:
         0 12px 40px
         rgba(155,92,255,.25);
-
 }
-
 
 .secondary{
-
     color:white;
-
-    border:
-        1px solid var(--border);
-
+    border:1px solid var(--border);
     background:#12121c;
-
 }
-
 
 /* =========================================================
    HERO CARD
 ========================================================= */
 
 .hero-card{
-
     min-height:420px;
 
     position:relative;
-
     overflow:hidden;
 
-    border:
-        1px solid var(--border);
-
+    border:1px solid var(--border);
     border-radius:32px;
 
     background:
@@ -530,141 +366,88 @@ button{
         ),
 
         #10101b;
-
 }
 
-
 .float{
-
     position:absolute;
 
     padding:22px;
 
-    border:
-        1px solid
-        rgba(255,255,255,.13);
-
+    border:1px solid rgba(255,255,255,.13);
     border-radius:22px;
 
-    background:
-        rgba(255,255,255,.06);
+    background:rgba(255,255,255,.06);
 
-    backdrop-filter:
-        blur(15px);
+    backdrop-filter:blur(15px);
 
     box-shadow:
         0 25px 70px
         rgba(0,0,0,.4);
-
 }
 
-
 .float img{
-
     width:55px;
-
     height:55px;
 
     object-fit:contain;
-
     margin-bottom:12px;
-
 }
-
 
 .float strong{
-
     display:block;
-
     font-size:19px;
-
 }
-
 
 .float small{
-
     color:#aaa;
-
 }
-
 
 .f1{
-
     width:210px;
-
     top:50px;
-
     left:40px;
-
     transform:rotate(-7deg);
-
 }
-
 
 .f2{
-
     width:210px;
-
     top:110px;
-
     right:40px;
-
     transform:rotate(7deg);
-
 }
 
-
 .f3{
-
     width:230px;
-
     bottom:40px;
-
     left:50%;
 
     transform:
         translateX(-50%)
         rotate(-2deg);
-
 }
-
 
 /* =========================================================
    SHOP
 ========================================================= */
 
 .shop{
-
     padding:60px 0 100px;
-
 }
-
 
 .heading{
-
     margin-bottom:25px;
-
 }
-
 
 .heading h2{
-
     font-size:35px;
-
 }
-
 
 .heading p{
-
     color:var(--muted);
-
     margin-top:7px;
-
 }
 
-
 .grid{
-
     display:grid;
 
     grid-template-columns:
@@ -674,23 +457,16 @@ button{
         );
 
     gap:20px;
-
 }
 
-
 .product{
-
     position:relative;
 
     padding:22px;
-
     min-height:340px;
-
     overflow:hidden;
 
-    border:
-        1px solid var(--border);
-
+    border:1px solid var(--border);
     border-radius:23px;
 
     background:
@@ -701,14 +477,10 @@ button{
         );
 
     transition:.25s;
-
 }
 
-
 .product:hover{
-
-    transform:
-        translateY(-7px);
+    transform:translateY(-7px);
 
     border-color:
         rgba(255,255,255,.18);
@@ -716,26 +488,16 @@ button{
     box-shadow:
         0 25px 60px
         rgba(0,0,0,.35);
-
 }
-
 
 .product-top{
-
     display:flex;
-
-    justify-content:
-        space-between;
-
+    justify-content:space-between;
     align-items:start;
-
 }
 
-
 .product-logo{
-
     width:70px;
-
     height:70px;
 
     padding:14px;
@@ -745,18 +507,14 @@ button{
     border-radius:18px;
 
     background:#191923;
-
 }
 
-
 .badge{
-
     padding:6px 9px;
 
     border-radius:20px;
 
     font-size:10px;
-
     font-weight:900;
 
     background:
@@ -765,21 +523,14 @@ button{
             #ec46b9,
             #8f4cff
         );
-
 }
-
 
 .product h3{
-
     margin-top:22px;
-
     font-size:22px;
-
 }
 
-
 .product p{
-
     min-height:45px;
 
     margin-top:8px;
@@ -787,88 +538,61 @@ button{
     color:var(--muted);
 
     line-height:1.5;
-
     font-size:14px;
-
 }
 
-
 .price{
-
     margin-top:18px;
 
     font-size:18px;
-
     font-weight:950;
-
 }
 
-
 .product button{
-
     width:100%;
 
     margin-top:16px;
-
     padding:13px;
 
     border:0;
-
     border-radius:13px;
 
     color:#09090f;
-
     background:white;
 
     font-weight:900;
-
 }
-
 
 /* =========================================================
    MODAL
 ========================================================= */
 
 .modal{
-
     position:fixed;
-
     inset:0;
-
     z-index:2000;
 
     display:flex;
-
     align-items:center;
-
     justify-content:center;
 
     padding:20px;
 
-    background:
-        rgba(0,0,0,.72);
+    background:rgba(0,0,0,.72);
 
-    backdrop-filter:
-        blur(12px);
-
+    backdrop-filter:blur(12px);
 }
 
-
 .modal-box{
-
     width:100%;
-
     max-width:500px;
-
     max-height:90vh;
 
     overflow:auto;
 
     padding:28px;
 
-    border:
-        1px solid var(--border);
-
+    border:1px solid var(--border);
     border-radius:25px;
 
     background:#101019;
@@ -876,96 +600,64 @@ button{
     box-shadow:
         0 30px 100px
         rgba(0,0,0,.6);
-
 }
 
-
 .close{
-
     float:right;
 
     border:0;
-
     color:white;
-
     background:transparent;
 
     font-size:25px;
-
 }
-
 
 .modal h2{
-
     font-size:30px;
-
 }
-
 
 .modal-muted{
-
     color:var(--muted);
-
     margin-top:7px;
-
 }
 
-
 .amounts{
-
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
+    grid-template-columns:repeat(2,1fr);
 
     gap:10px;
 
     margin-top:20px;
-
 }
 
-
 .amount{
-
     padding:14px;
 
-    border:
-        1px solid var(--border);
-
+    border:1px solid var(--border);
     border-radius:13px;
 
     color:white;
-
     background:#151521;
 
     font-weight:900;
-
 }
 
-
 .amount.selected{
-
     border-color:var(--purple);
 
     background:
         rgba(155,92,255,.2);
-
 }
-
 
 /* =========================================================
    FORM
 ========================================================= */
 
 .field{
-
     margin-top:18px;
-
 }
 
-
 .field label{
-
     display:block;
 
     margin-bottom:7px;
@@ -973,46 +665,32 @@ button{
     color:#c8c8d5;
 
     font-size:13px;
-
     font-weight:800;
-
 }
 
-
 .field input{
-
     width:100%;
 
     padding:14px;
 
     color:white;
-
     background:#11111a;
 
-    border:
-        1px solid var(--border);
-
+    border:1px solid var(--border);
     border-radius:13px;
 
     outline:none;
-
 }
-
 
 .field input:focus{
-
-    border-color:
-        rgba(155,92,255,.7);
-
+    border-color:rgba(155,92,255,.7);
 }
-
 
 /* =========================================================
    TOTAL BOX
 ========================================================= */
 
 .total-box{
-
     margin-top:20px;
 
     padding:17px;
@@ -1020,16 +698,12 @@ button{
     border-radius:16px;
 
     background:#151521;
-
 }
 
-
 .line{
-
     display:flex;
 
     justify-content:space-between;
-
     align-items:center;
 
     gap:15px;
@@ -1037,88 +711,63 @@ button{
     margin-top:8px;
 
     color:#aaaabd;
-
 }
-
 
 .line:first-child{
-
     margin-top:0;
-
 }
 
-
 .currency-select{
-
     padding:9px 12px;
 
-    border:
-        1px solid var(--border);
+    max-width:220px;
 
+    border:1px solid var(--border);
     border-radius:10px;
 
     color:white;
-
     background:#11111a;
 
     outline:none;
 
     font-weight:800;
-
 }
-
 
 .currency-select:focus{
-
     border-color:var(--purple);
-
 }
-
 
 .converted{
-
-    color:
-        var(--green);
-
+    color:var(--green);
 }
 
-
 .total{
-
     display:flex;
 
     justify-content:space-between;
 
     padding-top:15px;
-
     margin-top:15px;
 
-    border-top:
-        1px solid var(--border);
+    border-top:1px solid var(--border);
 
     font-size:21px;
-
     font-weight:950;
 
     color:white;
-
 }
-
 
 /* =========================================================
    PAYMENT BUTTON
 ========================================================= */
 
 .pay{
-
     width:100%;
 
     margin-top:20px;
-
     padding:15px;
 
     border:0;
-
     border-radius:14px;
 
     color:white;
@@ -1131,56 +780,39 @@ button{
         );
 
     font-weight:950;
-
 }
-
 
 .pay:disabled{
-
     opacity:.6;
-
     cursor:not-allowed;
-
 }
-
 
 /* =========================================================
    CART
 ========================================================= */
 
 .cart-item{
-
     display:flex;
 
     justify-content:space-between;
-
     align-items:center;
 
     gap:15px;
 
     padding:14px 0;
 
-    border-bottom:
-        1px solid var(--border);
-
+    border-bottom:1px solid var(--border);
 }
 
-
 .cart-item-info{
-
     display:flex;
 
     gap:12px;
-
     align-items:center;
-
 }
 
-
 .cart-item img{
-
     width:45px;
-
     height:45px;
 
     padding:7px;
@@ -1190,33 +822,25 @@ button{
     background:#181822;
 
     object-fit:contain;
-
 }
 
-
 .remove{
-
     border:0;
 
     color:#ff7180;
-
     background:transparent;
 
     font-weight:800;
-
 }
-
 
 /* =========================================================
    LOADING
 ========================================================= */
 
 .loading{
-
     display:flex;
 
     align-items:center;
-
     justify-content:center;
 
     gap:10px;
@@ -1224,62 +848,41 @@ button{
     padding:50px;
 
     color:#9999aa;
-
 }
 
-
 .spinner{
-
     width:18px;
-
     height:18px;
 
-    border:
-        2px solid
-        rgba(255,255,255,.15);
+    border:2px solid rgba(255,255,255,.15);
 
-    border-top-color:
-        var(--purple);
+    border-top-color:var(--purple);
 
     border-radius:50%;
 
-    animation:
-        spin .7s linear infinite;
-
+    animation:spin .7s linear infinite;
 }
-
 
 @keyframes spin{
-
     to{
-
         transform:rotate(360deg);
-
     }
-
 }
-
 
 /* =========================================================
    FOOTER
 ========================================================= */
 
 footer{
-
     padding:50px 5%;
 
-    border-top:
-        1px solid var(--border);
+    border-top:1px solid var(--border);
 
     color:#777789;
-
 }
 
-
 .footer-inner{
-
     max-width:1400px;
-
     margin:auto;
 
     display:flex;
@@ -1289,20 +892,14 @@ footer{
     gap:30px;
 
     flex-wrap:wrap;
-
 }
 
-
 .footer-brand{
-
     color:white;
 
     font-weight:950;
-
     font-size:20px;
-
 }
-
 
 /* =========================================================
    MOBILE
@@ -1311,109 +908,68 @@ footer{
 @media(max-width:850px){
 
     .navbar{
-
         flex-wrap:wrap;
-
     }
 
-
     .search{
-
         order:3;
 
         flex-basis:100%;
-
         max-width:none;
-
     }
 
-
     .hero{
-
         grid-template-columns:1fr;
 
         padding:70px 0;
-
     }
-
 
     .hero-card{
-
         min-height:340px;
-
     }
-
 
     .nav-btn{
-
         display:none;
-
     }
-
 }
-
 
 @media(max-width:600px){
 
     .hero h1{
-
         font-size:50px;
-
         letter-spacing:-3px;
-
     }
-
 
     .hero p{
-
         font-size:16px;
-
     }
-
 
     .f1{
-
         left:12px;
-
     }
-
 
     .f2{
-
         right:12px;
-
     }
-
 
     .f3{
-
         bottom:20px;
-
     }
-
 
     .line{
-
         align-items:flex-start;
-
     }
-
 
     .currency-select{
-
-        max-width:150px;
-
+        max-width:170px;
     }
-
 }
 
 </style>
 
 </head>
 
-
 <body>
-
 
 <!-- =========================================================
      TOP BAR
@@ -1425,7 +981,6 @@ footer{
 — Digital gifts, delivered to your inbox.
 
 </div>
-
 
 <!-- =========================================================
      NAVBAR
@@ -1440,14 +995,12 @@ footer{
 GIF<span>ty</span>
 </button>
 
-
 <input
     id="search"
     class="search"
     placeholder="Search Steam, Roblox, Spotify..."
     autocomplete="off"
 >
-
 
 <div class="nav-actions">
 
@@ -1458,14 +1011,12 @@ GIF<span>ty</span>
 Home
 </button>
 
-
 <button
     class="nav-btn"
     onclick="scrollShop()"
 >
 Shop
 </button>
-
 
 <button
     class="cart-btn"
@@ -1486,7 +1037,6 @@ Shop
 
 </nav>
 
-
 <!-- =========================================================
      CATEGORIES
 ========================================================= -->
@@ -1500,14 +1050,12 @@ Shop
 ✨ Everything
 </button>
 
-
 <button
     class="category"
     onclick="filterCategory('gaming',this)"
 >
 🎮 Gaming
 </button>
-
 
 <button
     class="category"
@@ -1516,14 +1064,12 @@ Shop
 🎵 Music
 </button>
 
-
 <button
     class="category"
     onclick="filterCategory('streaming',this)"
 >
 📺 Streaming
 </button>
-
 
 <button
     class="category"
@@ -1532,14 +1078,12 @@ Shop
 📱 Apps
 </button>
 
-
 <button
     class="category"
     onclick="filterCategory('shopping',this)"
 >
 🛍️ Shopping
 </button>
-
 
 <button
     class="category"
@@ -1550,16 +1094,13 @@ Shop
 
 </div>
 
-
 <!-- =========================================================
      MAIN
 ========================================================= -->
 
 <main>
 
-
 <section class="hero container">
-
 
 <div>
 
@@ -1573,7 +1114,6 @@ gift universe.
 
 </h1>
 
-
 <p>
 
 Gaming, music, streaming and app gift cards —
@@ -1583,7 +1123,6 @@ delivered to your email.
 
 </p>
 
-
 <div class="hero-actions">
 
 <button
@@ -1592,7 +1131,6 @@ delivered to your email.
 >
 Explore gifts →
 </button>
-
 
 <button
     class="secondary"
@@ -1605,9 +1143,7 @@ Explore gifts →
 
 </div>
 
-
 <div class="hero-card">
-
 
 <div class="float f1">
 
@@ -1626,7 +1162,6 @@ Game credits 🎮
 
 </div>
 
-
 <div class="float f2">
 
 <img
@@ -1643,7 +1178,6 @@ Music everywhere 🎵
 </small>
 
 </div>
-
 
 <div class="float f3">
 
@@ -1666,7 +1200,6 @@ Robux for the squad
 
 </section>
 
-
 <!-- =========================================================
      SHOP
 ========================================================= -->
@@ -1675,7 +1208,6 @@ Robux for the squad
     id="shop"
     class="shop container"
 >
-
 
 <div class="heading">
 
@@ -1689,17 +1221,14 @@ Choose a gift card and the amount you want.
 
 </div>
 
-
 <div
     id="productGrid"
     class="grid"
 ></div>
 
-
 </section>
 
 </main>
-
 
 <!-- =========================================================
      FOOTER
@@ -1708,7 +1237,6 @@ Choose a gift card and the amount you want.
 <footer>
 
 <div class="footer-inner">
-
 
 <div>
 
@@ -1722,7 +1250,6 @@ Digital gifts made simple.
 
 </div>
 
-
 <div>
 
 <p>
@@ -1731,11 +1258,9 @@ Digital gifts made simple.
 
 </div>
 
-
 </div>
 
 </footer>
-
 
 <!-- =========================================================
      PRODUCT MODAL
@@ -1746,9 +1271,7 @@ Digital gifts made simple.
     class="modal hidden"
 >
 
-
 <div class="modal-box">
-
 
 <button
     class="close"
@@ -1757,28 +1280,23 @@ Digital gifts made simple.
 ×
 </button>
 
-
 <h2 id="modalName"></h2>
-
 
 <p
     id="modalDescription"
     class="modal-muted"
 ></p>
 
-
 <div
     id="amounts"
     class="amounts"
 ></div>
-
 
 <div class="field">
 
 <label>
 Email address
 </label>
-
 
 <input
     id="customerEmail"
@@ -1789,9 +1307,7 @@ Email address
 
 </div>
 
-
 <div class="total-box">
-
 
 <div class="line">
 
@@ -1805,7 +1321,6 @@ $0.00
 
 </div>
 
-
 <div class="line">
 
 <span>
@@ -1818,48 +1333,93 @@ $0.00
 
 </div>
 
-
 <div class="line">
 
 <span>
 Display currency
 </span>
 
-
 <select
     id="currencySelect"
     class="currency-select"
     onchange="changeCurrency()"
 >
-    <option value="USD">🇺🇸 USD</option>
-    <option value="EUR">🇪🇺 EUR</option>
-    <option value="GBP">🇬🇧 GBP</option>
-    <option value="CAD">🇨🇦 CAD</option>
-    <option value="AUD">🇦🇺 AUD</option>
-    <option value="TND">🇹🇳 TND</option>
-    <option value="DZD">🇩🇿 DZD</option>
-    <option value="MAD">🇲🇦 MAD</option>
-    <option value="EGP">🇪🇬 EGP</option>
-    <option value="SAR">🇸🇦 SAR</option>
-    <option value="AED">🇦🇪 AED</option>
-    <option value="QAR">🇶🇦 QAR</option>
-    <option value="KWD">🇰🇼 KWD</option>
-    <option value="JOD">🇯🇴 JOD</option>
-    <option value="TRY">🇹🇷 TRY</option>
-    <option value="JPY">🇯🇵 JPY</option>
-    <option value="CNY">🇨🇳 CNY</option>
-    <option value="INR">🇮🇳 INR</option>
-    <option value="CHF">🇨🇭 CHF</option>
-    <option value="SEK">🇸🇪 SEK</option>
-    <option value="NOK">🇳🇴 NOK</option>
-    <option value="PLN">🇵🇱 PLN</option>
-    <option value="BRL">🇧🇷 BRL</option>
-    <option value="MXN">🇲🇽 MXN</option>
-    <option value="ZAR">🇿🇦 ZAR</option>
+
+    <option value="USD">🇺🇸 USD — US Dollar</option>
+    <option value="EUR">🇪🇺 EUR — Euro</option>
+    <option value="GBP">🇬🇧 GBP — British Pound</option>
+    <option value="CAD">🇨🇦 CAD — Canadian Dollar</option>
+    <option value="AUD">🇦🇺 AUD — Australian Dollar</option>
+
+    <option value="TND">🇹🇳 TND — Tunisian Dinar</option>
+    <option value="DZD">🇩🇿 DZD — Algerian Dinar</option>
+    <option value="MAD">🇲🇦 MAD — Moroccan Dirham</option>
+    <option value="EGP">🇪🇬 EGP — Egyptian Pound</option>
+
+    <option value="NGN">🇳🇬 NGN — Nigerian Naira</option>
+    <option value="GHS">🇬🇭 GHS — Ghanaian Cedi</option>
+    <option value="KES">🇰🇪 KES — Kenyan Shilling</option>
+    <option value="TZS">🇹🇿 TZS — Tanzanian Shilling</option>
+    <option value="UGX">🇺🇬 UGX — Ugandan Shilling</option>
+    <option value="RWF">🇷🇼 RWF — Rwandan Franc</option>
+
+    <option value="XOF">🌍 XOF — West African CFA Franc</option>
+    <option value="XAF">🌍 XAF — Central African CFA Franc</option>
+
+    <option value="ZAR">🇿🇦 ZAR — South African Rand</option>
+    <option value="ETB">🇪🇹 ETB — Ethiopian Birr</option>
+
+    <option value="INR">🇮🇳 INR — Indian Rupee</option>
+    <option value="PKR">🇵🇰 PKR — Pakistani Rupee</option>
+    <option value="BDT">🇧🇩 BDT — Bangladeshi Taka</option>
+    <option value="LKR">🇱🇰 LKR — Sri Lankan Rupee</option>
+    <option value="NPR">🇳🇵 NPR — Nepalese Rupee</option>
+
+    <option value="PHP">🇵🇭 PHP — Philippine Peso</option>
+    <option value="IDR">🇮🇩 IDR — Indonesian Rupiah</option>
+    <option value="MYR">🇲🇾 MYR — Malaysian Ringgit</option>
+    <option value="THB">🇹🇭 THB — Thai Baht</option>
+    <option value="VND">🇻🇳 VND — Vietnamese Dong</option>
+    <option value="SGD">🇸🇬 SGD — Singapore Dollar</option>
+
+    <option value="JPY">🇯🇵 JPY — Japanese Yen</option>
+    <option value="CNY">🇨🇳 CNY — Chinese Yuan</option>
+    <option value="KRW">🇰🇷 KRW — South Korean Won</option>
+
+    <option value="TRY">🇹🇷 TRY — Turkish Lira</option>
+
+    <option value="SAR">🇸🇦 SAR — Saudi Riyal</option>
+    <option value="AED">🇦🇪 AED — UAE Dirham</option>
+    <option value="QAR">🇶🇦 QAR — Qatari Riyal</option>
+    <option value="KWD">🇰🇼 KWD — Kuwaiti Dinar</option>
+    <option value="BHD">🇧🇭 BHD — Bahraini Dinar</option>
+    <option value="OMR">🇴🇲 OMR — Omani Rial</option>
+    <option value="JOD">🇯🇴 JOD — Jordanian Dinar</option>
+    <option value="ILS">🇮🇱 ILS — Israeli Shekel</option>
+
+    <option value="CHF">🇨🇭 CHF — Swiss Franc</option>
+    <option value="SEK">🇸🇪 SEK — Swedish Krona</option>
+    <option value="NOK">🇳🇴 NOK — Norwegian Krone</option>
+    <option value="DKK">🇩🇰 DKK — Danish Krone</option>
+    <option value="PLN">🇵🇱 PLN — Polish Zloty</option>
+    <option value="CZK">🇨🇿 CZK — Czech Koruna</option>
+    <option value="HUF">🇭🇺 HUF — Hungarian Forint</option>
+    <option value="RON">🇷🇴 RON — Romanian Leu</option>
+    <option value="BGN">🇧🇬 BGN — Bulgarian Lev</option>
+    <option value="UAH">🇺🇦 UAH — Ukrainian Hryvnia</option>
+    <option value="ISK">🇮🇸 ISK — Icelandic Krona</option>
+
+    <option value="BRL">🇧🇷 BRL — Brazilian Real</option>
+    <option value="MXN">🇲🇽 MXN — Mexican Peso</option>
+    <option value="ARS">🇦🇷 ARS — Argentine Peso</option>
+    <option value="CLP">🇨🇱 CLP — Chilean Peso</option>
+    <option value="COP">🇨🇴 COP — Colombian Peso</option>
+    <option value="PEN">🇵🇪 PEN — Peruvian Sol</option>
+    <option value="UYU">🇺🇾 UYU — Uruguayan Peso</option>
+
 </select>
 
 </div>
-
 
 <div class="line">
 
@@ -1876,7 +1436,6 @@ Approx. local price
 
 </div>
 
-
 <div class="total">
 
 <span>
@@ -1890,7 +1449,6 @@ $0.00
 </div>
 
 </div>
-
 
 <button
     id="addToCartButton"
@@ -1921,11 +1479,9 @@ Buy now →
     "
 ></p>
 
-
 </div>
 
 </div>
-
 
 <!-- =========================================================
      CART MODAL
@@ -1936,9 +1492,7 @@ Buy now →
     class="modal hidden"
 >
 
-
 <div class="modal-box">
-
 
 <button
     class="close"
@@ -1947,17 +1501,13 @@ Buy now →
 ×
 </button>
 
-
 <h2>
 Your cart 🛒
 </h2>
 
-
 <div id="cartItems"></div>
 
-
 <div class="total-box">
-
 
 <div class="total">
 
@@ -1973,7 +1523,6 @@ $0.00
 
 </div>
 
-
 <button
     class="pay"
     onclick="checkoutCart()"
@@ -1981,11 +1530,9 @@ $0.00
 Checkout →
 </button>
 
-
 </div>
 
 </div>
-
 
 <script>
 
@@ -1996,14 +1543,11 @@ Checkout →
 const API_URL =
     "https://gifty-backend-mufw.onrender.com";
 
-
 /* =========================================================
    PRODUCTS
 ========================================================= */
 
 const products = [
-
-    /* GAMING */
 
     {
         id:"steam",
@@ -2073,7 +1617,7 @@ const products = [
         name:"Riot Games",
         category:"gaming",
         description:"Riot Points and digital credit for Riot Games.",
-        logo:"https://cdn.simpleicons.org/riotgames/ffffff",
+        logo:"https://cdn.simpleicons.org/riot/ffffff",
         values:[10,20,25,50,100],
         fee:1.49
     },
@@ -2108,9 +1652,6 @@ const products = [
         fee:1.49
     },
 
-
-    /* MUSIC */
-
     {
         id:"spotify",
         name:"Spotify",
@@ -2120,9 +1661,6 @@ const products = [
         values:[10,20,30,50],
         fee:1.49
     },
-
-
-    /* APPS */
 
     {
         id:"apple",
@@ -2164,9 +1702,6 @@ const products = [
         fee:1.49
     },
 
-
-    /* STREAMING */
-
     {
         id:"netflix",
         name:"Netflix",
@@ -2196,9 +1731,6 @@ const products = [
         values:[10,20,25,50,100],
         fee:1.49
     },
-
-
-    /* SHOPPING */
 
     {
         id:"amazon",
@@ -2230,9 +1762,6 @@ const products = [
         values:[10,25,50,100],
         fee:1.99
     },
-
-
-    /* TRAVEL */
 
     {
         id:"uber",
@@ -2276,13 +1805,11 @@ const products = [
 
 ];
 
-
 /* =========================================================
    STATE
 ========================================================= */
 
 let selectedProduct = null;
-
 let selectedAmount = null;
 
 let exchangeRates = {
@@ -2290,15 +1817,12 @@ let exchangeRates = {
 };
 
 let exchangeRateDate = null;
-
 let ratesLoaded = false;
-
 let ratesLoading = false;
 
 let cart = JSON.parse(
     localStorage.getItem("gifty_cart") || "[]"
 );
-
 
 /* =========================================================
    CURRENCY PREFERENCE
@@ -2307,13 +1831,18 @@ let cart = JSON.parse(
 const savedCurrency =
     localStorage.getItem("gifty_currency");
 
-
 if(savedCurrency){
 
     const selector =
         document.getElementById("currencySelect");
 
-    if(selector){
+    if(
+        selector &&
+        [...selector.options].some(
+            option =>
+                option.value === savedCurrency
+        )
+    ){
 
         selector.value =
             savedCurrency;
@@ -2322,7 +1851,6 @@ if(savedCurrency){
 
 }
 
-
 /* =========================================================
    LOAD EXCHANGE RATES
 ========================================================= */
@@ -2330,17 +1858,13 @@ if(savedCurrency){
 async function loadExchangeRates(){
 
     if(ratesLoading){
-
         return;
-
     }
-
 
     const cached =
         localStorage.getItem(
             "gifty_exchange_rates"
         );
-
 
     if(cached){
 
@@ -2349,22 +1873,19 @@ async function loadExchangeRates(){
             const parsed =
                 JSON.parse(cached);
 
-
             const age =
                 Date.now() -
                 parsed.timestamp;
-
-
-            /*
-             * Keep cached rates for 30 minutes.
-             */
 
             if(
                 age <
                 30 * 60 * 1000
             ){
 
-                if(parsed.rates){
+                if(
+                    parsed.rates &&
+                    typeof parsed.rates.USD === "number"
+                ){
 
                     exchangeRates =
                         parsed.rates;
@@ -2393,9 +1914,7 @@ async function loadExchangeRates(){
 
     }
 
-
     ratesLoading = true;
-
 
     try{
 
@@ -2405,7 +1924,6 @@ async function loadExchangeRates(){
                 "/exchange-rates"
             );
 
-
         if(!response.ok){
 
             throw new Error(
@@ -2414,10 +1932,8 @@ async function loadExchangeRates(){
 
         }
 
-
         const data =
             await response.json();
-
 
         if(
             !data ||
@@ -2431,18 +1947,14 @@ async function loadExchangeRates(){
 
         }
 
-
         exchangeRates =
             data.rates;
-
 
         exchangeRateDate =
             data.date ||
             null;
 
-
         ratesLoaded = true;
-
 
         localStorage.setItem(
             "gifty_exchange_rates",
@@ -2460,9 +1972,7 @@ async function loadExchangeRates(){
             })
         );
 
-
         updateConvertedPrice();
-
 
     }catch(error){
 
@@ -2470,7 +1980,6 @@ async function loadExchangeRates(){
             "Exchange rate error:",
             error
         );
-
 
         ratesLoaded = false;
 
@@ -2483,7 +1992,6 @@ async function loadExchangeRates(){
     }
 
 }
-
 
 /* =========================================================
    FORMAT CURRENCY
@@ -2501,8 +2009,17 @@ function formatCurrency(
             {
                 style:"currency",
                 currency:currency,
+
                 maximumFractionDigits:
-                    currency === "JPY"
+                    [
+                        "JPY",
+                        "KRW",
+                        "VND",
+                        "IDR",
+                        "CLP",
+                        "COP",
+                        "ISK"
+                    ].includes(currency)
                     ? 0
                     : 2
             }
@@ -2511,7 +2028,7 @@ function formatCurrency(
     }catch(error){
 
         return (
-            amount.toFixed(2) +
+            Number(amount).toFixed(2) +
             " " +
             currency
         );
@@ -2519,7 +2036,6 @@ function formatCurrency(
     }
 
 }
-
 
 /* =========================================================
    UPDATE LOCAL CURRENCY
@@ -2536,46 +2052,36 @@ function updateConvertedPrice(){
 
     }
 
-
     const selector =
         document.getElementById(
             "currencySelect"
         );
-
 
     const output =
         document.getElementById(
             "convertedPrice"
         );
 
-
-    if(!selector || !output){
+    if(
+        !selector ||
+        !output
+    ){
 
         return;
 
     }
 
-
     const currency =
         selector.value;
 
-
     const rate =
         exchangeRates[currency];
-
 
     const totalUSD =
         selectedAmount +
         selectedProduct.fee;
 
-
-    /*
-     * USD is always available.
-     */
-
-    if(
-        currency === "USD"
-    ){
+    if(currency === "USD"){
 
         output.textContent =
             formatCurrency(
@@ -2586,7 +2092,6 @@ function updateConvertedPrice(){
         return;
 
     }
-
 
     if(
         typeof rate !== "number"
@@ -2601,10 +2106,8 @@ function updateConvertedPrice(){
 
     }
 
-
     const converted =
         totalUSD * rate;
-
 
     output.textContent =
         `≈ ${formatCurrency(
@@ -2613,7 +2116,6 @@ function updateConvertedPrice(){
         )}`;
 
 }
-
 
 /* =========================================================
    CHANGE CURRENCY
@@ -2626,7 +2128,6 @@ function changeCurrency(){
             "currencySelect"
         );
 
-
     if(selector){
 
         localStorage.setItem(
@@ -2636,11 +2137,9 @@ function changeCurrency(){
 
     }
 
-
     updateConvertedPrice();
 
 }
-
 
 /* =========================================================
    RENDER PRODUCTS
@@ -2655,16 +2154,11 @@ function renderProducts(
             "productGrid"
         );
 
-
     if(!grid){
-
         return;
-
     }
 
-
     grid.innerHTML = "";
-
 
     if(!list.length){
 
@@ -2701,7 +2195,6 @@ function renderProducts(
 
     }
 
-
     list.forEach(product => {
 
         const card =
@@ -2709,18 +2202,14 @@ function renderProducts(
                 "article"
             );
 
-
         card.className =
             "product";
-
 
         card.dataset.category =
             product.category;
 
-
         card.dataset.name =
             product.name.toLowerCase();
-
 
         card.innerHTML = `
 
@@ -2742,23 +2231,20 @@ function renderProducts(
                             ${product.badge}
                         </span>
 
-                      `
+                    `
 
                     : ""
                 }
 
             </div>
 
-
             <h3>
                 ${product.name}
             </h3>
 
-
             <p>
                 ${product.description}
             </p>
-
 
             <div class="price">
 
@@ -2766,7 +2252,6 @@ function renderProducts(
                 $${product.values[0].toFixed(2)}
 
             </div>
-
 
             <button
                 onclick="openProduct('${product.id}')"
@@ -2776,13 +2261,11 @@ function renderProducts(
 
         `;
 
-
         grid.appendChild(card);
 
     });
 
 }
-
 
 /* =========================================================
    OPEN PRODUCT
@@ -2796,38 +2279,29 @@ function openProduct(id){
                 product.id === id
         );
 
-
     if(!selectedProduct){
-
         return;
-
     }
-
 
     selectedAmount =
         selectedProduct.values[0];
-
 
     document.getElementById(
         "modalName"
     ).textContent =
         selectedProduct.name;
 
-
     document.getElementById(
         "modalDescription"
     ).textContent =
         selectedProduct.description;
-
 
     const amounts =
         document.getElementById(
             "amounts"
         );
 
-
     amounts.innerHTML = "";
-
 
     selectedProduct.values.forEach(
         value => {
@@ -2837,10 +2311,8 @@ function openProduct(id){
                     "button"
                 );
 
-
             button.className =
                 "amount";
-
 
             if(
                 value ===
@@ -2853,16 +2325,13 @@ function openProduct(id){
 
             }
 
-
             button.textContent =
                 `$${value.toFixed(2)}`;
-
 
             button.onclick = () => {
 
                 selectedAmount =
                     value;
-
 
                 document
                     .querySelectorAll(
@@ -2875,16 +2344,13 @@ function openProduct(id){
                             )
                     );
 
-
                 button.classList.add(
                     "selected"
                 );
 
-
                 updateTotal();
 
             };
-
 
             amounts.appendChild(
                 button
@@ -2893,41 +2359,51 @@ function openProduct(id){
         }
     );
 
-
     document.getElementById(
         "customerEmail"
     ).value = "";
-
 
     document.getElementById(
         "checkoutMessage"
     ).textContent = "";
 
-
     const checkoutButton =
         document.getElementById(
-            "checkoutButton"
+            "buyNowButton"
         );
 
+    if(checkoutButton){
 
-    checkoutButton.disabled =
-        false;
+        checkoutButton.disabled =
+            false;
 
+        checkoutButton.textContent =
+            "Buy now →";
+
+    }
+
+    const addButton =
+        document.getElementById(
+            "addToCartButton"
+        );
+
+    if(addButton){
+
+        addButton.disabled =
+            false;
+
+        addButton.textContent =
+            "🛒 Add to cart";
+
+    }
 
     updateTotal();
-
 
     document.getElementById(
         "productModal"
     ).classList.remove(
         "hidden"
     );
-
-
-    /*
-     * Start loading rates if
-     * they haven't loaded yet.
-     */
 
     if(!ratesLoaded){
 
@@ -2936,7 +2412,6 @@ function openProduct(id){
     }
 
 }
-
 
 /* =========================================================
    UPDATE TOTAL
@@ -2953,18 +2428,14 @@ function updateTotal(){
 
     }
 
-
     const gift =
         selectedAmount;
-
 
     const fee =
         selectedProduct.fee;
 
-
     const total =
         gift + fee;
-
 
     document.getElementById(
         "giftPrice"
@@ -2974,7 +2445,6 @@ function updateTotal(){
             "USD"
         );
 
-
     document.getElementById(
         "fee"
     ).textContent =
@@ -2982,7 +2452,6 @@ function updateTotal(){
             fee,
             "USD"
         );
-
 
     document.getElementById(
         "total"
@@ -2992,15 +2461,9 @@ function updateTotal(){
             "USD"
         );
 
-
     updateConvertedPrice();
 
 }
-
-
-/* =========================================================
-   CART
-========================================================= */
 
 /* =========================================================
    ADD TO CART
@@ -3016,7 +2479,6 @@ function addToCart(){
         return;
 
     }
-
 
     cart.push({
 
@@ -3040,7 +2502,6 @@ function addToCart(){
 
     });
 
-
     saveCart();
 
     updateCartCount();
@@ -3052,7 +2513,6 @@ function addToCart(){
     openCart();
 
 }
-
 
 /* =========================================================
    SAVE CART
@@ -3067,7 +2527,6 @@ function saveCart(){
 
 }
 
-
 /* =========================================================
    CART COUNT
 ========================================================= */
@@ -3079,7 +2538,6 @@ function updateCartCount(){
             "cartCount"
         );
 
-
     if(count){
 
         count.textContent =
@@ -3089,7 +2547,6 @@ function updateCartCount(){
 
 }
 
-
 /* =========================================================
    OPEN CART
 ========================================================= */
@@ -3098,12 +2555,10 @@ function openCart(){
 
     renderCart();
 
-
     const cartModal =
         document.getElementById(
             "cartModal"
         );
-
 
     if(cartModal){
 
@@ -3114,7 +2569,6 @@ function openCart(){
     }
 
 }
-
 
 /* =========================================================
    RENDER CART
@@ -3127,11 +2581,9 @@ function renderCart(){
             "cartItems"
         );
 
-
     if(!container){
         return;
     }
-
 
     if(!cart.length){
 
@@ -3155,12 +2607,10 @@ function renderCart(){
 
         `;
 
-
         const cartTotal =
             document.getElementById(
                 "cartTotal"
             );
-
 
         if(cartTotal){
 
@@ -3169,17 +2619,13 @@ function renderCart(){
 
         }
 
-
         return;
 
     }
 
-
     let total = 0;
 
-
     container.innerHTML = "";
-
 
     cart.forEach(item => {
 
@@ -3189,20 +2635,16 @@ function renderCart(){
         const fee =
             Number(item.fee);
 
-
         total +=
             amount + fee;
-
 
         const row =
             document.createElement(
                 "div"
             );
 
-
         row.className =
             "cart-item";
-
 
         row.innerHTML = `
 
@@ -3240,7 +2682,6 @@ function renderCart(){
 
             </div>
 
-
             <button
                 class="remove"
                 onclick="removeCartItem(${item.id})"
@@ -3250,19 +2691,16 @@ function renderCart(){
 
         `;
 
-
         container.appendChild(
             row
         );
 
     });
 
-
     const cartTotal =
         document.getElementById(
             "cartTotal"
         );
-
 
     if(cartTotal){
 
@@ -3276,7 +2714,6 @@ function renderCart(){
 
 }
 
-
 /* =========================================================
    REMOVE CART ITEM
 ========================================================= */
@@ -3289,7 +2726,6 @@ function removeCartItem(id){
                 item.id !== id
         );
 
-
     saveCart();
 
     updateCartCount();
@@ -3297,7 +2733,6 @@ function removeCartItem(id){
     renderCart();
 
 }
-
 
 /* =========================================================
    BUY NOW
@@ -3310,18 +2745,15 @@ async function checkout(){
             "customerEmail"
         );
 
-
     const message =
         document.getElementById(
             "checkoutMessage"
         );
 
-
     const button =
         document.getElementById(
             "buyNowButton"
         );
-
 
     if(!emailInput){
 
@@ -3333,10 +2765,8 @@ async function checkout(){
 
     }
 
-
     const email =
         emailInput.value.trim();
-
 
     if(
         !email ||
@@ -3354,7 +2784,6 @@ async function checkout(){
 
     }
 
-
     if(
         !selectedProduct ||
         !selectedAmount
@@ -3371,7 +2800,6 @@ async function checkout(){
 
     }
 
-
     if(message){
 
         message.textContent =
@@ -3379,16 +2807,15 @@ async function checkout(){
 
     }
 
-
     if(button){
 
-        button.disabled = true;
+        button.disabled =
+            true;
 
         button.textContent =
             "Creating checkout...";
 
     }
-
 
     try{
 
@@ -3402,38 +2829,34 @@ async function checkout(){
                         "POST",
 
                     headers:{
-
                         "Content-Type":
                             "application/json"
-
                     },
 
-body:
-    JSON.stringify({
+                    body:
+                        JSON.stringify({
 
-        productId:
-            selectedProduct.id,
+                            productId:
+                                selectedProduct.id,
 
-        amount:
-            selectedAmount,
+                            amount:
+                                selectedAmount,
 
-        email:
-            email,
+                            email:
+                                email,
 
-        displayCurrency:
-            document.getElementById(
-                "currencySelect"
-            ).value
+                            displayCurrency:
+                                document.getElementById(
+                                    "currencySelect"
+                                ).value
 
-    })
+                        })
 
                 }
             );
 
-
         const data =
             await response.json();
-
 
         if(!response.ok){
 
@@ -3444,7 +2867,6 @@ body:
 
         }
 
-
         if(!data.url){
 
             throw new Error(
@@ -3453,17 +2875,15 @@ body:
 
         }
 
-
         /*
-         * Stripe receives USD.
+         * Stripe currently receives USD.
          *
-         * Currency selection on GIFty
-         * is display-only for now.
+         * The selected currency is
+         * display-only.
          */
 
         window.location.href =
             data.url;
-
 
     }catch(error){
 
@@ -3472,7 +2892,6 @@ body:
             error
         );
 
-
         if(message){
 
             message.textContent =
@@ -3480,7 +2899,6 @@ body:
                 "Something went wrong.";
 
         }
-
 
         if(button){
 
@@ -3495,7 +2913,6 @@ body:
     }
 
 }
-
 
 /* =========================================================
    CART CHECKOUT
@@ -3513,34 +2930,31 @@ function checkoutCart(){
 
     }
 
-
     /*
-     * The current backend only accepts
-     * ONE gift card per Stripe session.
+     * The current backend supports
+     * one gift card per Stripe session.
      *
-     * We leave this here temporarily.
+     * For now, open the first item.
      *
-     * The backend needs a new
+     * Later we can add:
+     *
      * /create-cart-checkout-session
-     * endpoint before multiple items
-     * can be checked out together.
+     *
+     * to checkout the entire cart.
      */
 
     const first =
         cart[0];
 
-
     closeModal(
         "cartModal"
     );
-
 
     openProduct(
         first.product
     );
 
 }
-
 
 /* =========================================================
    FILTER
@@ -3562,7 +2976,6 @@ function filterCategory(
                 )
         );
 
-
     if(button){
 
         button.classList.add(
@@ -3570,7 +2983,6 @@ function filterCategory(
         );
 
     }
-
 
     const filtered =
         category === "all"
@@ -3583,16 +2995,13 @@ function filterCategory(
                 category
         );
 
-
     renderProducts(
         filtered
     );
 
-
     scrollShop();
 
 }
-
 
 /* =========================================================
    SEARCH
@@ -3602,7 +3011,6 @@ const searchInput =
     document.getElementById(
         "search"
     );
-
 
 if(searchInput){
 
@@ -3614,7 +3022,6 @@ if(searchInput){
                 this.value
                     .toLowerCase()
                     .trim();
-
 
             const results =
                 products.filter(
@@ -3638,7 +3045,6 @@ if(searchInput){
 
                 );
 
-
             renderProducts(
                 results
             );
@@ -3648,7 +3054,6 @@ if(searchInput){
 
 }
 
-
 /* =========================================================
    NAVIGATION
 ========================================================= */
@@ -3657,16 +3062,13 @@ function goHome(){
 
     window.scrollTo({
 
-        top:
-            0,
+        top:0,
 
-        behavior:
-            "smooth"
+        behavior:"smooth"
 
     });
 
 }
-
 
 function scrollShop(){
 
@@ -3675,13 +3077,11 @@ function scrollShop(){
             "shop"
         );
 
-
     if(shop){
 
         shop.scrollIntoView({
 
-            behavior:
-                "smooth"
+            behavior:"smooth"
 
         });
 
@@ -3689,14 +3089,12 @@ function scrollShop(){
 
 }
 
-
 function closeModal(id){
 
     const modal =
         document.getElementById(
             id
         );
-
 
     if(modal){
 
@@ -3708,9 +3106,8 @@ function closeModal(id){
 
 }
 
-
 /* =========================================================
-   CLOSE MODAL WHEN CLICKING OUTSIDE
+   CLOSE MODAL OUTSIDE
 ========================================================= */
 
 document
@@ -3741,7 +3138,6 @@ document
         }
     );
 
-
 /* =========================================================
    ESCAPE KEY
 ========================================================= */
@@ -3771,7 +3167,6 @@ document.addEventListener(
     }
 );
 
-
 /* =========================================================
    INIT
 ========================================================= */
@@ -3783,3 +3178,7 @@ updateCartCount();
 loadExchangeRates();
 
 </script>
+
+</body>
+
+</html>
