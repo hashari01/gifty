@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gifty — Give Something Special</title>
+
+<style>
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: Arial, sans-serif;
+background: #faf7ff;
+color: #202020;
+}
+
+nav {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 22px 8%;
+background: white;
+border-bottom: 1px solid #eee;
+}
+
+.logo {
+font-size: 28px;
+font-weight: 800;
+}
+
+.nav-button {
+text-decoration: none;
+background: #111;
+color: white;
+padding: 12px 20px;
+border-radius: 25px;
+font-weight: bold;
+}
+
+.hero {
+text-align: center;
+padding: 90px 20px 70px;
+}
+
+.hero h1 {
+font-size: clamp(42px, 7vw, 76px);
+margin-bottom: 20px;
+line-height: 1;
+}
+
+.hero p {
+font-size: 20px;
+color: #666;
+max-width: 600px;
+margin: 0 auto 35px;
+line-height: 1.6;
+}
+
+.main-button {
+display: inline-block;
+background: #111;
+color: white;
+text-decoration: none;
+padding: 17px 32px;
+border-radius: 30px;
+font-size: 18px;
+font-weight: bold;
+transition: 0.2s;
+}
+
+.main-button:hover {
+transform: translateY(-2px);
+opacity: 0.85;
+}
+
+.cards {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+gap: 25px;
+max-width: 1000px;
+margin: 20px auto 80px;
+padding: 0 25px;
+}
+
+.card {
+background: white;
+padding: 35px 25px;
+border-radius: 24px;
+text-align: center;
+box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}
+
+.emoji {
+font-size: 55px;
+margin-bottom: 20px;
+}
+
+.card h2 {
+margin-bottom: 10px;
+}
+
+.card p {
+color: #777;
+line-height: 1.5;
+margin-bottom: 22px;
+}
+
+.buy {
+display: inline-block;
+background: #111;
+color: white;
+text-decoration: none;
+padding: 12px 22px;
+border-radius: 22px;
+font-weight: bold;
+}
+
+.how {
+background: white;
+text-align: center;
+padding: 70px 25px;
+}
+
+.how h2 {
+font-size: 38px;
+margin-bottom: 40px;
+}
+
+.steps {
+display: flex;
+justify-content: center;
+gap: 40px;
+flex-wrap: wrap;
+}
+
+.step {
+max-width: 220px;
+}
+
+.number {
+width: 50px;
+height: 50px;
+background: #111;
+color: white;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 15px;
+font-weight: bold;
+font-size: 20px;
+}
+
+footer {
+text-align: center;
+padding: 30px;
+color: #777;
+background: #faf7ff;
+}
+
+@media (max-width: 600px) {
+nav {
+padding: 18px 5%;
+}
+
+.hero {
+padding-top: 60px;
+}
+
+.steps {
+flex-direction: column;
+align-items: center;
+}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div class="logo">🎁 Gifty</div>
+<a class="nav-button" href="#gifts">Shop Gifts</a>
+</nav>
+
+<section class="hero">
+<h1>Give a gift they'll love.</h1>
+
+<p>
+Simple digital gift cards for the people who matter.
+Choose a gift, pay securely, and send it instantly.
+</p>
+
+<a class="main-button" href="#gifts">
+Explore Gifts →
+</a>
+</section>
+
+<section class="cards" id="gifts">
+
+<div class="card">
+<div class="emoji">🎮</div>
+
+<h2>Roblox Gift Card</h2>
+
+<p>
+A $10 digital Roblox gift card.
+Perfect for gamers.
+</p>
+
+<a
+class="buy"
+href="https://buy.stripe.com/test_bJefZh6IT3en9va48ncEw00"
+target="_blank"
+>
+Buy for $10
+</a>
+</div>
+
+<div class="card">
+<div class="emoji">🎉</div>
+
+<h2>Coming Soon</h2>
+
+<p>
+More digital gifts are coming to Gifty.
+</p>
+
+<a class="buy" href="#gifts">
+Coming Soon
+</a>
+</div>
+
+<div class="card">
+<div class="emoji">💝</div>
+
+<h2>More Gifts</h2>
+
+<p>
+We're building a collection of gifts
+for every occasion.
+</p>
+
+<a class="buy" href="#gifts">
+Coming Soon
+</a>
+</div>
+
+</section>
+
+<section class="how">
+<h2>How Gifty Works</h2>
+
+<div class="steps">
+
+<div class="step">
+<div class="number">1</div>
+<h3>Choose</h3>
+<p>Pick the perfect digital gift.</p>
+</div>
+
+<div class="step">
+<div class="number">2</div>
+<h3>Pay</h3>
+<p>Complete your payment securely.</p>
+</div>
+
+<div class="step">
+<div class="number">3</div>
+<h3>Send</h3>
+<p>Give the gift to someone special.</p>
+</div>
+
+</div>
+</section>
+
+<footer>
+© 2026 Gifty. Made with ❤️
+</footer>
+
+</body>
+</html>
