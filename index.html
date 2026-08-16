@@ -839,8 +839,28 @@ placeholder="you@example.com"
 </div>
 
 <div class="line">
-<span>Approx. TND</span>
-<strong id="tndPrice">—</strong>
+    <span>Currency</span>
+    <select id="currencySelect" onchange="changeCurrency()">
+        <option value="TND">🇹🇳 TND</option>
+        <option value="USD">🇺🇸 USD</option>
+        <option value="EUR">🇪🇺 EUR</option>
+        <option value="GBP">🇬🇧 GBP</option>
+        <option value="CAD">🇨🇦 CAD</option>
+        <option value="AUD">🇦🇺 AUD</option>
+        <option value="AED">🇦🇪 AED</option>
+        <option value="SAR">🇸🇦 SAR</option>
+        <option value="MAD">🇲🇦 MAD</option>
+        <option value="DZD">🇩🇿 DZD</option>
+        <option value="EGP">🇪🇬 EGP</option>
+        <option value="TRY">🇹🇷 TRY</option>
+        <option value="JPY">🇯🇵 JPY</option>
+        <option value="CHF">🇨🇭 CHF</option>
+    </select>
+</div>
+
+<div class="line">
+    <span>Approx. local price</span>
+    <strong id="convertedPrice">—</strong>
 </div>
 
 <div class="total">
