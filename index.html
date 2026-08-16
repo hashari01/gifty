@@ -3,177 +3,270 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gifty — Give Something Special</title>
+<title>Gifty — Digital Gift Cards</title>
 
 <style>
 * {
 box-sizing: border-box;
-margin: 0;
-padding: 0;
 }
 
 body {
-font-family: Arial, sans-serif;
-background: #faf7ff;
-color: #202020;
+margin: 0;
+font-family: Arial, Helvetica, sans-serif;
+background: #f7f7fb;
+color: #151515;
 }
 
-nav {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 22px 8%;
+button,
+input {
+font: inherit;
+}
+
+button {
+cursor: pointer;
+border: 0;
+}
+
+.nav {
+height: 70px;
 background: white;
 border-bottom: 1px solid #eee;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 0 6%;
+position: sticky;
+top: 0;
+z-index: 5;
 }
 
 .logo {
-font-size: 28px;
+font-size: 24px;
 font-weight: 800;
+background: none;
 }
 
-.nav-button {
-text-decoration: none;
-background: #111;
-color: white;
-padding: 12px 20px;
-border-radius: 25px;
+.nav button:not(.logo) {
+background: none;
+margin-left: 18px;
 font-weight: bold;
+}
+
+.screen {
+display: none;
+min-height: calc(100vh - 70px);
+padding: 50px 6%;
+}
+
+.screen.active {
+display: block;
 }
 
 .hero {
 text-align: center;
-padding: 90px 20px 70px;
+padding: 80px 10px;
 }
 
 .hero h1 {
-font-size: clamp(42px, 7vw, 76px);
-margin-bottom: 20px;
-line-height: 1;
+font-size: clamp(42px, 7vw, 72px);
+margin: 0 0 15px;
 }
 
 .hero p {
+color: #707070;
 font-size: 20px;
-color: #666;
-max-width: 600px;
-margin: 0 auto 35px;
-line-height: 1.6;
+max-width: 650px;
+margin: 0 auto 30px;
+line-height: 1.5;
 }
 
-.main-button {
-display: inline-block;
+.primary {
 background: #111;
 color: white;
-text-decoration: none;
-padding: 17px 32px;
 border-radius: 30px;
-font-size: 18px;
+padding: 14px 23px;
 font-weight: bold;
-transition: 0.2s;
 }
 
-.main-button:hover {
-transform: translateY(-2px);
-opacity: 0.85;
+.title {
+text-align: center;
+margin-bottom: 30px;
 }
 
-.cards {
+.title h1 {
+font-size: 40px;
+}
+
+.muted {
+color: #707070;
+}
+
+.grid {
+max-width: 1100px;
+margin: auto;
 display: grid;
-grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-gap: 25px;
-max-width: 1000px;
-margin: 20px auto 80px;
-padding: 0 25px;
+grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
+gap: 18px;
 }
 
 .card {
 background: white;
-padding: 35px 25px;
-border-radius: 24px;
-text-align: center;
-box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+border: 1px solid #e8e8ed;
+border-radius: 22px;
+padding: 25px;
+box-shadow: 0 7px 22px #00000008;
+transition: 0.2s;
 }
 
-.emoji {
-font-size: 55px;
-margin-bottom: 20px;
+.card:hover {
+transform: translateY(-3px);
+box-shadow: 0 12px 30px #00000012;
 }
 
-.card h2 {
-margin-bottom: 10px;
+.icon {
+font-size: 48px;
+margin-bottom: 12px;
 }
 
 .card p {
-color: #777;
-line-height: 1.5;
-margin-bottom: 22px;
+color: #707070;
+line-height: 1.45;
 }
 
-.buy {
-display: inline-block;
-background: #111;
-color: white;
-text-decoration: none;
-padding: 12px 22px;
-border-radius: 22px;
-font-weight: bold;
+.search {
+max-width: 700px;
+margin: 0 auto 25px;
 }
 
-.how {
+.search input {
+width: 100%;
+padding: 16px 20px;
+border: 1px solid #ddd;
+border-radius: 30px;
+outline: none;
+}
+
+.product {
+max-width: 800px;
+margin: auto;
 background: white;
+border: 1px solid #e8e8ed;
+border-radius: 25px;
+padding: 30px;
+display: grid;
+grid-template-columns: 170px 1fr;
+gap: 30px;
+}
+
+.big {
+font-size: 100px;
 text-align: center;
-padding: 70px 25px;
 }
 
-.how h2 {
-font-size: 38px;
-margin-bottom: 40px;
-}
-
-.steps {
+.amounts {
 display: flex;
-justify-content: center;
-gap: 40px;
+gap: 10px;
 flex-wrap: wrap;
+margin: 15px 0;
 }
 
-.step {
-max-width: 220px;
+.amount {
+padding: 12px 18px;
+border-radius: 12px;
+background: #eee;
+font-weight: bold;
 }
 
-.number {
-width: 50px;
-height: 50px;
+.amount.selected {
 background: #111;
 color: white;
-border-radius: 50%;
+}
+
+.summary {
+background: #f6f6f6;
+padding: 18px;
+border-radius: 16px;
+margin: 18px 0;
+}
+
+.summary div {
 display: flex;
-align-items: center;
-justify-content: center;
-margin: 0 auto 15px;
+justify-content: space-between;
+padding: 6px 0;
+}
+
+.summary .total {
+border-top: 1px solid #ddd;
+margin-top: 8px;
+padding-top: 12px;
 font-weight: bold;
-font-size: 20px;
+}
+
+.checkout,
+.success {
+max-width: 600px;
+margin: auto;
+background: white;
+border: 1px solid #e8e8ed;
+border-radius: 25px;
+padding: 30px;
+}
+
+.checkout h1 {
+text-align: center;
+}
+
+.full {
+display: block;
+text-align: center;
+width: 100%;
+text-decoration: none;
+}
+
+.notice {
+background: #fff6dc;
+padding: 12px;
+border-radius: 12px;
+font-size: 14px;
+color: #725900;
+margin: 15px 0;
+}
+
+.success {
+text-align: center;
+padding: 60px 25px;
+}
+
+.check {
+font-size: 65px;
 }
 
 footer {
 text-align: center;
-padding: 30px;
-color: #777;
-background: #faf7ff;
+padding: 25px;
+color: #888;
+border-top: 1px solid #eee;
+background: white;
 }
 
-@media (max-width: 600px) {
-nav {
-padding: 18px 5%;
+@media (max-width: 650px) {
+
+.nav {
+padding: 0 4%;
 }
 
-.hero {
-padding-top: 60px;
+.nav button:not(.logo) {
+margin-left: 7px;
+font-size: 12px;
 }
 
-.steps {
-flex-direction: column;
-align-items: center;
+.product {
+grid-template-columns: 1fr;
+text-align: center;
+}
+
+.amounts {
+justify-content: center;
 }
 }
 </style>
@@ -181,105 +274,732 @@ align-items: center;
 
 <body>
 
-<nav>
-<div class="logo">🎁 Gifty</div>
-<a class="nav-button" href="#gifts">Shop Gifts</a>
+<!-- NAVIGATION -->
+
+<nav class="nav">
+
+<button class="logo" onclick="show('home')">
+🎁 Gifty
+</button>
+
+<div>
+<button onclick="show('home')">
+Home
+</button>
+
+<button onclick="show('search')">
+Search 🔎
+</button>
+
+<button onclick="show('shop')">
+Shop Gifts
+</button>
+</div>
+
 </nav>
 
-<section class="hero">
-<h1>Give a gift they'll love.</h1>
+
+<!-- HOME -->
+
+<section id="home" class="screen active">
+
+<div class="hero">
+
+<h1>
+Give a gift they'll love.
+</h1>
 
 <p>
-Simple digital gift cards for the people who matter.
-Choose a gift, pay securely, and send it instantly.
+Digital gift cards for gaming,
+entertainment and shopping —
+all in one place.
 </p>
 
-<a class="main-button" href="#gifts">
-Explore Gifts →
-</a>
-</section>
+<button
+class="primary"
+onclick="show('shop')"
+>
+Shop Gifts →
+</button>
 
-<section class="cards" id="gifts">
+</div>
+
+
+<div class="grid">
 
 <div class="card">
-<div class="emoji">🎮</div>
 
-<h2>Roblox Gift Card</h2>
+<div class="icon">
+🎮
+</div>
+
+<h2>
+Gaming
+</h2>
 
 <p>
-A $10 digital Roblox gift card.
-Perfect for gamers.
+Popular gaming gift cards.
 </p>
 
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🎵
+</div>
+
+<h2>
+Entertainment
+</h2>
+
+<p>
+Music and streaming gifts.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🛍️
+</div>
+
+<h2>
+Shopping
+</h2>
+
+<p>
+Popular digital shopping gifts.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SHOP -->
+
+<section id="shop" class="screen">
+
+<div class="title">
+
+<h1>
+Shop Gifts
+</h1>
+
+<p class="muted">
+Choose a gift card.
+</p>
+
+</div>
+
+<div
+id="shopGrid"
+class="grid"
+></div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<section id="search" class="screen">
+
+<div class="title">
+
+<h1>
+Find a Gift
+</h1>
+
+<p class="muted">
+Search by gift-card name.
+</p>
+
+</div>
+
+
+<div class="search">
+
+<input
+id="q"
+placeholder="Try Roblox, Apple, Spotify..."
+oninput="searchProducts()"
+>
+
+</div>
+
+
+<div
+id="results"
+class="grid"
+></div>
+
+</section>
+
+
+<!-- PRODUCT PAGE -->
+
+<section id="product" class="screen">
+
+<div id="productBox"></div>
+
+</section>
+
+
+<!-- CHECKOUT -->
+
+<section id="checkout" class="screen">
+
+<div class="checkout">
+
+<h1>
+Checkout
+</h1>
+
+<div id="checkoutBox"></div>
+
+
+<div class="notice">
+
+🔒 Test checkout only.
+
+No real gift card is being fulfilled yet.
+
+</div>
+
+
+<!-- YOUR CURRENT STRIPE TEST LINK -->
+
 <a
-class="buy"
+class="primary full"
 href="https://buy.stripe.com/test_bJefZh6IT3en9va48ncEw00"
 target="_blank"
 >
-Buy for $10
+Pay with Stripe
 </a>
-</div>
 
-<div class="card">
-<div class="emoji">🎉</div>
 
-<h2>Coming Soon</h2>
-
-<p>
-More digital gifts are coming to Gifty.
+<p
+class="muted"
+style="text-align:center;font-size:13px"
+>
+Real automatic delivery will be connected
+after the payment provider and gift-card
+supplier are ready.
 </p>
 
-<a class="buy" href="#gifts">
-Coming Soon
-</a>
-</div>
-
-<div class="card">
-<div class="emoji">💝</div>
-
-<h2>More Gifts</h2>
-
-<p>
-We're building a collection of gifts
-for every occasion.
-</p>
-
-<a class="buy" href="#gifts">
-Coming Soon
-</a>
 </div>
 
 </section>
 
-<section class="how">
-<h2>How Gifty Works</h2>
 
-<div class="steps">
+<!-- CONFIRMATION -->
 
-<div class="step">
-<div class="number">1</div>
-<h3>Choose</h3>
-<p>Pick the perfect digital gift.</p>
+<section id="confirmation" class="screen">
+
+<div class="success">
+
+<div class="check">
+✓
 </div>
 
-<div class="step">
-<div class="number">2</div>
-<h3>Pay</h3>
-<p>Complete your payment securely.</p>
+<h1>
+Order Confirmed
+</h1>
+
+<p class="muted">
+This is the demo confirmation screen.
+</p>
+
+<br>
+
+<button
+class="primary"
+onclick="show('shop')"
+>
+Shop Again
+</button>
+
 </div>
 
-<div class="step">
-<div class="number">3</div>
-<h3>Send</h3>
-<p>Give the gift to someone special.</p>
-</div>
-
-</div>
 </section>
+
 
 <footer>
-© 2026 Gifty. Made with ❤️
+© 2026 Gifty · Digital gifts made simple.
 </footer>
+
+
+<script>
+
+/* =========================
+GIFT CARD PRODUCTS
+========================= */
+
+const products = [
+
+{
+id: "roblox",
+name: "Roblox",
+icon: "🎮",
+category: "Gaming",
+amounts: [10, 25, 50, 100]
+},
+
+{
+id: "playstation",
+name: "PlayStation",
+icon: "🎮",
+category: "Gaming",
+amounts: [10, 25, 50, 75, 100]
+},
+
+{
+id: "xbox",
+name: "Xbox",
+icon: "🎮",
+category: "Gaming",
+amounts: [10, 25, 50, 100]
+},
+
+{
+id: "nintendo",
+name: "Nintendo",
+icon: "🕹️",
+category: "Gaming",
+amounts: [10, 20, 35, 50, 100]
+},
+
+{
+id: "apple",
+name: "Apple",
+icon: "🍎",
+category: "Shopping",
+amounts: [10, 25, 50, 100]
+},
+
+{
+id: "amazon",
+name: "Amazon",
+icon: "🛍️",
+category: "Shopping",
+amounts: [10, 25, 50, 100]
+},
+
+{
+id: "spotify",
+name: "Spotify",
+icon: "🎵",
+category: "Entertainment",
+amounts: [10, 25, 30, 60]
+},
+
+{
+id: "netflix",
+name: "Netflix",
+icon: "🎬",
+category: "Entertainment",
+amounts: [15, 25, 50, 100]
+},
+
+{
+id: "googleplay",
+name: "Google Play",
+icon: "▶️",
+category: "Shopping",
+amounts: [10, 25, 50, 100]
+},
+
+{
+id: "steam",
+name: "Steam",
+icon: "🖥️",
+category: "Gaming",
+amounts: [10, 20, 50, 100]
+}
+
+];
+
+
+/* =========================
+VARIABLES
+========================= */
+
+let selectedProduct = null;
+
+let selectedAmount = 0;
+
+let serviceFee = 2;
+
+
+/* =========================
+CHANGE SCREEN
+========================= */
+
+function show(screenName) {
+
+document
+.querySelectorAll(".screen")
+.forEach(screen => {
+
+screen.classList.remove("active");
+
+});
+
+
+document
+.getElementById(screenName)
+.classList.add("active");
+
+
+window.scrollTo({
+top: 0,
+behavior: "smooth"
+});
+
+
+if (screenName === "shop") {
+
+renderProducts(
+products,
+"shopGrid"
+);
+
+}
+
+
+if (screenName === "search") {
+
+searchProducts();
+
+}
+
+}
+
+
+/* =========================
+PRODUCT CARDS
+========================= */
+
+function renderProducts(list, elementId) {
+
+const container =
+document.getElementById(elementId);
+
+
+if (list.length === 0) {
+
+container.innerHTML =
+"<p class='muted'>No gifts found.</p>";
+
+return;
+
+}
+
+
+container.innerHTML =
+list.map(product => `
+
+<div class="card">
+
+<div class="icon">
+${product.icon}
+</div>
+
+<h2>
+${product.name}
+</h2>
+
+<p>
+${product.category}
+· From $${product.amounts[0]}
+</p>
+
+<button
+class="primary"
+onclick="openProduct('${product.id}')"
+>
+View Gift →
+</button>
+
+</div>
+
+`).join("");
+
+}
+
+
+/* =========================
+OPEN PRODUCT
+========================= */
+
+function openProduct(id) {
+
+selectedProduct =
+products.find(
+product => product.id === id
+);
+
+
+selectedAmount =
+selectedProduct.amounts[0];
+
+
+renderProduct();
+
+show("product");
+
+}
+
+
+/* =========================
+PRODUCT SCREEN
+========================= */
+
+function renderProduct() {
+
+const product =
+selectedProduct;
+
+
+document.getElementById(
+"productBox"
+).innerHTML = `
+
+<div class="product">
+
+<div class="big">
+${product.icon}
+</div>
+
+
+<div>
+
+<h1>
+${product.name} Gift Card
+</h1>
+
+
+<p class="muted">
+
+${product.category}
+gift card.
+
+Choose your amount.
+
+</p>
+
+
+<strong>
+Choose an amount
+</strong>
+
+
+<div class="amounts">
+
+${product.amounts.map(amount => `
+
+<button
+class="amount
+${amount === selectedAmount
+? "selected"
+: ""}"
+onclick="chooseAmount(${amount})"
+>
+$${amount}
+</button>
+
+`).join("")}
+
+</div>
+
+
+<div class="summary">
+
+<div>
+
+<span>
+Gift card
+</span>
+
+<b>
+$${selectedAmount}.00
+</b>
+
+</div>
+
+
+<div>
+
+<span>
+Gifty service fee
+</span>
+
+<b>
+$${serviceFee}.00
+</b>
+
+</div>
+
+
+<div class="total">
+
+<span>
+Total
+</span>
+
+<b>
+$${selectedAmount + serviceFee}.00
+</b>
+
+</div>
+
+</div>
+
+
+<button
+class="primary"
+onclick="openCheckout()"
+>
+Continue to Checkout →
+</button>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+
+/* =========================
+CHOOSE AMOUNT
+========================= */
+
+function chooseAmount(amount) {
+
+selectedAmount = amount;
+
+renderProduct();
+
+}
+
+
+/* =========================
+CHECKOUT
+========================= */
+
+function openCheckout() {
+
+document.getElementById(
+"checkoutBox"
+).innerHTML = `
+
+<div class="summary">
+
+<div>
+
+<span>
+${selectedProduct.icon}
+${selectedProduct.name}
+</span>
+
+<b>
+$${selectedAmount}.00
+</b>
+
+</div>
+
+
+<div>
+
+<span>
+Gifty service fee
+</span>
+
+<b>
+$${serviceFee}.00
+</b>
+
+</div>
+
+
+<div class="total">
+
+<span>
+Total
+</span>
+
+<b>
+$${selectedAmount + serviceFee}.00
+</b>
+
+</div>
+
+</div>
+
+`;
+
+
+show("checkout");
+
+}
+
+
+/* =========================
+SEARCH
+========================= */
+
+function searchProducts() {
+
+const input =
+document.getElementById("q");
+
+
+const query =
+(input.value || "")
+.toLowerCase()
+.trim();
+
+
+const results =
+products.filter(product =>
+
+(
+product.name +
+" " +
+product.category
+)
+.toLowerCase()
+.includes(query)
+
+);
+
+
+renderProducts(
+results,
+"results"
+);
+
+}
+
+
+/* =========================
+START WEBSITE
+========================= */
+
+renderProducts(
+products,
+"shopGrid"
+);
+
+</script>
 
 </body>
 </html>
