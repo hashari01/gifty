@@ -1,736 +1,1603 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
 <title>GIFty — Digital Gifts</title>
 
-<meta name="description"
-content="GIFty — digital gift cards delivered straight to your email.">
+<meta
+    name="description"
+    content="GIFty — digital gift cards delivered straight to your email."
+>
 
 <style>
+
 :root{
+
     --bg:#07070c;
     --panel:#101019;
     --panel2:#151521;
+
     --border:rgba(255,255,255,.09);
+
     --text:#fff;
     --muted:#9999aa;
+
     --purple:#9b5cff;
     --pink:#ff4fc3;
     --blue:#55a8ff;
     --green:#36e58b;
     --danger:#ff5f6d;
+
     --radius:22px;
+
 }
 
+
 *{
+
     box-sizing:border-box;
     margin:0;
     padding:0;
+
 }
+
 
 html{
+
     scroll-behavior:smooth;
+
 }
+
 
 body{
-    font-family:Inter,Arial,sans-serif;
+
+    font-family:
+        Inter,
+        Arial,
+        sans-serif;
+
     color:var(--text);
+
     background:
-        radial-gradient(circle at 10% 0%,rgba(155,92,255,.18),transparent 30%),
-        radial-gradient(circle at 90% 5%,rgba(255,79,195,.13),transparent 28%),
+
+        radial-gradient(
+            circle at 10% 0%,
+            rgba(155,92,255,.18),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 90% 5%,
+            rgba(255,79,195,.13),
+            transparent 28%
+        ),
+
         var(--bg);
+
     min-height:100vh;
+
 }
 
-button,input{
+
+button,
+input,
+select{
+
     font:inherit;
+
 }
+
 
 button{
+
     cursor:pointer;
+
 }
+
 
 .hidden{
+
     display:none!important;
+
 }
 
-/* TOP */
+
+/* =========================================================
+   TOP BAR
+========================================================= */
 
 .topbar{
+
     text-align:center;
+
     padding:9px;
+
     font-size:12px;
+
     color:#ddd;
-    background:linear-gradient(
-        90deg,
-        rgba(155,92,255,.16),
-        rgba(255,79,195,.12)
-    );
-    border-bottom:1px solid var(--border);
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(155,92,255,.16),
+            rgba(255,79,195,.12)
+        );
+
+    border-bottom:
+        1px solid var(--border);
+
 }
 
-/* NAV */
+
+/* =========================================================
+   NAVBAR
+========================================================= */
 
 .navbar{
+
     position:sticky;
+
     top:0;
+
     z-index:1000;
+
     display:flex;
+
     align-items:center;
+
     gap:20px;
+
     padding:15px 5%;
-    background:rgba(7,7,12,.82);
-    backdrop-filter:blur(20px);
-    border-bottom:1px solid var(--border);
+
+    background:
+        rgba(7,7,12,.82);
+
+    backdrop-filter:
+        blur(20px);
+
+    border-bottom:
+        1px solid var(--border);
+
 }
+
 
 .logo{
+
     border:0;
+
     background:none;
+
     color:white;
+
     font-weight:950;
+
     font-size:28px;
+
     letter-spacing:-1.5px;
+
     white-space:nowrap;
+
 }
+
 
 .logo span{
-    background:linear-gradient(90deg,#b66cff,#ff4fc3,#55a8ff);
+
+    background:
+        linear-gradient(
+            90deg,
+            #b66cff,
+            #ff4fc3,
+            #55a8ff
+        );
+
     -webkit-background-clip:text;
+
+    background-clip:text;
+
     color:transparent;
+
 }
+
 
 .search{
+
     flex:1;
+
     max-width:600px;
+
     padding:13px 16px;
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius:15px;
+
     outline:none;
+
     color:white;
+
     background:#11111a;
+
 }
+
 
 .search:focus{
-    border-color:rgba(155,92,255,.7);
+
+    border-color:
+        rgba(155,92,255,.7);
+
 }
 
+
 .nav-actions{
+
     margin-left:auto;
+
     display:flex;
+
     align-items:center;
+
     gap:10px;
+
 }
+
 
 .nav-btn,
 .cart-btn{
+
     border:0;
+
     color:white;
+
     background:transparent;
+
     padding:10px 12px;
+
     font-weight:800;
+
 }
+
 
 .cart-btn{
+
     background:#151521;
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius:13px;
+
 }
+
 
 .cart-count{
+
     display:inline-flex;
+
     justify-content:center;
+
     align-items:center;
+
     min-width:21px;
+
     height:21px;
+
     margin-left:5px;
+
     border-radius:50%;
-    background:linear-gradient(135deg,var(--purple),var(--pink));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--purple),
+            var(--pink)
+        );
+
     font-size:11px;
+
 }
 
-/* CATEGORIES */
+
+/* =========================================================
+   CATEGORIES
+========================================================= */
 
 .categories{
+
     display:flex;
+
     gap:8px;
+
     overflow-x:auto;
+
     padding:12px 5%;
-    border-bottom:1px solid var(--border);
+
+    border-bottom:
+        1px solid var(--border);
+
 }
 
+
 .category{
+
     border:0;
+
     border-radius:12px;
+
     padding:9px 15px;
+
     white-space:nowrap;
+
     color:#aaaabd;
+
     background:transparent;
+
     font-weight:800;
+
 }
+
 
 .category.active,
 .category:hover{
+
     color:white;
-    background:linear-gradient(90deg,#8d4cff,#e946b8);
+
+    background:
+        linear-gradient(
+            90deg,
+            #8d4cff,
+            #e946b8
+        );
+
 }
 
-/* MAIN */
+
+/* =========================================================
+   CONTAINER
+========================================================= */
 
 .container{
+
     width:90%;
+
     max-width:1400px;
+
     margin:auto;
+
 }
+
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
+
     min-height:620px;
+
     display:grid;
-    grid-template-columns:1.1fr .9fr;
+
+    grid-template-columns:
+        1.1fr .9fr;
+
     gap:50px;
+
     align-items:center;
+
 }
+
 
 .hero h1{
-    font-size:clamp(48px,7vw,88px);
+
+    font-size:
+        clamp(48px,7vw,88px);
+
     line-height:.94;
+
     letter-spacing:-5px;
+
 }
+
 
 .gradient{
-    background:linear-gradient(
-        90deg,
-        #b66cff,
-        #ff4fc3,
-        #55a8ff
-    );
+
+    background:
+        linear-gradient(
+            90deg,
+            #b66cff,
+            #ff4fc3,
+            #55a8ff
+        );
+
     -webkit-background-clip:text;
+
+    background-clip:text;
+
     color:transparent;
+
 }
+
 
 .hero p{
+
     max-width:620px;
+
     margin-top:25px;
+
     color:#a4a4b5;
+
     font-size:18px;
+
     line-height:1.7;
+
 }
 
+
 .hero-actions{
+
     display:flex;
+
     gap:12px;
+
     flex-wrap:wrap;
+
     margin-top:30px;
+
 }
+
 
 .primary,
 .secondary{
+
     border-radius:14px;
+
     padding:15px 22px;
+
     font-weight:900;
+
 }
+
 
 .primary{
+
     color:white;
+
     border:0;
-    background:linear-gradient(90deg,#8f4cff,#ec46b9);
-    box-shadow:0 12px 40px rgba(155,92,255,.25);
+
+    background:
+        linear-gradient(
+            90deg,
+            #8f4cff,
+            #ec46b9
+        );
+
+    box-shadow:
+        0 12px 40px
+        rgba(155,92,255,.25);
+
 }
+
 
 .secondary{
+
     color:white;
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     background:#12121c;
+
 }
+
+
+/* =========================================================
+   HERO CARD
+========================================================= */
 
 .hero-card{
+
     min-height:420px;
+
     position:relative;
+
     overflow:hidden;
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius:32px;
+
     background:
-        radial-gradient(circle at 30% 30%,rgba(155,92,255,.35),transparent 35%),
-        radial-gradient(circle at 80% 20%,rgba(255,79,195,.28),transparent 30%),
+
+        radial-gradient(
+            circle at 30% 30%,
+            rgba(155,92,255,.35),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(255,79,195,.28),
+            transparent 30%
+        ),
+
         #10101b;
+
 }
+
 
 .float{
+
     position:absolute;
+
     padding:22px;
-    border:1px solid rgba(255,255,255,.13);
+
+    border:
+        1px solid
+        rgba(255,255,255,.13);
+
     border-radius:22px;
-    background:rgba(255,255,255,.06);
-    backdrop-filter:blur(15px);
-    box-shadow:0 25px 70px rgba(0,0,0,.4);
+
+    background:
+        rgba(255,255,255,.06);
+
+    backdrop-filter:
+        blur(15px);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.4);
+
 }
+
 
 .float img{
+
     width:55px;
+
     height:55px;
+
     object-fit:contain;
+
     margin-bottom:12px;
+
 }
+
 
 .float strong{
+
     display:block;
+
     font-size:19px;
+
 }
+
 
 .float small{
+
     color:#aaa;
+
 }
+
 
 .f1{
+
     width:210px;
+
     top:50px;
+
     left:40px;
+
     transform:rotate(-7deg);
+
 }
+
 
 .f2{
+
     width:210px;
+
     top:110px;
+
     right:40px;
+
     transform:rotate(7deg);
+
 }
+
 
 .f3{
+
     width:230px;
+
     bottom:40px;
+
     left:50%;
-    transform:translateX(-50%) rotate(-2deg);
+
+    transform:
+        translateX(-50%)
+        rotate(-2deg);
+
 }
 
-/* SHOP */
+
+/* =========================================================
+   SHOP
+========================================================= */
 
 .shop{
+
     padding:60px 0 100px;
+
 }
+
 
 .heading{
+
     margin-bottom:25px;
+
 }
+
 
 .heading h2{
+
     font-size:35px;
+
 }
+
 
 .heading p{
+
     color:var(--muted);
+
     margin-top:7px;
+
 }
+
 
 .grid{
+
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(240px,1fr)
+        );
+
     gap:20px;
+
 }
+
 
 .product{
+
     position:relative;
+
     padding:22px;
+
     min-height:340px;
+
     overflow:hidden;
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius:23px;
-    background:linear-gradient(
-        145deg,
-        rgba(255,255,255,.055),
-        rgba(255,255,255,.015)
-    );
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.055),
+            rgba(255,255,255,.015)
+        );
+
     transition:.25s;
+
 }
+
 
 .product:hover{
-    transform:translateY(-7px);
-    border-color:rgba(255,255,255,.18);
-    box-shadow:0 25px 60px rgba(0,0,0,.35);
+
+    transform:
+        translateY(-7px);
+
+    border-color:
+        rgba(255,255,255,.18);
+
+    box-shadow:
+        0 25px 60px
+        rgba(0,0,0,.35);
+
 }
+
 
 .product-top{
+
     display:flex;
-    justify-content:space-between;
+
+    justify-content:
+        space-between;
+
     align-items:start;
+
 }
+
 
 .product-logo{
+
     width:70px;
+
     height:70px;
+
     padding:14px;
+
     object-fit:contain;
+
     border-radius:18px;
+
     background:#191923;
+
 }
+
 
 .badge{
+
     padding:6px 9px;
+
     border-radius:20px;
+
     font-size:10px;
+
     font-weight:900;
-    background:linear-gradient(90deg,#ec46b9,#8f4cff);
+
+    background:
+        linear-gradient(
+            90deg,
+            #ec46b9,
+            #8f4cff
+        );
+
 }
+
 
 .product h3{
+
     margin-top:22px;
+
     font-size:22px;
+
 }
+
 
 .product p{
+
     min-height:45px;
+
     margin-top:8px;
+
     color:var(--muted);
+
     line-height:1.5;
+
     font-size:14px;
+
 }
+
 
 .price{
+
     margin-top:18px;
+
     font-size:18px;
+
     font-weight:950;
+
 }
+
 
 .product button{
+
     width:100%;
+
     margin-top:16px;
+
     padding:13px;
+
     border:0;
+
     border-radius:13px;
+
     color:#09090f;
+
     background:white;
+
     font-weight:900;
+
 }
 
-/* MODAL */
+
+/* =========================================================
+   MODAL
+========================================================= */
 
 .modal{
+
     position:fixed;
+
     inset:0;
+
     z-index:2000;
+
     display:flex;
+
     align-items:center;
+
     justify-content:center;
+
     padding:20px;
-    background:rgba(0,0,0,.72);
-    backdrop-filter:blur(12px);
+
+    background:
+        rgba(0,0,0,.72);
+
+    backdrop-filter:
+        blur(12px);
+
 }
+
 
 .modal-box{
+
     width:100%;
+
     max-width:500px;
+
     max-height:90vh;
+
     overflow:auto;
+
     padding:28px;
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius:25px;
+
     background:#101019;
-    box-shadow:0 30px 100px rgba(0,0,0,.6);
+
+    box-shadow:
+        0 30px 100px
+        rgba(0,0,0,.6);
+
 }
+
 
 .close{
+
     float:right;
+
     border:0;
+
     color:white;
+
     background:transparent;
+
     font-size:25px;
+
 }
+
 
 .modal h2{
+
     font-size:30px;
+
 }
+
 
 .modal-muted{
+
     color:var(--muted);
+
     margin-top:7px;
+
 }
+
 
 .amounts{
+
     display:grid;
-    grid-template-columns:repeat(2,1fr);
+
+    grid-template-columns:
+        repeat(2,1fr);
+
     gap:10px;
+
     margin-top:20px;
+
 }
+
 
 .amount{
+
     padding:14px;
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius:13px;
+
     color:white;
+
     background:#151521;
+
     font-weight:900;
+
 }
+
 
 .amount.selected{
+
     border-color:var(--purple);
-    background:rgba(155,92,255,.2);
+
+    background:
+        rgba(155,92,255,.2);
+
 }
+
+
+/* =========================================================
+   FORM
+========================================================= */
 
 .field{
+
     margin-top:18px;
+
 }
+
 
 .field label{
+
     display:block;
+
     margin-bottom:7px;
+
     color:#c8c8d5;
+
     font-size:13px;
+
     font-weight:800;
+
 }
+
 
 .field input{
+
     width:100%;
+
     padding:14px;
+
     color:white;
+
     background:#11111a;
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
+
     border-radius:13px;
+
     outline:none;
+
 }
+
+
+.field input:focus{
+
+    border-color:
+        rgba(155,92,255,.7);
+
+}
+
+
+/* =========================================================
+   TOTAL BOX
+========================================================= */
 
 .total-box{
+
     margin-top:20px;
+
     padding:17px;
+
     border-radius:16px;
+
     background:#151521;
+
 }
+
 
 .line{
+
     display:flex;
+
     justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
     margin-top:8px;
+
     color:#aaaabd;
+
 }
+
+
+.line:first-child{
+
+    margin-top:0;
+
+}
+
+
+.currency-select{
+
+    padding:9px 12px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius:10px;
+
+    color:white;
+
+    background:#11111a;
+
+    outline:none;
+
+    font-weight:800;
+
+}
+
+
+.currency-select:focus{
+
+    border-color:var(--purple);
+
+}
+
+
+.converted{
+
+    color:
+        var(--green);
+
+}
+
 
 .total{
+
     display:flex;
+
     justify-content:space-between;
+
     padding-top:15px;
+
     margin-top:15px;
-    border-top:1px solid var(--border);
+
+    border-top:
+        1px solid var(--border);
+
     font-size:21px;
+
     font-weight:950;
+
     color:white;
+
 }
+
+
+/* =========================================================
+   PAYMENT BUTTON
+========================================================= */
 
 .pay{
+
     width:100%;
+
     margin-top:20px;
+
     padding:15px;
+
     border:0;
+
     border-radius:14px;
+
     color:white;
-    background:linear-gradient(90deg,#8f4cff,#ec46b9);
+
+    background:
+        linear-gradient(
+            90deg,
+            #8f4cff,
+            #ec46b9
+        );
+
     font-weight:950;
+
 }
 
-/* CART */
+
+.pay:disabled{
+
+    opacity:.6;
+
+    cursor:not-allowed;
+
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
 
 .cart-item{
+
     display:flex;
+
     justify-content:space-between;
+
     align-items:center;
+
     gap:15px;
+
     padding:14px 0;
-    border-bottom:1px solid var(--border);
+
+    border-bottom:
+        1px solid var(--border);
+
 }
+
 
 .cart-item-info{
+
     display:flex;
+
     gap:12px;
+
     align-items:center;
+
 }
+
 
 .cart-item img{
+
     width:45px;
+
     height:45px;
+
     padding:7px;
+
     border-radius:12px;
+
     background:#181822;
+
     object-fit:contain;
+
 }
+
 
 .remove{
+
     border:0;
+
     color:#ff7180;
+
     background:transparent;
+
     font-weight:800;
+
 }
 
-/* FOOTER */
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    padding:50px;
+
+    color:#9999aa;
+
+}
+
+
+.spinner{
+
+    width:18px;
+
+    height:18px;
+
+    border:
+        2px solid
+        rgba(255,255,255,.15);
+
+    border-top-color:
+        var(--purple);
+
+    border-radius:50%;
+
+    animation:
+        spin .7s linear infinite;
+
+}
+
+
+@keyframes spin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
+
     padding:50px 5%;
-    border-top:1px solid var(--border);
+
+    border-top:
+        1px solid var(--border);
+
     color:#777789;
+
 }
+
 
 .footer-inner{
+
     max-width:1400px;
+
     margin:auto;
+
     display:flex;
+
     justify-content:space-between;
+
     gap:30px;
+
     flex-wrap:wrap;
+
 }
+
 
 .footer-brand{
+
     color:white;
+
     font-weight:950;
+
     font-size:20px;
+
 }
 
-/* MOBILE */
+
+/* =========================================================
+   MOBILE
+========================================================= */
 
 @media(max-width:850px){
 
     .navbar{
+
         flex-wrap:wrap;
+
     }
+
 
     .search{
+
         order:3;
+
         flex-basis:100%;
+
         max-width:none;
+
     }
+
 
     .hero{
+
         grid-template-columns:1fr;
+
         padding:70px 0;
+
     }
+
 
     .hero-card{
+
         min-height:340px;
+
     }
 
+
     .nav-btn{
+
         display:none;
+
     }
+
 }
+
 
 @media(max-width:600px){
 
     .hero h1{
+
         font-size:50px;
+
         letter-spacing:-3px;
+
     }
+
 
     .hero p{
+
         font-size:16px;
+
     }
+
 
     .f1{
+
         left:12px;
+
     }
+
 
     .f2{
+
         right:12px;
+
     }
 
+
     .f3{
+
         bottom:20px;
+
     }
+
+
+    .line{
+
+        align-items:flex-start;
+
+    }
+
+
+    .currency-select{
+
+        max-width:150px;
+
+    }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
+<!-- =========================================================
+     TOP BAR
+========================================================= -->
+
 <div class="topbar">
-⚡ <strong>GIFty</strong> — Digital gifts, delivered to your inbox.
+
+⚡ <strong>GIFty</strong>
+— Digital gifts, delivered to your inbox.
+
 </div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
 
 <nav class="navbar">
 
-<button class="logo" onclick="goHome()">
+<button
+    class="logo"
+    onclick="goHome()"
+>
 GIF<span>ty</span>
 </button>
 
+
 <input
-id="search"
-class="search"
-placeholder="Search Steam, Roblox, Spotify..."
+    id="search"
+    class="search"
+    placeholder="Search Steam, Roblox, Spotify..."
+    autocomplete="off"
 >
+
 
 <div class="nav-actions">
 
-<button class="nav-btn" onclick="goHome()">
+<button
+    class="nav-btn"
+    onclick="goHome()"
+>
 Home
 </button>
 
-<button class="nav-btn" onclick="scrollShop()">
+
+<button
+    class="nav-btn"
+    onclick="scrollShop()"
+>
 Shop
 </button>
 
-<button class="cart-btn" onclick="openCart()">
+
+<button
+    class="cart-btn"
+    onclick="openCart()"
+>
 🛒 Cart
-<span id="cartCount" class="cart-count">0</span>
+
+<span
+    id="cartCount"
+    class="cart-count"
+>
+0
+</span>
+
 </button>
 
 </div>
 
 </nav>
 
+
+<!-- =========================================================
+     CATEGORIES
+========================================================= -->
+
 <div class="categories">
 
-<button class="category active" onclick="filterCategory('all',this)">
+<button
+    class="category active"
+    onclick="filterCategory('all',this)"
+>
 ✨ Everything
 </button>
 
-<button class="category" onclick="filterCategory('gaming',this)">
+
+<button
+    class="category"
+    onclick="filterCategory('gaming',this)"
+>
 🎮 Gaming
 </button>
 
-<button class="category" onclick="filterCategory('music',this)">
+
+<button
+    class="category"
+    onclick="filterCategory('music',this)"
+>
 🎵 Music
 </button>
 
-<button class="category" onclick="filterCategory('streaming',this)">
+
+<button
+    class="category"
+    onclick="filterCategory('streaming',this)"
+>
 📺 Streaming
 </button>
 
-<button class="category" onclick="filterCategory('apps',this)">
+
+<button
+    class="category"
+    onclick="filterCategory('apps',this)"
+>
 📱 Apps
 </button>
 
-<button class="category" onclick="filterCategory('shopping',this)">
+
+<button
+    class="category"
+    onclick="filterCategory('shopping',this)"
+>
 🛍️ Shopping
 </button>
 
-<button class="category" onclick="filterCategory('travel',this)">
+
+<button
+    class="category"
+    onclick="filterCategory('travel',this)"
+>
 ✈️ Travel
 </button>
 
 </div>
 
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
 <main>
 
+
 <section class="hero container">
+
 
 <div>
 
 <h1>
+
 Your digital
-<span class="gradient">gift universe.</span>
+
+<span class="gradient">
+gift universe.
+</span>
+
 </h1>
 
+
 <p>
+
 Gaming, music, streaming and app gift cards —
 all in one place. Choose your card, choose your
 value, pay securely and get your digital gift
 delivered to your email.
+
 </p>
+
 
 <div class="hero-actions">
 
-<button class="primary" onclick="scrollShop()">
+<button
+    class="primary"
+    onclick="scrollShop()"
+>
 Explore gifts →
 </button>
 
-<button class="secondary"
-onclick="filterCategory('gaming')">
+
+<button
+    class="secondary"
+    onclick="filterCategory('gaming')"
+>
 🎮 Gaming
 </button>
 
@@ -738,35 +1605,83 @@ onclick="filterCategory('gaming')">
 
 </div>
 
+
 <div class="hero-card">
 
+
 <div class="float f1">
-<img src="https://cdn.simpleicons.org/steam/ffffff">
-<strong>Steam</strong>
-<small>Game credits 🎮</small>
+
+<img
+    src="https://cdn.simpleicons.org/steam/ffffff"
+    alt="Steam"
+>
+
+<strong>
+Steam
+</strong>
+
+<small>
+Game credits 🎮
+</small>
+
 </div>
+
 
 <div class="float f2">
-<img src="https://cdn.simpleicons.org/spotify/ffffff">
-<strong>Spotify</strong>
-<small>Music everywhere 🎵</small>
+
+<img
+    src="https://cdn.simpleicons.org/spotify/ffffff"
+    alt="Spotify"
+>
+
+<strong>
+Spotify
+</strong>
+
+<small>
+Music everywhere 🎵
+</small>
+
 </div>
 
+
 <div class="float f3">
-<img src="https://cdn.simpleicons.org/roblox/ffffff">
-<strong>Roblox</strong>
-<small>Robux for the squad</small>
+
+<img
+    src="https://cdn.simpleicons.org/roblox/ffffff"
+    alt="Roblox"
+>
+
+<strong>
+Roblox
+</strong>
+
+<small>
+Robux for the squad
+</small>
+
 </div>
 
 </div>
 
 </section>
 
-<section id="shop" class="shop container">
+
+<!-- =========================================================
+     SHOP
+========================================================= -->
+
+<section
+    id="shop"
+    class="shop container"
+>
+
 
 <div class="heading">
 
-<h2>Pick your world</h2>
+<h2>
+Pick your world
+</h2>
 
 <p>
 Choose a gift card and the amount you want.
@@ -774,143 +1689,319 @@ Choose a gift card and the amount you want.
 
 </div>
 
-<div id="productGrid" class="grid"></div>
+
+<div
+    id="productGrid"
+    class="grid"
+></div>
+
 
 </section>
 
 </main>
 
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
 <footer>
 
 <div class="footer-inner">
 
-<div>
-<div class="footer-brand">GIFty 💜</div>
-<p>Digital gifts made simple.</p>
-</div>
 
 <div>
-<p>© 2026 GIFty. All rights reserved.</p>
+
+<div class="footer-brand">
+GIFty 💜
 </div>
+
+<p>
+Digital gifts made simple.
+</p>
+
+</div>
+
+
+<div>
+
+<p>
+© 2026 GIFty. All rights reserved.
+</p>
+
+</div>
+
 
 </div>
 
 </footer>
 
 
-<!-- PRODUCT MODAL -->
+<!-- =========================================================
+     PRODUCT MODAL
+========================================================= -->
 
-<div id="productModal" class="modal hidden">
+<div
+    id="productModal"
+    class="modal hidden"
+>
+
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal('productModal')">
+
+<button
+    class="close"
+    onclick="closeModal('productModal')"
+>
 ×
 </button>
 
+
 <h2 id="modalName"></h2>
 
-<p id="modalDescription" class="modal-muted"></p>
 
-<div id="amounts" class="amounts"></div>
+<p
+    id="modalDescription"
+    class="modal-muted"
+></p>
+
+
+<div
+    id="amounts"
+    class="amounts"
+></div>
+
 
 <div class="field">
 
-<label>Email address</label>
+<label>
+Email address
+</label>
+
 
 <input
-id="customerEmail"
-type="email"
-placeholder="you@example.com"
+    id="customerEmail"
+    type="email"
+    placeholder="you@example.com"
+    autocomplete="email"
 >
 
 </div>
 
+
 <div class="total-box">
 
-<div class="line">
-<span>Gift card</span>
-<strong id="giftPrice">$0.00</strong>
-</div>
 
 <div class="line">
-<span>GIFty service fee</span>
-<strong id="fee">$0.00</strong>
+
+<span>
+Gift card
+</span>
+
+<strong id="giftPrice">
+$0.00
+</strong>
+
 </div>
 
-<div class="line">
-    <span>Currency</span>
-    <select id="currencySelect" onchange="changeCurrency()">
-        <option value="TND">🇹🇳 TND</option>
-        <option value="USD">🇺🇸 USD</option>
-        <option value="EUR">🇪🇺 EUR</option>
-        <option value="GBP">🇬🇧 GBP</option>
-        <option value="CAD">🇨🇦 CAD</option>
-        <option value="AUD">🇦🇺 AUD</option>
-        <option value="AED">🇦🇪 AED</option>
-        <option value="SAR">🇸🇦 SAR</option>
-        <option value="MAD">🇲🇦 MAD</option>
-        <option value="DZD">🇩🇿 DZD</option>
-        <option value="EGP">🇪🇬 EGP</option>
-        <option value="TRY">🇹🇷 TRY</option>
-        <option value="JPY">🇯🇵 JPY</option>
-        <option value="CHF">🇨🇭 CHF</option>
-    </select>
-</div>
 
 <div class="line">
-    <span>Approx. local price</span>
-    <strong id="convertedPrice">—</strong>
+
+<span>
+GIFty service fee
+</span>
+
+<strong id="fee">
+$0.00
+</strong>
+
 </div>
+
+
+<div class="line">
+
+<span>
+Display currency
+</span>
+
+
+<select
+    id="currencySelect"
+    class="currency-select"
+    onchange="changeCurrency()"
+>
+
+<option value="USD">
+🇺🇸 USD
+</option>
+
+<option value="TND">
+🇹🇳 TND
+</option>
+
+<option value="EUR">
+🇪🇺 EUR
+</option>
+
+<option value="GBP">
+🇬🇧 GBP
+</option>
+
+<option value="CAD">
+🇨🇦 CAD
+</option>
+
+<option value="AUD">
+🇦🇺 AUD
+</option>
+
+<option value="AED">
+🇦🇪 AED
+</option>
+
+<option value="SAR">
+🇸🇦 SAR
+</option>
+
+<option value="MAD">
+🇲🇦 MAD
+</option>
+
+<option value="DZD">
+🇩🇿 DZD
+</option>
+
+<option value="EGP">
+🇪🇬 EGP
+</option>
+
+<option value="TRY">
+🇹🇷 TRY
+</option>
+
+<option value="JPY">
+🇯🇵 JPY
+</option>
+
+<option value="CHF">
+🇨🇭 CHF
+</option>
+
+</select>
+
+</div>
+
+
+<div class="line">
+
+<span>
+Approx. local price
+</span>
+
+<strong
+    id="convertedPrice"
+    class="converted"
+>
+—
+</strong>
+
+</div>
+
 
 <div class="total">
-<span>Total</span>
-<span id="total">$0.00</span>
-</div>
+
+<span>
+Total
+</span>
+
+<span id="total">
+$0.00
+</span>
 
 </div>
 
-<button class="pay" onclick="checkout()">
+</div>
+
+
+<button
+    id="checkoutButton"
+    class="pay"
+    onclick="checkout()"
+>
 Continue to secure checkout →
 </button>
 
+
 <p
-id="checkoutMessage"
-class="modal-muted"
-style="text-align:center;margin-top:12px"
+    id="checkoutMessage"
+    class="modal-muted"
+    style="
+        text-align:center;
+        margin-top:12px;
+    "
 ></p>
 
-</div>
 
 </div>
 
+</div>
 
-<!-- CART MODAL -->
 
-<div id="cartModal" class="modal hidden">
+<!-- =========================================================
+     CART MODAL
+========================================================= -->
+
+<div
+    id="cartModal"
+    class="modal hidden"
+>
+
 
 <div class="modal-box">
 
-<button class="close" onclick="closeModal('cartModal')">
+
+<button
+    class="close"
+    onclick="closeModal('cartModal')"
+>
 ×
 </button>
 
-<h2>Your cart 🛒</h2>
+
+<h2>
+Your cart 🛒
+</h2>
+
 
 <div id="cartItems"></div>
 
+
 <div class="total-box">
 
+
 <div class="total">
-<span>Total</span>
-<span id="cartTotal">$0.00</span>
-</div>
+
+<span>
+Total
+</span>
+
+<span id="cartTotal">
+$0.00
+</span>
 
 </div>
 
-<button class="pay" onclick="checkoutCart()">
+</div>
+
+
+<button
+    class="pay"
+    onclick="checkoutCart()"
+>
 Checkout →
 </button>
+
 
 </div>
 
@@ -920,276 +2011,289 @@ Checkout →
 <script>
 
 /* =========================================================
-   GIFty PRODUCT DATA
+   API
+========================================================= */
+
+const API_URL =
+    "https://gifty-backend-mufw.onrender.com";
+
+
+/* =========================================================
+   PRODUCTS
 ========================================================= */
 
 const products = [
 
-/* GAMING */
+    /* GAMING */
 
-{
-    id:"steam",
-    name:"Steam",
-    category:"gaming",
-    description:"Steam Wallet credit for games and more.",
-    logo:"https://cdn.simpleicons.org/steam/ffffff",
-    values:[5,10,20,50,100],
-    fee:1.49,
-    badge:"BEST SELLER"
-},
+    {
+        id:"steam",
+        name:"Steam",
+        category:"gaming",
+        description:"Steam Wallet credit for games and more.",
+        logo:"https://cdn.simpleicons.org/steam/ffffff",
+        values:[5,10,20,50,100],
+        fee:1.49,
+        badge:"BEST SELLER"
+    },
 
-{
-    id:"playstation",
-    name:"PlayStation Store",
-    category:"gaming",
-    description:"PlayStation Store credit for games and add-ons.",
-    logo:"https://cdn.simpleicons.org/playstation/ffffff",
-    values:[10,20,25,50,100],
-    fee:1.49
-},
+    {
+        id:"playstation",
+        name:"PlayStation Store",
+        category:"gaming",
+        description:"PlayStation Store credit for games and add-ons.",
+        logo:"https://cdn.simpleicons.org/playstation/ffffff",
+        values:[10,20,25,50,100],
+        fee:1.49
+    },
 
-{
-    id:"xbox",
-    name:"Xbox",
-    category:"gaming",
-    description:"Xbox gift credit for games and entertainment.",
-    logo:"https://cdn.simpleicons.org/xbox/ffffff",
-    values:[10,15,25,50,100],
-    fee:1.49
-},
+    {
+        id:"xbox",
+        name:"Xbox",
+        category:"gaming",
+        description:"Xbox gift credit for games and entertainment.",
+        logo:"https://cdn.simpleicons.org/xbox/ffffff",
+        values:[10,15,25,50,100],
+        fee:1.49
+    },
 
-{
-    id:"roblox",
-    name:"Roblox",
-    category:"gaming",
-    description:"Roblox gift cards for the whole squad.",
-    logo:"https://cdn.simpleicons.org/roblox/ffffff",
-    values:[10,20,25,50,100],
-    fee:1.49,
-    badge:"TRENDING"
-},
+    {
+        id:"roblox",
+        name:"Roblox",
+        category:"gaming",
+        description:"Roblox gift cards for the whole squad.",
+        logo:"https://cdn.simpleicons.org/roblox/ffffff",
+        values:[10,20,25,50,100],
+        fee:1.49,
+        badge:"TRENDING"
+    },
 
-{
-    id:"nintendo",
-    name:"Nintendo eShop",
-    category:"gaming",
-    description:"Nintendo eShop credit for digital games.",
-    logo:"https://cdn.simpleicons.org/nintendo/ffffff",
-    values:[10,20,35,50,100],
-    fee:1.49
-},
+    {
+        id:"nintendo",
+        name:"Nintendo eShop",
+        category:"gaming",
+        description:"Nintendo eShop credit for digital games.",
+        logo:"https://cdn.simpleicons.org/nintendo/ffffff",
+        values:[10,20,35,50,100],
+        fee:1.49
+    },
 
-{
-    id:"razergold",
-    name:"Razer Gold",
-    category:"gaming",
-    description:"Digital credit for games and gaming content.",
-    logo:"https://cdn.simpleicons.org/razer/ffffff",
-    values:[10,20,50,100],
-    fee:1.49,
-    badge:"POPULAR"
-},
+    {
+        id:"razergold",
+        name:"Razer Gold",
+        category:"gaming",
+        description:"Digital credit for games and gaming content.",
+        logo:"https://cdn.simpleicons.org/razer/ffffff",
+        values:[10,20,50,100],
+        fee:1.49,
+        badge:"POPULAR"
+    },
 
-{
-    id:"riotgames",
-    name:"Riot Games",
-    category:"gaming",
-    description:"Riot Points and digital credit for Riot Games.",
-    logo:"https://cdn.simpleicons.org/riotgames/ffffff",
-    values:[10,20,25,50,100],
-    fee:1.49
-},
+    {
+        id:"riotgames",
+        name:"Riot Games",
+        category:"gaming",
+        description:"Riot Points and digital credit for Riot Games.",
+        logo:"https://cdn.simpleicons.org/riotgames/ffffff",
+        values:[10,20,25,50,100],
+        fee:1.49
+    },
 
-{
-    id:"epicgames",
-    name:"Epic Games",
-    category:"gaming",
-    description:"Digital credit for Epic Games purchases.",
-    logo:"https://cdn.simpleicons.org/epicgames/ffffff",
-    values:[10,20,25,50,100],
-    fee:1.49
-},
+    {
+        id:"epicgames",
+        name:"Epic Games",
+        category:"gaming",
+        description:"Digital credit for Epic Games purchases.",
+        logo:"https://cdn.simpleicons.org/epicgames/ffffff",
+        values:[10,20,25,50,100],
+        fee:1.49
+    },
 
-{
-    id:"minecraft",
-    name:"Minecraft",
-    category:"gaming",
-    description:"Digital Minecraft gift credit.",
-    logo:"https://cdn.simpleicons.org/minecraft/ffffff",
-    values:[10,20,30,50],
-    fee:1.49
-},
+    {
+        id:"minecraft",
+        name:"Minecraft",
+        category:"gaming",
+        description:"Digital Minecraft gift credit.",
+        logo:"https://cdn.simpleicons.org/minecraft/ffffff",
+        values:[10,20,30,50],
+        fee:1.49
+    },
 
-{
-    id:"pubgmobile",
-    name:"PUBG Mobile",
-    category:"gaming",
-    description:"Digital credit for PUBG Mobile purchases.",
-    logo:"https://cdn.simpleicons.org/pubg/ffffff",
-    values:[10,20,30,50,100],
-    fee:1.49
-},
+    {
+        id:"pubgmobile",
+        name:"PUBG Mobile",
+        category:"gaming",
+        description:"Digital credit for PUBG Mobile purchases.",
+        logo:"https://cdn.simpleicons.org/pubg/ffffff",
+        values:[10,20,30,50,100],
+        fee:1.49
+    },
 
-/* MUSIC */
 
-{
-    id:"spotify",
-    name:"Spotify",
-    category:"music",
-    description:"Spotify gift cards for music and Premium.",
-    logo:"https://cdn.simpleicons.org/spotify/ffffff",
-    values:[10,20,30,50],
-    fee:1.49
-},
+    /* MUSIC */
 
-/* APPS */
+    {
+        id:"spotify",
+        name:"Spotify",
+        category:"music",
+        description:"Spotify gift cards for music and Premium.",
+        logo:"https://cdn.simpleicons.org/spotify/ffffff",
+        values:[10,20,30,50],
+        fee:1.49
+    },
 
-{
-    id:"apple",
-    name:"Apple Gift Card",
-    category:"apps",
-    description:"Apps, games, subscriptions and Apple services.",
-    logo:"https://cdn.simpleicons.org/apple/ffffff",
-    values:[10,25,50,100],
-    fee:1.99
-},
 
-{
-    id:"googleplay",
-    name:"Google Play",
-    category:"apps",
-    description:"Games, apps, movies and more.",
-    logo:"https://cdn.simpleicons.org/googleplay/ffffff",
-    values:[10,20,25,50,100],
-    fee:1.49
-},
+    /* APPS */
 
-{
-    id:"discord",
-    name:"Discord",
-    category:"apps",
-    description:"Digital credit for Discord purchases.",
-    logo:"https://cdn.simpleicons.org/discord/ffffff",
-    values:[10,20,50],
-    fee:1.49
-},
+    {
+        id:"apple",
+        name:"Apple Gift Card",
+        category:"apps",
+        description:"Apps, games, subscriptions and Apple services.",
+        logo:"https://cdn.simpleicons.org/apple/ffffff",
+        values:[10,25,50,100],
+        fee:1.99
+    },
 
-{
-    id:"microsoft",
-    name:"Microsoft",
-    category:"apps",
-    description:"Microsoft digital credit for games, apps and services.",
-    logo:"https://cdn.simpleicons.org/microsoft/ffffff",
-    values:[10,25,50,100],
-    fee:1.49
-},
+    {
+        id:"googleplay",
+        name:"Google Play",
+        category:"apps",
+        description:"Games, apps, movies and more.",
+        logo:"https://cdn.simpleicons.org/googleplay/ffffff",
+        values:[10,20,25,50,100],
+        fee:1.49
+    },
 
-/* STREAMING */
+    {
+        id:"discord",
+        name:"Discord",
+        category:"apps",
+        description:"Digital credit for Discord purchases.",
+        logo:"https://cdn.simpleicons.org/discord/ffffff",
+        values:[10,20,50],
+        fee:1.49
+    },
 
-{
-    id:"netflix",
-    name:"Netflix",
-    category:"streaming",
-    description:"Give someone their next movie night.",
-    logo:"https://cdn.simpleicons.org/netflix/ffffff",
-    values:[15,25,50,100],
-    fee:1.99
-},
+    {
+        id:"microsoft",
+        name:"Microsoft",
+        category:"apps",
+        description:"Microsoft digital credit for games, apps and services.",
+        logo:"https://cdn.simpleicons.org/microsoft/ffffff",
+        values:[10,25,50,100],
+        fee:1.49
+    },
 
-{
-    id:"crunchyroll",
-    name:"Crunchyroll",
-    category:"streaming",
-    description:"Anime streaming credit for Crunchyroll.",
-    logo:"https://cdn.simpleicons.org/crunchyroll/ffffff",
-    values:[10,25,50],
-    fee:1.49
-},
 
-{
-    id:"youtube",
-    name:"YouTube",
-    category:"streaming",
-    description:"Digital credit for YouTube and eligible services.",
-    logo:"https://cdn.simpleicons.org/youtube/ffffff",
-    values:[10,20,25,50,100],
-    fee:1.49
-},
+    /* STREAMING */
 
-/* SHOPPING */
+    {
+        id:"netflix",
+        name:"Netflix",
+        category:"streaming",
+        description:"Give someone their next movie night.",
+        logo:"https://cdn.simpleicons.org/netflix/ffffff",
+        values:[15,25,50,100],
+        fee:1.99
+    },
 
-{
-    id:"amazon",
-    name:"Amazon",
-    category:"shopping",
-    description:"Amazon digital gift credit.",
-    logo:"https://cdn.simpleicons.org/amazon/ffffff",
-    values:[10,25,50,100],
-    fee:1.99,
-    badge:"POPULAR"
-},
+    {
+        id:"crunchyroll",
+        name:"Crunchyroll",
+        category:"streaming",
+        description:"Anime streaming credit for Crunchyroll.",
+        logo:"https://cdn.simpleicons.org/crunchyroll/ffffff",
+        values:[10,25,50],
+        fee:1.49
+    },
 
-{
-    id:"ikea",
-    name:"IKEA",
-    category:"shopping",
-    description:"Digital IKEA gift credit where supported.",
-    logo:"https://cdn.simpleicons.org/ikea/ffffff",
-    values:[10,25,50,100],
-    fee:1.99
-},
+    {
+        id:"youtube",
+        name:"YouTube",
+        category:"streaming",
+        description:"Digital credit for YouTube and eligible services.",
+        logo:"https://cdn.simpleicons.org/youtube/ffffff",
+        values:[10,20,25,50,100],
+        fee:1.49
+    },
 
-{
-    id:"zalando",
-    name:"Zalando",
-    category:"shopping",
-    description:"Digital shopping credit for Zalando where supported.",
-    logo:"https://cdn.simpleicons.org/zalando/ffffff",
-    values:[10,25,50,100],
-    fee:1.99
-},
 
-/* TRAVEL & SERVICES */
+    /* SHOPPING */
 
-{
-    id:"uber",
-    name:"Uber",
-    category:"travel",
-    description:"Digital Uber gift credit where supported.",
-    logo:"https://cdn.simpleicons.org/uber/ffffff",
-    values:[10,20,50,100],
-    fee:1.99
-},
+    {
+        id:"amazon",
+        name:"Amazon",
+        category:"shopping",
+        description:"Amazon digital gift credit.",
+        logo:"https://cdn.simpleicons.org/amazon/ffffff",
+        values:[10,25,50,100],
+        fee:1.99,
+        badge:"POPULAR"
+    },
 
-{
-    id:"ubereats",
-    name:"Uber Eats",
-    category:"travel",
-    description:"Digital Uber Eats gift credit where supported.",
-    logo:"https://cdn.simpleicons.org/ubereats/ffffff",
-    values:[10,20,50,100],
-    fee:1.99
-},
+    {
+        id:"ikea",
+        name:"IKEA",
+        category:"shopping",
+        description:"Digital IKEA gift credit where supported.",
+        logo:"https://cdn.simpleicons.org/ikea/ffffff",
+        values:[10,25,50,100],
+        fee:1.99
+    },
 
-{
-    id:"airbnb",
-    name:"Airbnb",
-    category:"travel",
-    description:"Digital Airbnb gift credit where supported.",
-    logo:"https://cdn.simpleicons.org/airbnb/ffffff",
-    values:[25,50,100,200],
-    fee:2.49
-},
+    {
+        id:"zalando",
+        name:"Zalando",
+        category:"shopping",
+        description:"Digital shopping credit for Zalando where supported.",
+        logo:"https://cdn.simpleicons.org/zalando/ffffff",
+        values:[10,25,50,100],
+        fee:1.99
+    },
 
-{
-    id:"booking",
-    name:"Booking.com",
-    category:"travel",
-    description:"Digital travel credit where supported.",
-    logo:"https://cdn.simpleicons.org/bookingdotcom/ffffff",
-    values:[25,50,100,200],
-    fee:2.49
-}
+
+    /* TRAVEL */
+
+    {
+        id:"uber",
+        name:"Uber",
+        category:"travel",
+        description:"Digital Uber gift credit where supported.",
+        logo:"https://cdn.simpleicons.org/uber/ffffff",
+        values:[10,20,50,100],
+        fee:1.99
+    },
+
+    {
+        id:"ubereats",
+        name:"Uber Eats",
+        category:"travel",
+        description:"Digital Uber Eats gift credit where supported.",
+        logo:"https://cdn.simpleicons.org/ubereats/ffffff",
+        values:[10,20,50,100],
+        fee:1.99
+    },
+
+    {
+        id:"airbnb",
+        name:"Airbnb",
+        category:"travel",
+        description:"Digital Airbnb gift credit where supported.",
+        logo:"https://cdn.simpleicons.org/airbnb/ffffff",
+        values:[25,50,100,200],
+        fee:2.49
+    },
+
+    {
+        id:"booking",
+        name:"Booking.com",
+        category:"travel",
+        description:"Digital travel credit where supported.",
+        logo:"https://cdn.simpleicons.org/bookingdotcom/ffffff",
+        values:[25,50,100,200],
+        fee:2.49
+    }
 
 ];
 
@@ -1199,7 +2303,18 @@ const products = [
 ========================================================= */
 
 let selectedProduct = null;
+
 let selectedAmount = null;
+
+let exchangeRates = {
+    USD:1
+};
+
+let exchangeRateDate = null;
+
+let ratesLoaded = false;
+
+let ratesLoading = false;
 
 let cart = JSON.parse(
     localStorage.getItem("gifty_cart") || "[]"
@@ -1207,46 +2322,426 @@ let cart = JSON.parse(
 
 
 /* =========================================================
+   CURRENCY PREFERENCE
+========================================================= */
+
+const savedCurrency =
+    localStorage.getItem("gifty_currency");
+
+
+if(savedCurrency){
+
+    const selector =
+        document.getElementById("currencySelect");
+
+    if(selector){
+
+        selector.value =
+            savedCurrency;
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD EXCHANGE RATES
+========================================================= */
+
+async function loadExchangeRates(){
+
+    if(ratesLoading){
+
+        return;
+
+    }
+
+
+    const cached =
+        localStorage.getItem(
+            "gifty_exchange_rates"
+        );
+
+
+    if(cached){
+
+        try{
+
+            const parsed =
+                JSON.parse(cached);
+
+
+            const age =
+                Date.now() -
+                parsed.timestamp;
+
+
+            /*
+             * Keep cached rates for 30 minutes.
+             */
+
+            if(
+                age <
+                30 * 60 * 1000
+            ){
+
+                if(parsed.rates){
+
+                    exchangeRates =
+                        parsed.rates;
+
+                    exchangeRateDate =
+                        parsed.date ||
+                        null;
+
+                    ratesLoaded = true;
+
+                    updateConvertedPrice();
+
+                    return;
+
+                }
+
+            }
+
+        }catch(error){
+
+            console.warn(
+                "Invalid cached exchange rates."
+            );
+
+        }
+
+    }
+
+
+    ratesLoading = true;
+
+
+    try{
+
+        const response =
+            await fetch(
+                API_URL +
+                "/exchange-rates"
+            );
+
+
+        if(!response.ok){
+
+            throw new Error(
+                `Exchange rate server returned ${response.status}`
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !data ||
+            !data.rates ||
+            typeof data.rates.USD !== "number"
+        ){
+
+            throw new Error(
+                "Invalid exchange rate response."
+            );
+
+        }
+
+
+        exchangeRates =
+            data.rates;
+
+
+        exchangeRateDate =
+            data.date ||
+            null;
+
+
+        ratesLoaded = true;
+
+
+        localStorage.setItem(
+            "gifty_exchange_rates",
+            JSON.stringify({
+
+                rates:
+                    exchangeRates,
+
+                date:
+                    exchangeRateDate,
+
+                timestamp:
+                    Date.now()
+
+            })
+        );
+
+
+        updateConvertedPrice();
+
+
+    }catch(error){
+
+        console.error(
+            "Exchange rate error:",
+            error
+        );
+
+
+        ratesLoaded = false;
+
+        updateConvertedPrice();
+
+    }finally{
+
+        ratesLoading = false;
+
+    }
+
+}
+
+
+/* =========================================================
+   FORMAT CURRENCY
+========================================================= */
+
+function formatCurrency(
+    amount,
+    currency
+){
+
+    try{
+
+        return new Intl.NumberFormat(
+            undefined,
+            {
+                style:"currency",
+                currency:currency,
+                maximumFractionDigits:
+                    currency === "JPY"
+                    ? 0
+                    : 2
+            }
+        ).format(amount);
+
+    }catch(error){
+
+        return (
+            amount.toFixed(2) +
+            " " +
+            currency
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   UPDATE LOCAL CURRENCY
+========================================================= */
+
+function updateConvertedPrice(){
+
+    if(
+        !selectedProduct ||
+        !selectedAmount
+    ){
+
+        return;
+
+    }
+
+
+    const selector =
+        document.getElementById(
+            "currencySelect"
+        );
+
+
+    const output =
+        document.getElementById(
+            "convertedPrice"
+        );
+
+
+    if(!selector || !output){
+
+        return;
+
+    }
+
+
+    const currency =
+        selector.value;
+
+
+    const rate =
+        exchangeRates[currency];
+
+
+    const totalUSD =
+        selectedAmount +
+        selectedProduct.fee;
+
+
+    /*
+     * USD is always available.
+     */
+
+    if(
+        currency === "USD"
+    ){
+
+        output.textContent =
+            formatCurrency(
+                totalUSD,
+                "USD"
+            );
+
+        return;
+
+    }
+
+
+    if(
+        typeof rate !== "number"
+    ){
+
+        output.textContent =
+            ratesLoading
+            ? "Loading rates..."
+            : "Unavailable";
+
+        return;
+
+    }
+
+
+    const converted =
+        totalUSD * rate;
+
+
+    output.textContent =
+        `≈ ${formatCurrency(
+            converted,
+            currency
+        )}`;
+
+}
+
+
+/* =========================================================
+   CHANGE CURRENCY
+========================================================= */
+
+function changeCurrency(){
+
+    const selector =
+        document.getElementById(
+            "currencySelect"
+        );
+
+
+    if(selector){
+
+        localStorage.setItem(
+            "gifty_currency",
+            selector.value
+        );
+
+    }
+
+
+    updateConvertedPrice();
+
+}
+
+
+/* =========================================================
    RENDER PRODUCTS
 ========================================================= */
 
-function renderProducts(list=products){
+function renderProducts(
+    list = products
+){
 
     const grid =
-        document.getElementById("productGrid");
+        document.getElementById(
+            "productGrid"
+        );
+
+
+    if(!grid){
+
+        return;
+
+    }
+
 
     grid.innerHTML = "";
+
 
     if(!list.length){
 
         grid.innerHTML = `
-            <div style="
-                grid-column:1/-1;
-                text-align:center;
-                padding:60px;
-                color:#888;
-            ">
-                <div style="font-size:45px">🔎</div>
-                <h3>No gifts found</h3>
-                <p>Try another search.</p>
+
+            <div
+                style="
+                    grid-column:1/-1;
+                    text-align:center;
+                    padding:60px;
+                    color:#888;
+                "
+            >
+
+                <div
+                    style="font-size:45px"
+                >
+                    🔎
+                </div>
+
+                <h3>
+                    No gifts found
+                </h3>
+
+                <p>
+                    Try another search.
+                </p>
+
             </div>
+
         `;
 
         return;
+
     }
+
 
     list.forEach(product => {
 
         const card =
-            document.createElement("article");
+            document.createElement(
+                "article"
+            );
 
-        card.className = "product";
+
+        card.className =
+            "product";
+
 
         card.dataset.category =
             product.category;
 
+
         card.dataset.name =
             product.name.toLowerCase();
+
 
         card.innerHTML = `
 
@@ -1256,145 +2751,271 @@ function renderProducts(list=products){
                     class="product-logo"
                     src="${product.logo}"
                     alt="${product.name}"
+                    loading="lazy"
                 >
 
                 ${
                     product.badge
-                    ? `<span class="badge">
-                        ${product.badge}
-                       </span>`
+
+                    ? `
+
+                        <span class="badge">
+                            ${product.badge}
+                        </span>
+
+                      `
+
                     : ""
                 }
 
             </div>
 
-            <h3>${product.name}</h3>
 
-            <p>${product.description}</p>
+            <h3>
+                ${product.name}
+            </h3>
+
+
+            <p>
+                ${product.description}
+            </p>
+
 
             <div class="price">
-                From $${product.values[0].toFixed(2)}
+
+                From
+                $${product.values[0].toFixed(2)}
+
             </div>
+
 
             <button
                 onclick="openProduct('${product.id}')"
             >
                 Choose amount →
             </button>
+
         `;
 
+
         grid.appendChild(card);
+
     });
+
 }
 
 
 /* =========================================================
-   PRODUCT MODAL
+   OPEN PRODUCT
 ========================================================= */
 
 function openProduct(id){
 
     selectedProduct =
-        products.find(p => p.id === id);
+        products.find(
+            product =>
+                product.id === id
+        );
 
-    if(!selectedProduct) return;
+
+    if(!selectedProduct){
+
+        return;
+
+    }
+
 
     selectedAmount =
         selectedProduct.values[0];
 
-    document.getElementById("modalName")
-        .textContent =
+
+    document.getElementById(
+        "modalName"
+    ).textContent =
         selectedProduct.name;
 
-    document.getElementById("modalDescription")
-        .textContent =
+
+    document.getElementById(
+        "modalDescription"
+    ).textContent =
         selectedProduct.description;
 
+
     const amounts =
-        document.getElementById("amounts");
+        document.getElementById(
+            "amounts"
+        );
+
 
     amounts.innerHTML = "";
 
-    selectedProduct.values.forEach(value => {
 
-        const button =
-            document.createElement("button");
+    selectedProduct.values.forEach(
+        value => {
 
-        button.className = "amount";
-
-        if(value === selectedAmount){
-            button.classList.add("selected");
-        }
-
-        button.textContent =
-            `$${value.toFixed(2)}`;
-
-        button.onclick = () => {
-
-            selectedAmount = value;
-
-            document
-                .querySelectorAll(".amount")
-                .forEach(x =>
-                    x.classList.remove("selected")
+            const button =
+                document.createElement(
+                    "button"
                 );
 
-            button.classList.add("selected");
 
-            updateTotal();
-        };
+            button.className =
+                "amount";
 
-        amounts.appendChild(button);
-    });
 
-    document.getElementById("customerEmail")
-        .value = "";
+            if(
+                value ===
+                selectedAmount
+            ){
 
-    document.getElementById("checkoutMessage")
-        .textContent = "";
+                button.classList.add(
+                    "selected"
+                );
+
+            }
+
+
+            button.textContent =
+                `$${value.toFixed(2)}`;
+
+
+            button.onclick = () => {
+
+                selectedAmount =
+                    value;
+
+
+                document
+                    .querySelectorAll(
+                        "#amounts .amount"
+                    )
+                    .forEach(
+                        element =>
+                            element.classList.remove(
+                                "selected"
+                            )
+                    );
+
+
+                button.classList.add(
+                    "selected"
+                );
+
+
+                updateTotal();
+
+            };
+
+
+            amounts.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    document.getElementById(
+        "customerEmail"
+    ).value = "";
+
+
+    document.getElementById(
+        "checkoutMessage"
+    ).textContent = "";
+
+
+    const checkoutButton =
+        document.getElementById(
+            "checkoutButton"
+        );
+
+
+    checkoutButton.disabled =
+        false;
+
 
     updateTotal();
 
-    document
-        .getElementById("productModal")
-        .classList.remove("hidden");
+
+    document.getElementById(
+        "productModal"
+    ).classList.remove(
+        "hidden"
+    );
+
+
+    /*
+     * Start loading rates if
+     * they haven't loaded yet.
+     */
+
+    if(!ratesLoaded){
+
+        loadExchangeRates();
+
+    }
+
 }
 
 
 /* =========================================================
-   PRICE
+   UPDATE TOTAL
 ========================================================= */
 
 function updateTotal(){
 
-    if(!selectedProduct) return;
+    if(
+        !selectedProduct ||
+        !selectedAmount
+    ){
+
+        return;
+
+    }
+
 
     const gift =
         selectedAmount;
 
+
     const fee =
         selectedProduct.fee;
+
 
     const total =
         gift + fee;
 
-    document.getElementById("giftPrice")
-        .textContent =
-        `$${gift.toFixed(2)}`;
 
-    document.getElementById("fee")
-        .textContent =
-        `$${fee.toFixed(2)}`;
+    document.getElementById(
+        "giftPrice"
+    ).textContent =
+        formatCurrency(
+            gift,
+            "USD"
+        );
 
-    document.getElementById("total")
-        .textContent =
-        `$${total.toFixed(2)}`;
 
-    const estimatedRate = 2.95;
+    document.getElementById(
+        "fee"
+    ).textContent =
+        formatCurrency(
+            fee,
+            "USD"
+        );
 
-    document.getElementById("tndPrice")
-        .textContent =
-        `≈ ${(total * estimatedRate).toFixed(2)} TND`;
+
+    document.getElementById(
+        "total"
+    ).textContent =
+        formatCurrency(
+            total,
+            "USD"
+        );
+
+
+    updateConvertedPrice();
+
 }
 
 
@@ -1404,8 +3025,15 @@ function updateTotal(){
 
 function addToCart(){
 
-    if(!selectedProduct || !selectedAmount)
+    if(
+        !selectedProduct ||
+        !selectedAmount
+    ){
+
         return;
+
+    }
+
 
     cart.push({
 
@@ -1429,13 +3057,21 @@ function addToCart(){
 
     });
 
+
     saveCart();
 
-    closeModal("productModal");
+    closeModal(
+        "productModal"
+    );
 
     updateCartCount();
+
 }
 
+
+/* =========================================================
+   SAVE CART
+========================================================= */
 
 function saveCart(){
 
@@ -1443,81 +3079,156 @@ function saveCart(){
         "gifty_cart",
         JSON.stringify(cart)
     );
+
 }
 
+
+/* =========================================================
+   CART COUNT
+========================================================= */
 
 function updateCartCount(){
 
-    document.getElementById("cartCount")
-        .textContent =
-        cart.length;
+    const count =
+        document.getElementById(
+            "cartCount"
+        );
+
+
+    if(count){
+
+        count.textContent =
+            cart.length;
+
+    }
+
 }
 
+
+/* =========================================================
+   OPEN CART
+========================================================= */
 
 function openCart(){
 
     renderCart();
 
-    document
-        .getElementById("cartModal")
-        .classList.remove("hidden");
+
+    document.getElementById(
+        "cartModal"
+    ).classList.remove(
+        "hidden"
+    );
+
 }
 
+
+/* =========================================================
+   RENDER CART
+========================================================= */
 
 function renderCart(){
 
     const container =
-        document.getElementById("cartItems");
+        document.getElementById(
+            "cartItems"
+        );
+
 
     if(!cart.length){
 
         container.innerHTML = `
-            <div style="
-                text-align:center;
-                padding:40px 10px;
-                color:#888;
-            ">
-                🛒<br><br>
+
+            <div
+                style="
+                    text-align:center;
+                    padding:40px 10px;
+                    color:#888;
+                "
+            >
+
+                🛒
+
+                <br><br>
+
                 Your cart is empty.
+
             </div>
+
         `;
 
-        document.getElementById("cartTotal")
-            .textContent = "$0.00";
+
+        document.getElementById(
+            "cartTotal"
+        ).textContent =
+            "$0.00";
+
 
         return;
+
     }
+
 
     let total = 0;
 
+
     container.innerHTML = "";
+
 
     cart.forEach(item => {
 
         total +=
-            item.amount + item.fee;
+            Number(item.amount) +
+            Number(item.fee);
+
 
         const row =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
-        row.className = "cart-item";
+
+        row.className =
+            "cart-item";
+
 
         row.innerHTML = `
 
             <div class="cart-item-info">
 
-                <img src="${item.logo}">
+                <img
+                    src="${item.logo}"
+                    alt="${item.name}"
+                >
 
                 <div>
-                    <strong>${item.name}</strong>
 
-                    <div style="color:#888">
-                        $${item.amount.toFixed(2)}
-                        + $${item.fee.toFixed(2)} fee
+                    <strong>
+                        ${item.name}
+                    </strong>
+
+                    <div
+                        style="color:#888"
+                    >
+
+                        $${Number(
+                            item.amount
+                        ).toFixed(2)}
+
+                        +
+
+                        $${Number(
+                            item.fee
+                        ).toFixed(2)}
+
+                        fee
+
                     </div>
+
                 </div>
 
             </div>
+
 
             <button
                 class="remove"
@@ -1525,29 +3236,47 @@ function renderCart(){
             >
                 Remove
             </button>
+
         `;
 
-        container.appendChild(row);
+
+        container.appendChild(
+            row
+        );
+
     });
 
-    document.getElementById("cartTotal")
-        .textContent =
-        `$${total.toFixed(2)}`;
+
+    document.getElementById(
+        "cartTotal"
+    ).textContent =
+        formatCurrency(
+            total,
+            "USD"
+        );
+
 }
 
+
+/* =========================================================
+   REMOVE CART ITEM
+========================================================= */
 
 function removeCartItem(id){
 
     cart =
-        cart.filter(item =>
-            item.id !== id
+        cart.filter(
+            item =>
+                item.id !== id
         );
+
 
     saveCart();
 
     updateCartCount();
 
     renderCart();
+
 }
 
 
@@ -1558,92 +3287,144 @@ function removeCartItem(id){
 async function checkout(){
 
     const email =
-        document.getElementById("customerEmail")
-        .value
-        .trim();
+        document.getElementById(
+            "customerEmail"
+        ).value.trim();
 
-    if(!email ||
-       !email.includes("@")){
 
-        document.getElementById("checkoutMessage")
-            .textContent =
+    const message =
+        document.getElementById(
+            "checkoutMessage"
+        );
+
+
+    const button =
+        document.getElementById(
+            "checkoutButton"
+        );
+
+
+    if(
+        !email ||
+        !email.includes("@")
+    ){
+
+        message.textContent =
             "Please enter a valid email address.";
 
         return;
+
     }
 
-    if(!selectedProduct ||
-       !selectedAmount){
+
+    if(
+        !selectedProduct ||
+        !selectedAmount
+    ){
+
+        message.textContent =
+            "Please choose a gift card amount.";
 
         return;
+
     }
 
-    const API_URL =
-         "https://gifty-backend-mufw.onrender.com";
-
-    const message =
-        document.getElementById("checkoutMessage");
 
     message.textContent =
         "Creating secure checkout...";
+
+
+    button.disabled =
+        true;
+
 
     try{
 
         const response =
             await fetch(
-                API_URL + "/create-checkout-session",
+                API_URL +
+                "/create-checkout-session",
                 {
+
                     method:"POST",
 
                     headers:{
+
                         "Content-Type":
                             "application/json"
+
                     },
 
-                    body:JSON.stringify({
+                    body:
+                        JSON.stringify({
 
-                        productId:
-                            selectedProduct.id,
+                            productId:
+                                selectedProduct.id,
 
-                        amount:
-                            selectedAmount,
+                            amount:
+                                selectedAmount,
 
-                        email:
-                            email
+                            email:
+                                email
 
-                    })
+                        })
+
                 }
             );
+
 
         const data =
             await response.json();
 
+
         if(!response.ok){
+
             throw new Error(
                 data.error ||
                 "Checkout failed."
             );
+
         }
 
-        if(data.url){
 
-            window.location.href =
-                data.url;
-
-        }else{
+        if(!data.url){
 
             throw new Error(
                 "Stripe checkout URL missing."
             );
+
         }
 
+
+        /*
+         * Stripe receives USD.
+         *
+         * The selected currency is
+         * display-only.
+         */
+
+        window.location.href =
+            data.url;
+
+
     }catch(error){
+
+        console.error(
+            "Checkout error:",
+            error
+        );
+
 
         message.textContent =
             error.message ||
             "Something went wrong.";
 
+
+        button.disabled =
+            false;
+
     }
+
 }
 
 
@@ -1651,20 +3432,41 @@ async function checkout(){
    CART CHECKOUT
 ========================================================= */
 
-async function checkoutCart(){
+function checkoutCart(){
 
     if(!cart.length){
 
-        alert("Your cart is empty.");
+        alert(
+            "Your cart is empty."
+        );
 
         return;
+
     }
 
-    const first = cart[0];
 
-    closeModal("cartModal");
+    /*
+     * Your current backend accepts
+     * one product per checkout session.
+     *
+     * Therefore, until the backend is
+     * upgraded for multi-item Stripe
+     * checkout, we open the first item.
+     */
 
-    openProduct(first.product);
+    const first =
+        cart[0];
+
+
+    closeModal(
+        "cartModal"
+    );
+
+
+    openProduct(
+        first.product
+    );
+
 }
 
 
@@ -1672,28 +3474,51 @@ async function checkoutCart(){
    FILTER
 ========================================================= */
 
-function filterCategory(category, button){
+function filterCategory(
+    category,
+    button
+){
 
     document
-        .querySelectorAll(".category")
-        .forEach(btn =>
-            btn.classList.remove("active")
+        .querySelectorAll(
+            ".category"
+        )
+        .forEach(
+            btn =>
+                btn.classList.remove(
+                    "active"
+                )
         );
 
+
     if(button){
-        button.classList.add("active");
+
+        button.classList.add(
+            "active"
+        );
+
     }
+
 
     const filtered =
         category === "all"
+
         ? products
+
         : products.filter(
-            p => p.category === category
+            product =>
+                product.category ===
+                category
         );
 
-    renderProducts(filtered);
+
+    renderProducts(
+        filtered
+    );
+
 
     scrollShop();
+
 }
 
 
@@ -1712,27 +3537,34 @@ document
                     .toLowerCase()
                     .trim();
 
+
             const results =
-                products.filter(product =>
+                products.filter(
+                    product =>
 
-                    product.name
-                        .toLowerCase()
-                        .includes(query)
+                        product.name
+                            .toLowerCase()
+                            .includes(query)
 
-                    ||
+                        ||
 
-                    product.description
-                        .toLowerCase()
-                        .includes(query)
+                        product.description
+                            .toLowerCase()
+                            .includes(query)
 
-                    ||
+                        ||
 
-                    product.category
-                        .toLowerCase()
-                        .includes(query)
+                        product.category
+                            .toLowerCase()
+                            .includes(query)
+
                 );
 
-            renderProducts(results);
+
+            renderProducts(
+                results
+            );
+
         }
     );
 
@@ -1744,9 +3576,13 @@ document
 function goHome(){
 
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
+
 }
 
 
@@ -1755,8 +3591,11 @@ function scrollShop(){
     document
         .getElementById("shop")
         .scrollIntoView({
+
             behavior:"smooth"
+
         });
+
 }
 
 
@@ -1764,8 +3603,69 @@ function closeModal(id){
 
     document
         .getElementById(id)
-        .classList.add("hidden");
+        .classList.add(
+            "hidden"
+        );
+
 }
+
+
+/* =========================================================
+   CLOSE MODAL WHEN CLICKING OUTSIDE
+========================================================= */
+
+document
+    .querySelectorAll(".modal")
+    .forEach(modal => {
+
+        modal.addEventListener(
+            "click",
+            event => {
+
+                if(
+                    event.target ===
+                    modal
+                ){
+
+                    modal.classList.add(
+                        "hidden"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   ESCAPE KEY
+========================================================= */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "Escape"
+        ){
+
+            document
+                .querySelectorAll(
+                    ".modal"
+                )
+                .forEach(
+                    modal =>
+                        modal.classList.add(
+                            "hidden"
+                        )
+                );
+
+        }
+
+    }
+);
 
 
 /* =========================================================
@@ -1776,7 +3676,11 @@ renderProducts();
 
 updateCartCount();
 
+loadExchangeRates();
+
 </script>
 
+
 </body>
+
 </html>
