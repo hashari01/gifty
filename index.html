@@ -4,29 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GIFty TN — Digital Gift Cards</title>
+<title>GIFty — Digital Gifts</title>
 
 <meta name="description"
-content="GIFty TN — Digital gift cards for gaming, music, streaming and apps in Tunisia.">
+content="GIFty — digital gift cards delivered straight to your email.">
 
 <style>
 :root{
-    --bg:#07070d;
-    --bg2:#0d0d17;
-    --card:#11111c;
-    --card2:#151522;
-    --border:rgba(255,255,255,.10);
+    --bg:#07070c;
+    --panel:#101019;
+    --panel2:#151521;
+    --border:rgba(255,255,255,.09);
     --text:#fff;
     --muted:#9999aa;
-
     --purple:#9b5cff;
     --pink:#ff4fc3;
-    --blue:#42a5ff;
-    --cyan:#31e7ff;
-    --green:#35e58a;
-    --red:#ff5577;
-
-    --radius:20px;
+    --blue:#55a8ff;
+    --green:#36e58b;
+    --danger:#ff5f6d;
+    --radius:22px;
 }
 
 *{
@@ -40,17 +36,17 @@ html{
 }
 
 body{
-    font-family:Inter,Arial,Helvetica,sans-serif;
-    background:
-        radial-gradient(circle at 10% 0%,rgba(155,92,255,.16),transparent 30%),
-        radial-gradient(circle at 90% 10%,rgba(255,79,195,.12),transparent 28%),
-        var(--bg);
+    font-family:Inter,Arial,sans-serif;
     color:var(--text);
+    background:
+        radial-gradient(circle at 10% 0%,rgba(155,92,255,.18),transparent 30%),
+        radial-gradient(circle at 90% 5%,rgba(255,79,195,.13),transparent 28%),
+        var(--bg);
     min-height:100vh;
 }
 
-button,input,select{
-    font-family:inherit;
+button,input{
+    font:inherit;
 }
 
 button{
@@ -61,23 +57,19 @@ button{
     display:none!important;
 }
 
-/* TOP BAR */
+/* TOP */
 
 .topbar{
     text-align:center;
     padding:9px;
     font-size:12px;
-    color:#d9d9e6;
+    color:#ddd;
     background:linear-gradient(
         90deg,
-        rgba(155,92,255,.15),
-        rgba(255,79,195,.10)
+        rgba(155,92,255,.16),
+        rgba(255,79,195,.12)
     );
-    border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.topbar strong{
-    color:white;
+    border-bottom:1px solid var(--border);
 }
 
 /* NAV */
@@ -86,179 +78,107 @@ button{
     position:sticky;
     top:0;
     z-index:1000;
-
     display:flex;
     align-items:center;
     gap:20px;
-
     padding:15px 5%;
-
-    background:rgba(7,7,13,.84);
+    background:rgba(7,7,12,.82);
     backdrop-filter:blur(20px);
-
-    border-bottom:1px solid rgba(255,255,255,.07);
+    border-bottom:1px solid var(--border);
 }
 
 .logo{
-    border:none;
+    border:0;
     background:none;
-
-    font-size:27px;
+    color:white;
     font-weight:950;
+    font-size:28px;
     letter-spacing:-1.5px;
-
-    background:linear-gradient(
-        90deg,
-        #b86cff,
-        #ff4fc3,
-        #5eb8ff
-    );
-
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-
     white-space:nowrap;
 }
 
 .logo span{
-    color:white;
-    -webkit-text-fill-color:white;
-}
-
-.search-wrap{
-    position:relative;
-    flex:1;
-    max-width:600px;
-}
-
-.search-icon{
-    position:absolute;
-    left:15px;
-    top:50%;
-    transform:translateY(-50%);
-    opacity:.6;
+    background:linear-gradient(90deg,#b66cff,#ff4fc3,#55a8ff);
+    -webkit-background-clip:text;
+    color:transparent;
 }
 
 .search{
-    width:100%;
-    padding:13px 18px 13px 43px;
-
-    border:1px solid rgba(255,255,255,.11);
+    flex:1;
+    max-width:600px;
+    padding:13px 16px;
+    border:1px solid var(--border);
     border-radius:15px;
-
     outline:none;
-    background:#11111b;
     color:white;
-}
-
-.search::placeholder{
-    color:#777789;
+    background:#11111a;
 }
 
 .search:focus{
     border-color:rgba(155,92,255,.7);
-    box-shadow:0 0 25px rgba(155,92,255,.15);
 }
 
 .nav-actions{
+    margin-left:auto;
     display:flex;
     align-items:center;
-    gap:7px;
-    margin-left:auto;
+    gap:10px;
 }
 
-.nav-button{
-    border:none;
-    background:transparent;
+.nav-btn,
+.cart-btn{
+    border:0;
     color:white;
-    padding:9px 11px;
+    background:transparent;
+    padding:10px 12px;
     font-weight:800;
 }
 
-.nav-button:hover{
-    color:#c18cff;
-}
-
-.cart-button{
-    display:flex;
-    align-items:center;
-    gap:8px;
-
-    border:1px solid rgba(255,255,255,.1);
-    background:#151520;
-    color:white;
-
-    padding:10px 14px;
+.cart-btn{
+    background:#151521;
+    border:1px solid var(--border);
     border-radius:13px;
 }
 
 .cart-count{
+    display:inline-flex;
+    justify-content:center;
+    align-items:center;
     min-width:21px;
     height:21px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
+    margin-left:5px;
     border-radius:50%;
-
-    background:linear-gradient(
-        135deg,
-        var(--purple),
-        var(--pink)
-    );
-
+    background:linear-gradient(135deg,var(--purple),var(--pink));
     font-size:11px;
-    font-weight:900;
 }
 
-/* CATEGORY */
+/* CATEGORIES */
 
-.category-bar{
+.categories{
     display:flex;
     gap:8px;
-    padding:12px 5%;
-
     overflow-x:auto;
-
-    border-bottom:1px solid rgba(255,255,255,.05);
+    padding:12px 5%;
+    border-bottom:1px solid var(--border);
 }
 
 .category{
-    border:none;
-    background:transparent;
-    color:#aaaabd;
-
-    padding:9px 15px;
+    border:0;
     border-radius:12px;
-
-    font-weight:800;
+    padding:9px 15px;
     white-space:nowrap;
+    color:#aaaabd;
+    background:transparent;
+    font-weight:800;
 }
 
+.category.active,
 .category:hover{
     color:white;
-    background:rgba(255,255,255,.06);
+    background:linear-gradient(90deg,#8d4cff,#e946b8);
 }
 
-.category.active{
-    color:white;
-
-    background:linear-gradient(
-        90deg,
-        #8d4cff,
-        #e946b8
-    );
-
-    box-shadow:0 0 25px rgba(155,92,255,.25);
-}
-
-/* GENERAL */
-
-.page{
-    min-height:calc(100vh - 130px);
-}
+/* MAIN */
 
 .container{
     width:90%;
@@ -266,215 +186,168 @@ button{
     margin:auto;
 }
 
-/* HERO */
-
 .hero{
-    padding:80px 0 60px;
-
+    min-height:620px;
     display:grid;
     grid-template-columns:1.1fr .9fr;
-
-    gap:60px;
+    gap:50px;
     align-items:center;
 }
 
 .hero h1{
-    font-size:clamp(48px,6vw,85px);
+    font-size:clamp(48px,7vw,88px);
     line-height:.94;
     letter-spacing:-5px;
 }
 
-.gradient-text{
+.gradient{
     background:linear-gradient(
         90deg,
         #b66cff,
         #ff4fc3,
-        #59b4ff
+        #55a8ff
     );
-
     -webkit-background-clip:text;
-    background-clip:text;
     color:transparent;
 }
 
-.hero-description{
-    color:#a2a2b5;
+.hero p{
+    max-width:620px;
+    margin-top:25px;
+    color:#a4a4b5;
     font-size:18px;
     line-height:1.7;
-    margin-top:25px;
-    max-width:620px;
 }
 
-.hero-buttons{
+.hero-actions{
     display:flex;
     gap:12px;
-    margin-top:30px;
     flex-wrap:wrap;
+    margin-top:30px;
 }
 
-.primary-btn{
-    border:none;
-    color:white;
-
-    padding:15px 23px;
+.primary,
+.secondary{
     border-radius:14px;
-
+    padding:15px 22px;
     font-weight:900;
-
-    background:linear-gradient(
-        90deg,
-        #8f4cff,
-        #ec46b9
-    );
-
-    box-shadow:0 10px 35px rgba(155,92,255,.22);
-
-    transition:.2s;
 }
 
-.primary-btn:hover{
-    transform:translateY(-3px);
-}
-
-.secondary-btn{
-    border:1px solid rgba(255,255,255,.12);
-
+.primary{
     color:white;
-    background:#12121c;
-
-    padding:15px 23px;
-    border-radius:14px;
-
-    font-weight:800;
+    border:0;
+    background:linear-gradient(90deg,#8f4cff,#ec46b9);
+    box-shadow:0 12px 40px rgba(155,92,255,.25);
 }
 
-/* HERO ART */
+.secondary{
+    color:white;
+    border:1px solid var(--border);
+    background:#12121c;
+}
 
-.hero-art{
+.hero-card{
     min-height:420px;
-
     position:relative;
     overflow:hidden;
-
-    border:1px solid rgba(255,255,255,.11);
+    border:1px solid var(--border);
     border-radius:32px;
-
     background:
-        radial-gradient(circle at 30% 30%,rgba(155,92,255,.4),transparent 35%),
-        radial-gradient(circle at 80% 20%,rgba(255,79,195,.35),transparent 30%),
+        radial-gradient(circle at 30% 30%,rgba(155,92,255,.35),transparent 35%),
+        radial-gradient(circle at 80% 20%,rgba(255,79,195,.28),transparent 30%),
         #10101b;
-
-    box-shadow:0 40px 100px rgba(0,0,0,.5);
 }
 
-.floating-card{
+.float{
     position:absolute;
-
-    border:1px solid rgba(255,255,255,.15);
-
-    background:rgba(255,255,255,.07);
-    backdrop-filter:blur(15px);
-
-    border-radius:22px;
     padding:22px;
-
+    border:1px solid rgba(255,255,255,.13);
+    border-radius:22px;
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(15px);
     box-shadow:0 25px 70px rgba(0,0,0,.4);
 }
 
-.float-one{
+.float img{
+    width:55px;
+    height:55px;
+    object-fit:contain;
+    margin-bottom:12px;
+}
+
+.float strong{
+    display:block;
+    font-size:19px;
+}
+
+.float small{
+    color:#aaa;
+}
+
+.f1{
     width:210px;
     top:50px;
-    left:45px;
-    transform:rotate(-8deg);
+    left:40px;
+    transform:rotate(-7deg);
 }
 
-.float-two{
+.f2{
     width:210px;
-    right:45px;
-    top:105px;
-    transform:rotate(8deg);
+    top:110px;
+    right:40px;
+    transform:rotate(7deg);
 }
 
-.float-three{
+.f3{
     width:230px;
     bottom:40px;
     left:50%;
     transform:translateX(-50%) rotate(-2deg);
 }
 
-.float-logo{
-    width:55px;
-    height:55px;
-    object-fit:contain;
-    margin-bottom:14px;
+/* SHOP */
+
+.shop{
+    padding:60px 0 100px;
 }
 
-.floating-card strong{
-    display:block;
-    font-size:19px;
-}
-
-.floating-card small{
-    color:#a5a5b7;
-}
-
-/* SECTIONS */
-
-.section{
-    padding:30px 0 90px;
-}
-
-.section-heading{
-    display:flex;
-    justify-content:space-between;
-    align-items:end;
-
+.heading{
     margin-bottom:25px;
 }
 
-.section-heading h2{
-    font-size:34px;
+.heading h2{
+    font-size:35px;
 }
 
-.section-heading p{
-    color:#89899c;
-    margin-top:6px;
+.heading p{
+    color:var(--muted);
+    margin-top:7px;
 }
 
-/* PRODUCTS */
-
-.product-grid{
+.grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(auto-fit,minmax(245px,1fr));
-
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
     gap:20px;
 }
 
-.product-card{
+.product{
     position:relative;
+    padding:22px;
+    min-height:340px;
     overflow:hidden;
-
-    padding:23px;
-
-    border:1px solid rgba(255,255,255,.08);
+    border:1px solid var(--border);
     border-radius:23px;
-
     background:linear-gradient(
         145deg,
         rgba(255,255,255,.055),
-        rgba(255,255,255,.018)
+        rgba(255,255,255,.015)
     );
-
     transition:.25s;
 }
 
-.product-card:hover{
+.product:hover{
     transform:translateY(-7px);
-
     border-color:rgba(255,255,255,.18);
-
     box-shadow:0 25px 60px rgba(0,0,0,.35);
 }
 
@@ -484,589 +357,240 @@ button{
     align-items:start;
 }
 
-.brand-logo{
+.product-logo{
     width:70px;
     height:70px;
-
     padding:14px;
-
-    border-radius:19px;
-
     object-fit:contain;
-
-    background:var(--logo-bg);
-
-    box-shadow:
-        0 0 35px var(--product-glow);
+    border-radius:18px;
+    background:#191923;
 }
 
 .badge{
+    padding:6px 9px;
+    border-radius:20px;
     font-size:10px;
     font-weight:900;
-
-    padding:6px 9px;
-
-    border-radius:20px;
-
-    background:linear-gradient(
-        90deg,
-        #ec46b9,
-        #8f4cff
-    );
+    background:linear-gradient(90deg,#ec46b9,#8f4cff);
 }
 
-.product-card h3{
+.product h3{
+    margin-top:22px;
     font-size:22px;
-    margin-top:23px;
 }
 
-.product-card p{
-    color:#9696a9;
-    line-height:1.5;
-
-    font-size:14px;
-
+.product p{
     min-height:45px;
     margin-top:8px;
+    color:var(--muted);
+    line-height:1.5;
+    font-size:14px;
 }
 
-.product-price{
-    font-weight:900;
-    font-size:18px;
+.price{
     margin-top:18px;
+    font-size:18px;
+    font-weight:950;
 }
 
-.product-usd{
-    color:#777789;
-    font-size:12px;
-    margin-top:5px;
-}
-
-.product-button{
+.product button{
     width:100%;
-
     margin-top:16px;
     padding:13px;
-
-    border:none;
+    border:0;
     border-radius:13px;
-
-    background:white;
     color:#09090f;
-
+    background:white;
     font-weight:900;
 }
 
-.product-button:hover{
-    background:#d7b5ff;
-}
+/* MODAL */
 
-/* PAGE HEADER */
-
-.page-header{
-    padding:60px 0 30px;
-}
-
-.page-header h1{
-    font-size:55px;
-    letter-spacing:-3px;
-}
-
-.page-header p{
-    color:#9999aa;
-    margin-top:12px;
-}
-
-/* PRODUCT DETAIL */
-
-.product-page{
-    padding:55px 0 90px;
-}
-
-.back-button{
-    border:none;
-    background:transparent;
-    color:#aaaabd;
-
-    margin-bottom:30px;
-
-    font-weight:800;
-}
-
-.product-detail{
-    display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    gap:50px;
-    align-items:center;
-}
-
-.detail-logo-area{
-    min-height:420px;
-
-    border:1px solid rgba(255,255,255,.1);
-    border-radius:30px;
-
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:2000;
     display:flex;
     align-items:center;
     justify-content:center;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(155,92,255,.18),
-            transparent 60%
-        );
+    padding:20px;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(12px);
 }
 
-.detail-logo{
-    width:170px;
-    height:170px;
-    object-fit:contain;
-
-    filter:drop-shadow(
-        0 0 40px
-        rgba(155,92,255,.45)
-    );
+.modal-box{
+    width:100%;
+    max-width:500px;
+    max-height:90vh;
+    overflow:auto;
+    padding:28px;
+    border:1px solid var(--border);
+    border-radius:25px;
+    background:#101019;
+    box-shadow:0 30px 100px rgba(0,0,0,.6);
 }
 
-.detail-info h1{
-    font-size:55px;
-    letter-spacing:-3px;
-}
-
-.detail-info p{
-    color:#9999aa;
-    line-height:1.7;
-    margin-top:15px;
-}
-
-.amount-title{
-    margin-top:30px;
-    margin-bottom:12px;
-    font-weight:900;
-}
-
-.amount-grid{
-    display:grid;
-    grid-template-columns:
-        repeat(auto-fit,minmax(100px,1fr));
-
-    gap:10px;
-}
-
-.amount-button{
-    padding:14px;
-
-    border:1px solid rgba(255,255,255,.1);
-
-    background:#11111b;
+.close{
+    float:right;
+    border:0;
     color:white;
-
-    border-radius:13px;
-    font-weight:900;
+    background:transparent;
+    font-size:25px;
 }
 
-.amount-button.selected{
-    background:linear-gradient(
-        90deg,
-        #8f4cff,
-        #ec46b9
-    );
-
-    border-color:transparent;
+.modal h2{
+    font-size:30px;
 }
 
-.quantity-row{
-    display:flex;
+.modal-muted{
+    color:var(--muted);
+    margin-top:7px;
+}
+
+.amounts{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
     gap:10px;
-    align-items:center;
-
     margin-top:20px;
 }
 
-.quantity-row button{
-    width:40px;
-    height:40px;
-
+.amount{
+    padding:14px;
     border:1px solid var(--border);
-    background:#151522;
+    border-radius:13px;
     color:white;
-
-    border-radius:10px;
-}
-
-.quantity-row span{
-    min-width:30px;
-    text-align:center;
+    background:#151521;
     font-weight:900;
 }
 
-/* CHECKOUT */
-
-.checkout-page{
-    padding:55px 0 90px;
-}
-
-.checkout-layout{
-    display:grid;
-    grid-template-columns:1.2fr .8fr;
-    gap:25px;
-}
-
-.checkout-box{
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.09);
-
-    border-radius:22px;
-
-    padding:25px;
-}
-
-.checkout-box h2{
-    margin-bottom:20px;
+.amount.selected{
+    border-color:var(--purple);
+    background:rgba(155,92,255,.2);
 }
 
 .field{
-    margin-bottom:18px;
+    margin-top:18px;
 }
 
 .field label{
     display:block;
-
+    margin-bottom:7px;
+    color:#c8c8d5;
     font-size:13px;
     font-weight:800;
-
-    color:#bdbdcd;
-
-    margin-bottom:8px;
 }
 
-.field input,
-.field select{
+.field input{
     width:100%;
-
     padding:14px;
-
-    background:#11111b;
-
-    border:1px solid rgba(255,255,255,.1);
-
     color:white;
-
+    background:#11111a;
+    border:1px solid var(--border);
     border-radius:13px;
-
     outline:none;
 }
 
-.order-item{
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:15px;
-
-    padding:15px 0;
-
-    border-bottom:1px solid rgba(255,255,255,.06);
+.total-box{
+    margin-top:20px;
+    padding:17px;
+    border-radius:16px;
+    background:#151521;
 }
 
-.order-item-info{
+.line{
+    display:flex;
+    justify-content:space-between;
+    margin-top:8px;
+    color:#aaaabd;
+}
+
+.total{
+    display:flex;
+    justify-content:space-between;
+    padding-top:15px;
+    margin-top:15px;
+    border-top:1px solid var(--border);
+    font-size:21px;
+    font-weight:950;
+    color:white;
+}
+
+.pay{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:0;
+    border-radius:14px;
+    color:white;
+    background:linear-gradient(90deg,#8f4cff,#ec46b9);
+    font-weight:950;
+}
+
+/* CART */
+
+.cart-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+}
+
+.cart-item-info{
     display:flex;
     gap:12px;
     align-items:center;
 }
 
-.order-item img{
+.cart-item img{
     width:45px;
     height:45px;
-
-    object-fit:contain;
-
-    background:#171722;
-
-    padding:8px;
-
+    padding:7px;
     border-radius:12px;
+    background:#181822;
+    object-fit:contain;
 }
 
-.order-item small{
-    color:#858598;
-}
-
-.remove-btn{
-    border:none;
-    background:none;
-    color:#ff6b83;
+.remove{
+    border:0;
+    color:#ff7180;
+    background:transparent;
     font-weight:800;
-}
-
-.summary-line{
-    display:flex;
-    justify-content:space-between;
-
-    margin-top:15px;
-
-    color:#a5a5b7;
-}
-
-.summary-total{
-    display:flex;
-    justify-content:space-between;
-
-    margin-top:20px;
-
-    padding-top:20px;
-
-    border-top:1px solid rgba(255,255,255,.08);
-
-    font-size:21px;
-    font-weight:950;
-}
-
-.stripe-btn{
-    width:100%;
-
-    margin-top:22px;
-    padding:16px;
-
-    border:none;
-    border-radius:14px;
-
-    background:#635bff;
-    color:white;
-
-    font-weight:950;
-    font-size:16px;
-}
-
-.stripe-btn:hover{
-    background:#746dff;
-}
-
-/* EMPTY CART */
-
-.empty-cart{
-    text-align:center;
-    padding:70px 20px;
-}
-
-.empty-cart .emoji{
-    font-size:60px;
-}
-
-.empty-cart h2{
-    margin-top:15px;
-}
-
-.empty-cart p{
-    color:#88889b;
-    margin:10px 0 20px;
-}
-
-/* INFO PAGES */
-
-.info-page{
-    padding:70px 0 100px;
-}
-
-.info-box{
-    max-width:900px;
-    margin:auto;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid var(--border);
-
-    border-radius:25px;
-
-    padding:35px;
-}
-
-.info-box h1{
-    font-size:45px;
-    margin-bottom:25px;
-}
-
-.info-box h2{
-    margin-top:28px;
-    margin-bottom:10px;
-}
-
-.info-box p{
-    color:#a4a4b5;
-    line-height:1.8;
-}
-
-/* FAQ */
-
-.faq-item{
-    border-bottom:1px solid var(--border);
-    padding:20px 0;
-}
-
-.faq-question{
-    display:flex;
-    justify-content:space-between;
-
-    cursor:pointer;
-
-    font-weight:900;
-}
-
-.faq-answer{
-    display:none;
-
-    color:#9999aa;
-    line-height:1.7;
-
-    padding-top:12px;
-}
-
-.faq-item.open .faq-answer{
-    display:block;
-}
-
-/* SUCCESS */
-
-.confirmation{
-    min-height:calc(100vh - 160px);
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    padding:50px 20px;
-}
-
-.confirmation-box{
-    text-align:center;
-
-    max-width:650px;
-
-    padding:50px 30px;
-
-    border:1px solid rgba(255,255,255,.1);
-
-    background:rgba(255,255,255,.04);
-
-    border-radius:30px;
-}
-
-.success-icon{
-    width:90px;
-    height:90px;
-
-    margin:0 auto 25px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:rgba(53,229,138,.12);
-
-    color:var(--green);
-
-    font-size:45px;
-}
-
-.confirmation-box h1{
-    font-size:45px;
-}
-
-.confirmation-box p{
-    color:#9999aa;
-    line-height:1.7;
-    margin-top:12px;
 }
 
 /* FOOTER */
 
 footer{
-    border-top:1px solid rgba(255,255,255,.07);
-
     padding:50px 5%;
-
+    border-top:1px solid var(--border);
     color:#777789;
 }
 
 .footer-inner{
     max-width:1400px;
     margin:auto;
-
     display:flex;
     justify-content:space-between;
-
     gap:30px;
-
     flex-wrap:wrap;
 }
 
 .footer-brand{
     color:white;
+    font-weight:950;
     font-size:20px;
-    font-weight:900;
-}
-
-.footer-links{
-    display:flex;
-    gap:18px;
-    flex-wrap:wrap;
-}
-
-.footer-links button{
-    border:none;
-    background:none;
-    color:#88889b;
-}
-
-.footer-links button:hover{
-    color:white;
-}
-
-/* TOAST */
-
-.toast{
-    position:fixed;
-
-    bottom:25px;
-    right:25px;
-
-    z-index:9999;
-
-    padding:15px 20px;
-
-    border:1px solid var(--border);
-
-    background:#151522;
-
-    border-radius:14px;
-
-    box-shadow:0 20px 50px rgba(0,0,0,.4);
-
-    transform:translateY(120px);
-
-    opacity:0;
-
-    transition:.3s;
-}
-
-.toast.show{
-    transform:translateY(0);
-    opacity:1;
 }
 
 /* MOBILE */
 
-@media(max-width:900px){
+@media(max-width:850px){
 
     .navbar{
         flex-wrap:wrap;
     }
 
-    .search-wrap{
+    .search{
         order:3;
         flex-basis:100%;
         max-width:none;
@@ -1074,55 +598,39 @@ footer{
 
     .hero{
         grid-template-columns:1fr;
-        padding-top:50px;
+        padding:70px 0;
     }
 
-    .product-detail{
-        grid-template-columns:1fr;
+    .hero-card{
+        min-height:340px;
     }
 
-    .checkout-layout{
-        grid-template-columns:1fr;
+    .nav-btn{
+        display:none;
     }
 }
 
 @media(max-width:600px){
 
     .hero h1{
-        font-size:48px;
+        font-size:50px;
         letter-spacing:-3px;
     }
 
-    .hero-description{
+    .hero p{
         font-size:16px;
     }
 
-    .hero-art{
-        min-height:330px;
+    .f1{
+        left:12px;
     }
 
-    .float-one{
-        left:15px;
+    .f2{
+        right:12px;
     }
 
-    .float-two{
-        right:15px;
-    }
-
-    .float-three{
-        bottom:25px;
-    }
-
-    .nav-button{
-        display:none;
-    }
-
-    .page-header h1{
-        font-size:42px;
-    }
-
-    .detail-info h1{
-        font-size:42px;
+    .f3{
+        bottom:20px;
     }
 }
 </style>
@@ -1130,80 +638,66 @@ footer{
 
 <body>
 
-<!-- TOP -->
 <div class="topbar">
-    ⚡ <strong>GIFty TN</strong> — Digital gifts made simple.
+⚡ <strong>GIFty</strong> — Digital gifts, delivered to your inbox.
 </div>
 
-<!-- NAV -->
 <nav class="navbar">
 
-    <button class="logo" onclick="showPage('home')">
-        GIFty <span>TN</span>
-    </button>
+<button class="logo" onclick="goHome()">
+GIF<span>ty</span>
+</button>
 
-    <div class="search-wrap">
-        <span class="search-icon">🔎</span>
+<input
+id="search"
+class="search"
+placeholder="Search Steam, Roblox, Spotify..."
+>
 
-        <input
-            id="searchInput"
-            class="search"
-            placeholder="Search Steam, Spotify, Roblox..."
-        >
-    </div>
+<div class="nav-actions">
 
-    <div class="nav-actions">
+<button class="nav-btn" onclick="goHome()">
+Home
+</button>
 
-        <button class="nav-button" onclick="showPage('home')">
-            Home
-        </button>
+<button class="nav-btn" onclick="scrollShop()">
+Shop
+</button>
 
-        <button class="nav-button" onclick="showPage('shop')">
-            Shop
-        </button>
+<button class="cart-btn" onclick="openCart()">
+🛒 Cart
+<span id="cartCount" class="cart-count">0</span>
+</button>
 
-        <button class="nav-button" onclick="showPage('faq')">
-            FAQ
-        </button>
-
-        <button class="cart-button" onclick="showPage('checkout')">
-            🛒 Cart
-            <span id="cartCount" class="cart-count">0</span>
-        </button>
-
-    </div>
+</div>
 
 </nav>
 
-<!-- CATEGORY -->
-<div class="category-bar">
+<div class="categories">
 
-    <button class="category active" onclick="filterCategory('all',this)">
-        ✨ Everything
-    </button>
+<button class="category active" onclick="filterCategory('all',this)">
+✨ Everything
+</button>
 
-    <button class="category" onclick="filterCategory('gaming',this)">
-        🎮 Gaming
-    </button>
+<button class="category" onclick="filterCategory('gaming',this)">
+🎮 Gaming
+</button>
 
-    <button class="category" onclick="filterCategory('music',this)">
-        🎵 Music
-    </button>
+<button class="category" onclick="filterCategory('music',this)">
+🎵 Music
+</button>
 
-    <button class="category" onclick="filterCategory('streaming',this)">
-        📺 Streaming
-    </button>
+<button class="category" onclick="filterCategory('streaming',this)">
+📺 Streaming
+</button>
 
-    <button class="category" onclick="filterCategory('apps',this)">
-        📱 Apps
-    </button>
+<button class="category" onclick="filterCategory('apps',this)">
+📱 Apps
+</button>
 
 </div>
 
-
-<!-- ================= HOME ================= -->
-
-<main id="homePage" class="page">
+<main>
 
 <section class="hero container">
 
@@ -1211,24 +705,23 @@ footer{
 
 <h1>
 Your digital
-<span class="gradient-text">
-gift universe.
-</span>
+<span class="gradient">gift universe.</span>
 </h1>
 
-<p class="hero-description">
-Gaming credits, music, streaming and digital gift cards —
-all in one place. Choose your card, choose your amount,
-and send it digitally.
+<p>
+Gaming, music, streaming and app gift cards —
+all in one place. Choose your card, choose your
+value, pay securely and get your digital gift
+delivered to your email.
 </p>
 
-<div class="hero-buttons">
+<div class="hero-actions">
 
-<button class="primary-btn" onclick="showPage('shop')">
-Explore Gifts →
+<button class="primary" onclick="scrollShop()">
+Explore gifts →
 </button>
 
-<button class="secondary-btn"
+<button class="secondary"
 onclick="filterCategory('gaming')">
 🎮 Gaming
 </button>
@@ -1237,539 +730,59 @@ onclick="filterCategory('gaming')">
 
 </div>
 
-<div class="hero-art">
+<div class="hero-card">
 
-<div class="floating-card float-one">
-
-<img
-class="float-logo"
-src="https://cdn.simpleicons.org/steam/ffffff"
-alt="Steam"
->
-
+<div class="float f1">
+<img src="https://cdn.simpleicons.org/steam/ffffff">
 <strong>Steam</strong>
-<small>Game credits</small>
-
+<small>Game credits 🎮</small>
 </div>
 
-<div class="floating-card float-two">
-
-<img
-class="float-logo"
-src="https://cdn.simpleicons.org/spotify/ffffff"
-alt="Spotify"
->
-
+<div class="float f2">
+<img src="https://cdn.simpleicons.org/spotify/ffffff">
 <strong>Spotify</strong>
-<small>Music everywhere</small>
-
+<small>Music everywhere 🎵</small>
 </div>
 
-<div class="floating-card float-three">
-
-<img
-class="float-logo"
-src="https://cdn.simpleicons.org/roblox/ffffff"
-alt="Roblox"
->
-
+<div class="float f3">
+<img src="https://cdn.simpleicons.org/roblox/ffffff">
 <strong>Roblox</strong>
-<small>Robux for the squad 🎮</small>
-
+<small>Robux for the squad</small>
 </div>
 
 </div>
 
 </section>
 
+<section id="shop" class="shop container">
 
-<section class="section container">
+<div class="heading">
 
-<div class="section-heading">
+<h2>Pick your world</h2>
 
-<div>
-
-<h2>🔥 Popular right now</h2>
-
-<p>Everyone's buying these.</p>
-
-</div>
+<p>
+Choose a gift card and the amount you want.
+</p>
 
 </div>
 
-<div id="homeProducts" class="product-grid"></div>
+<div id="productGrid" class="grid"></div>
 
 </section>
 
 </main>
-
-
-<!-- ================= SHOP ================= -->
-
-<main id="shopPage" class="page hidden">
-
-<div class="page-header container">
-
-<h1>
-Shop <span class="gradient-text">everything.</span>
-</h1>
-
-<p>
-Find your next digital gift.
-</p>
-
-</div>
-
-<section class="section container">
-
-<div id="shopProducts" class="product-grid"></div>
-
-</section>
-
-</main>
-
-
-<!-- ================= PRODUCT ================= -->
-
-<main id="productPage" class="page hidden">
-
-<section class="product-page container">
-
-<button class="back-button" onclick="showPage('shop')">
-← Back to shop
-</button>
-
-<div class="product-detail">
-
-<div class="detail-logo-area">
-
-<img id="detailLogo"
-class="detail-logo"
-src=""
-alt=""
->
-
-</div>
-
-<div class="detail-info">
-
-<h1 id="detailName"></h1>
-
-<p id="detailDescription"></p>
-
-<div class="amount-title">
-Choose your amount
-</div>
-
-<div id="amountGrid" class="amount-grid"></div>
-
-<div class="quantity-row">
-
-<button onclick="changeQuantity(-1)">−</button>
-
-<span id="quantity">1</span>
-
-<button onclick="changeQuantity(1)">+</button>
-
-</div>
-
-<button
-class="primary-btn"
-style="width:100%;margin-top:25px"
-onclick="addCurrentToCart()"
->
-Add to cart 🛒
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-</main>
-
-
-<!-- ================= CHECKOUT ================= -->
-
-<main id="checkoutPage" class="page hidden">
-
-<section class="checkout-page container">
-
-<div class="page-header" style="padding-top:0">
-
-<h1>
-Your <span class="gradient-text">cart.</span>
-</h1>
-
-<p>
-Review everything before checkout.
-</p>
-
-</div>
-
-<div id="emptyCart" class="empty-cart hidden">
-
-<div class="emoji">🛒</div>
-
-<h2>Your cart is empty</h2>
-
-<p>
-Go find something cool first.
-</p>
-
-<button class="primary-btn" onclick="showPage('shop')">
-Browse gifts
-</button>
-
-</div>
-
-
-<div id="checkoutContent" class="checkout-layout">
-
-<div class="checkout-box">
-
-<h2>Order details</h2>
-
-<div id="cartItems"></div>
-
-</div>
-
-
-<div class="checkout-box">
-
-<h2>Checkout</h2>
-
-<div class="field">
-
-<label>
-Your email
-</label>
-
-<input
-id="email"
-type="email"
-placeholder="you@example.com"
->
-
-</div>
-
-<div class="field">
-
-<label>
-Country
-</label>
-
-<select id="country">
-
-<option value="TN">
-Tunisia 🇹🇳
-</option>
-
-<option value="US">
-United States 🇺🇸
-</option>
-
-</select>
-
-</div>
-
-<div class="field">
-
-<label>
-Gift recipient email
-</label>
-
-<input
-id="recipientEmail"
-type="email"
-placeholder="recipient@example.com"
->
-
-</div>
-
-<div class="summary-line">
-
-<span>Subtotal</span>
-
-<strong id="subtotal">
-$0.00
-</strong>
-
-</div>
-
-<div class="summary-line">
-
-<span>Service fee</span>
-
-<strong id="serviceFee">
-$0.00
-</strong>
-
-</div>
-
-<div class="summary-line">
-
-<span>Currency</span>
-
-<strong>
-USD → TND
-</strong>
-
-</div>
-
-<div class="summary-total">
-
-<span>Total</span>
-
-<strong id="total">
-$0.00
-</strong>
-
-</div>
-
-<div
-style="
-margin-top:10px;
-color:#777789;
-font-size:12px;
-text-align:right
-"
->
-
-Approx.
-<span id="totalTnd">0 TND</span>
-
-</div>
-
-<button
-class="stripe-btn"
-onclick="startStripeCheckout()"
->
-💳 Pay securely with Stripe
-</button>
-
-<p
-style="
-font-size:11px;
-color:#777789;
-margin-top:12px;
-line-height:1.5
-"
->
-Stripe payment must be connected through a secure server/backend.
-Never put your Stripe secret key inside this HTML file.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-</main>
-
-
-<!-- ================= FAQ ================= -->
-
-<main id="faqPage" class="page hidden">
-
-<section class="info-page container">
-
-<div class="info-box">
-
-<h1>
-Frequently asked <span class="gradient-text">questions.</span>
-</h1>
-
-<div class="faq-item">
-
-<div class="faq-question"
-onclick="toggleFaq(this)">
-What is GIFty TN?
-<span>＋</span>
-</div>
-
-<div class="faq-answer">
-GIFty TN is a digital gift-card storefront designed for customers
-who want gaming, music, streaming and app credits.
-</div>
-
-</div>
-
-<div class="faq-item">
-
-<div class="faq-question"
-onclick="toggleFaq(this)">
-How do I receive my gift card?
-<span>＋</span>
-</div>
-
-<div class="faq-answer">
-After successful payment and fulfillment, the gift-card information
-can be delivered digitally to the recipient email.
-</div>
-
-</div>
-
-<div class="faq-item">
-
-<div class="faq-question"
-onclick="toggleFaq(this)">
-Can I get a refund?
-<span>＋</span>
-</div>
-
-<div class="faq-answer">
-Digital products can have special refund restrictions. Your final
-refund policy should match the products you actually sell and your
-payment provider's requirements.
-</div>
-
-</div>
-
-<div class="faq-item">
-
-<div class="faq-question"
-onclick="toggleFaq(this)">
-What currencies are shown?
-<span>＋</span>
-</div>
-
-<div class="faq-answer">
-GIFty displays your base product prices in USD and calculates an
-approximate Tunisian Dinar value using a live exchange-rate service.
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-</main>
-
-
-<!-- ================= TERMS ================= -->
-
-<main id="termsPage" class="page hidden">
-
-<section class="info-page container">
-
-<div class="info-box">
-
-<h1>
-Terms & <span class="gradient-text">policies.</span>
-</h1>
-
-<h2>Digital products</h2>
-
-<p>
-Gift cards are digital products. Customers should carefully check
-the selected brand, region and value before purchasing.
-</p>
-
-<h2>Payments</h2>
-
-<p>
-Payments are processed through the payment provider configured by
-GIFty TN. Never store card information directly on the website.
-</p>
-
-<h2>Delivery</h2>
-
-<p>
-Digital delivery should only occur after successful payment
-confirmation from the payment processor.
-</p>
-
-<h2>Important</h2>
-
-<p>
-Before launching publicly, replace these example policies with your
-actual business terms, refund policy and legal information.
-</p>
-
-</div>
-
-</section>
-
-</main>
-
-
-<!-- ================= SUCCESS ================= -->
-
-<main id="successPage" class="page hidden">
-
-<section class="confirmation">
-
-<div class="confirmation-box">
-
-<div class="success-icon">
-✓
-</div>
-
-<h1>
-You're all set! 🎉
-</h1>
-
-<p>
-Your order has been received.
-If your payment was successful, your digital gift-card
-fulfillment can now be processed.
-</p>
-
-<button
-class="primary-btn"
-style="margin-top:25px"
-onclick="showPage('home')"
->
-Back home
-</button>
-
-</div>
-
-</section>
-
-</main>
-
-
-<!-- FOOTER -->
 
 <footer>
 
 <div class="footer-inner">
 
 <div>
-
-<div class="footer-brand">
-GIFty TN
+<div class="footer-brand">GIFty 💜</div>
+<p>Digital gifts made simple.</p>
 </div>
 
-<div style="margin-top:8px">
-Digital gifts. Zero boring.
-</div>
-
-</div>
-
-<div class="footer-links">
-
-<button onclick="showPage('home')">
-Home
-</button>
-
-<button onclick="showPage('shop')">
-Shop
-</button>
-
-<button onclick="showPage('faq')">
-FAQ
-</button>
-
-<button onclick="showPage('terms')">
-Terms
-</button>
-
+<div>
+<p>© 2026 GIFty. All rights reserved.</p>
 </div>
 
 </div>
@@ -1777,44 +790,121 @@ Terms
 </footer>
 
 
-<div id="toast" class="toast">
-Added to cart 🛒
+<!-- PRODUCT MODAL -->
+
+<div id="productModal" class="modal hidden">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('productModal')">
+×
+</button>
+
+<h2 id="modalName"></h2>
+
+<p id="modalDescription" class="modal-muted"></p>
+
+<div id="amounts" class="amounts"></div>
+
+<div class="field">
+
+<label>Email address</label>
+
+<input
+id="customerEmail"
+type="email"
+placeholder="you@example.com"
+>
+
+</div>
+
+<div class="total-box">
+
+<div class="line">
+<span>Gift card</span>
+<strong id="giftPrice">$0.00</strong>
+</div>
+
+<div class="line">
+<span>GIFty service fee</span>
+<strong id="fee">$0.00</strong>
+</div>
+
+<div class="line">
+<span>Approx. TND</span>
+<strong id="tndPrice">—</strong>
+</div>
+
+<div class="total">
+<span>Total</span>
+<span id="total">$0.00</span>
+</div>
+
+</div>
+
+<button class="pay" onclick="checkout()">
+Continue to secure checkout →
+</button>
+
+<p
+id="checkoutMessage"
+class="modal-muted"
+style="text-align:center;margin-top:12px"
+></p>
+
+</div>
+
+</div>
+
+
+<!-- CART MODAL -->
+
+<div id="cartModal" class="modal hidden">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal('cartModal')">
+×
+</button>
+
+<h2>Your cart 🛒</h2>
+
+<div id="cartItems"></div>
+
+<div class="total-box">
+
+<div class="total">
+<span>Total</span>
+<span id="cartTotal">$0.00</span>
+</div>
+
+</div>
+
+<button class="pay" onclick="checkoutCart()">
+Checkout →
+</button>
+
+</div>
+
 </div>
 
 
 <script>
 
 /* =========================================================
-GIFty TN JAVASCRIPT
+   GIFty PRODUCT DATA
 ========================================================= */
-
-/*
-IMPORTANT:
-
-This is the public frontend.
-
-DO NOT put:
-- Stripe secret key
-- Stripe private API key
-- Gift card supplier API keys
-- Database passwords
-
-inside this file.
-*/
-
-
-/* PRODUCTS */
 
 const products = [
 
 {
     id:"steam",
-    name:"Steam Wallet",
+    name:"Steam",
     category:"gaming",
-    description:"Top up Steam and grab your next game.",
+    description:"Steam Wallet credit for games and more.",
     logo:"https://cdn.simpleicons.org/steam/ffffff",
-    glow:"#00d9ff",
-    amounts:[10,20,25,50,100],
+    values:[5,10,20,50,100],
+    fee:1.49,
     badge:"BEST SELLER"
 },
 
@@ -1822,10 +912,10 @@ const products = [
     id:"playstation",
     name:"PlayStation Store",
     category:"gaming",
-    description:"PSN credit for games, add-ons and more.",
+    description:"PlayStation Store credit for games and add-ons.",
     logo:"https://cdn.simpleicons.org/playstation/ffffff",
-    glow:"#398cff",
-    amounts:[10,25,50,75,100]
+    values:[10,20,25,50,100],
+    fee:1.49
 },
 
 {
@@ -1834,29 +924,39 @@ const products = [
     category:"gaming",
     description:"Xbox gift credit for games and entertainment.",
     logo:"https://cdn.simpleicons.org/xbox/ffffff",
-    glow:"#55d600",
-    amounts:[10,25,50,75,100]
+    values:[10,15,25,50,100],
+    fee:1.49
 },
 
 {
     id:"roblox",
     name:"Roblox",
     category:"gaming",
-    description:"Robux and Roblox credit for the squad.",
+    description:"Roblox gift cards for the whole squad.",
     logo:"https://cdn.simpleicons.org/roblox/ffffff",
-    glow:"#ff304f",
-    amounts:[10,15,25,50,100],
+    values:[10,20,25,50,100],
+    fee:1.49,
     badge:"TRENDING"
+},
+
+{
+    id:"nintendo",
+    name:"Nintendo eShop",
+    category:"gaming",
+    description:"Nintendo eShop credit for digital games.",
+    logo:"https://cdn.simpleicons.org/nintendo/ffffff",
+    values:[10,20,35,50,100],
+    fee:1.49
 },
 
 {
     id:"spotify",
     name:"Spotify",
     category:"music",
-    description:"Music, playlists and premium listening.",
+    description:"Spotify gift cards for music and Premium.",
     logo:"https://cdn.simpleicons.org/spotify/ffffff",
-    glow:"#1ed760",
-    amounts:[10,20,30,60]
+    values:[10,20,30,50],
+    fee:1.49
 },
 
 {
@@ -1865,8 +965,8 @@ const products = [
     category:"apps",
     description:"Apps, games, subscriptions and Apple services.",
     logo:"https://cdn.simpleicons.org/apple/ffffff",
-    glow:"#ffffff",
-    amounts:[10,25,50,100,200]
+    values:[10,25,50,100],
+    fee:1.99
 },
 
 {
@@ -1875,8 +975,8 @@ const products = [
     category:"apps",
     description:"Games, apps, movies and more.",
     logo:"https://cdn.simpleicons.org/googleplay/ffffff",
-    glow:"#34a853",
-    amounts:[10,25,50,100]
+    values:[10,20,25,50,100],
+    fee:1.49
 },
 
 {
@@ -1885,537 +985,271 @@ const products = [
     category:"streaming",
     description:"Give someone their next movie night.",
     logo:"https://cdn.simpleicons.org/netflix/ffffff",
-    glow:"#e50914",
-    amounts:[10,25,50,100]
-},
-
-{
-    id:"amazon",
-    name:"Amazon",
-    category:"apps",
-    description:"Amazon shopping credit.",
-    logo:"https://cdn.simpleicons.org/amazon/ffffff",
-    glow:"#ff9900",
-    amounts:[10,25,50,100]
+    values:[15,25,50,100],
+    fee:1.99
 },
 
 {
     id:"discord",
-    name:"Discord Nitro",
+    name:"Discord",
     category:"apps",
-    description:"Upgrade Discord with Nitro.",
+    description:"Digital credit for Discord purchases.",
     logo:"https://cdn.simpleicons.org/discord/ffffff",
-    glow:"#5865f2",
-    amounts:[10,25,50]
+    values:[10,20,50],
+    fee:1.49
 }
 
 ];
 
 
-/* SETTINGS */
+/* =========================================================
+   STATE
+========================================================= */
 
-/*
-Your selling price is calculated from the buyer's selected
-gift-card amount.
-
-Example:
-$10 card
-+ 8% margin
-+ $0.50 service fee
-= $11.30 approximately
-
-Adjust these values whenever you want.
-*/
-
-const MARKUP_PERCENT = 8;
-
-const SERVICE_FEE = 0.50;
-
-
-/* STATE */
-
-let cart = [];
-
-let currentProduct = null;
-
+let selectedProduct = null;
 let selectedAmount = null;
 
-let currentQuantity = 1;
-
-let usdToTnd = 3.0;
-
-
-/* =========================================================
-CURRENCY
-========================================================= */
-
-async function updateExchangeRate(){
-
-    try{
-
-        const response = await fetch(
-            "https://api.frankfurter.app/latest?from=USD&to=TND"
-        );
-
-        if(!response.ok){
-            throw new Error("Rate request failed");
-        }
-
-        const data = await response.json();
-
-        if(data.rates && data.rates.TND){
-
-            usdToTnd = Number(data.rates.TND);
-
-            updateAllPrices();
-
-        }
-
-    }catch(error){
-
-        console.log(
-            "Currency API unavailable. Using fallback rate."
-        );
-
-        /*
-        Fallback only.
-        Replace this if you want another provider.
-        */
-
-        usdToTnd = 3.0;
-
-        updateAllPrices();
-    }
-
-}
+let cart = JSON.parse(
+    localStorage.getItem("gifty_cart") || "[]"
+);
 
 
 /* =========================================================
-PRICE CALCULATION
+   RENDER PRODUCTS
 ========================================================= */
 
-function calculateSellingPrice(amount){
-
-    const markup =
-        amount * (MARKUP_PERCENT / 100);
-
-    return amount + markup + SERVICE_FEE;
-
-}
-
-
-/* =========================================================
-DISPLAY PRODUCTS
-========================================================= */
-
-function renderProducts(){
-
-    const home =
-        document.getElementById("homeProducts");
-
-    const shop =
-        document.getElementById("shopProducts");
-
-    home.innerHTML = "";
-
-    shop.innerHTML = "";
-
-    products.forEach(product => {
-
-        home.innerHTML += createProductCard(product);
-
-        shop.innerHTML += createProductCard(product);
-
-    });
-
-    updateAllPrices();
-
-}
-
-
-function createProductCard(product){
-
-    const price =
-        calculateSellingPrice(product.amounts[0]);
-
-    return `
-
-    <article
-        class="product-card"
-        data-category="${product.category}"
-        data-name="${product.name.toLowerCase()}"
-    >
-
-        <div class="product-top">
-
-            <img
-                class="brand-logo"
-                src="${product.logo}"
-                alt="${product.name}"
-                style="
-                    --product-glow:${product.glow};
-                    --logo-bg:${product.glow}22;
-                "
-            >
-
-            ${
-                product.badge
-                ?
-                `<span class="badge">${product.badge}</span>`
-                :
-                ""
-            }
-
-        </div>
-
-        <h3>
-            ${product.name}
-        </h3>
-
-        <p>
-            ${product.description}
-        </p>
-
-        <div class="product-price"
-             data-usd-price="${price}">
-
-            From $${price.toFixed(2)}
-
-        </div>
-
-        <div class="product-usd"
-             data-tnd-price="${price}">
-
-            ≈ ${(price * usdToTnd).toFixed(2)} TND
-
-        </div>
-
-        <button
-            class="product-button"
-            onclick="openProduct('${product.id}')"
-        >
-            Choose amount →
-        </button>
-
-    </article>
-
-    `;
-
-}
-
-
-/* =========================================================
-PRICE UPDATE
-========================================================= */
-
-function updateAllPrices(){
-
-    document.querySelectorAll("[data-usd-price]")
-    .forEach(element => {
-
-        const price =
-            Number(element.dataset.usdPrice);
-
-        element.innerHTML =
-            `From $${price.toFixed(2)}`;
-
-    });
-
-    document.querySelectorAll("[data-tnd-price]")
-    .forEach(element => {
-
-        const price =
-            Number(element.dataset.tndPrice);
-
-        element.innerHTML =
-            `≈ ${(price * usdToTnd).toFixed(2)} TND`;
-
-    });
-
-    updateCheckout();
-
-}
-
-
-/* =========================================================
-NAVIGATION
-========================================================= */
-
-const pages = [
-    "home",
-    "shop",
-    "product",
-    "checkout",
-    "faq",
-    "terms",
-    "success"
-];
-
-
-function showPage(page){
-
-    pages.forEach(name => {
-
-        const element =
-            document.getElementById(name + "Page");
-
-        if(element){
-            element.classList.add("hidden");
-        }
-
-    });
-
-    const selected =
-        document.getElementById(page + "Page");
-
-    if(selected){
-        selected.classList.remove("hidden");
-    }
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-    if(page === "checkout"){
-        renderCart();
-    }
-
-}
-
-
-/* =========================================================
-SHOP FILTER
-========================================================= */
-
-function filterCategory(category, button=null){
-
-    showPage("shop");
-
-    document
-        .querySelectorAll(".category")
-        .forEach(btn => btn.classList.remove("active"));
-
-    if(button){
-        button.classList.add("active");
-    }
-
-    const cards =
-        document.querySelectorAll(
-            "#shopProducts .product-card"
-        );
-
-    cards.forEach(card => {
-
-        const matches =
-            category === "all" ||
-            card.dataset.category === category;
-
-        card.style.display =
-            matches ? "" : "none";
-
-    });
-
-}
-
-
-/* =========================================================
-SEARCH
-========================================================= */
-
-document
-.getElementById("searchInput")
-.addEventListener("input", function(){
-
-    const query =
-        this.value.toLowerCase().trim();
-
-    showPage("shop");
-
-    document
-        .querySelectorAll("#shopProducts .product-card")
-        .forEach(card => {
-
-            const name =
-                card.dataset.name;
-
-            card.style.display =
-                name.includes(query)
-                ? ""
-                : "none";
-
-        });
-
-});
-
-
-/* =========================================================
-OPEN PRODUCT
-========================================================= */
-
-function openProduct(productId){
-
-    const product =
-        products.find(p => p.id === productId);
-
-    if(!product){
-        return;
-    }
-
-    currentProduct = product;
-
-    selectedAmount =
-        product.amounts[0];
-
-    currentQuantity = 1;
-
-    document
-        .getElementById("detailName")
-        .textContent =
-        product.name;
-
-    document
-        .getElementById("detailDescription")
-        .textContent =
-        product.description;
-
-    const logo =
-        document.getElementById("detailLogo");
-
-    logo.src = product.logo;
-
-    logo.alt = product.name;
-
-    renderAmounts();
-
-    document
-        .getElementById("quantity")
-        .textContent =
-        currentQuantity;
-
-    showPage("product");
-
-}
-
-
-function renderAmounts(){
+function renderProducts(list=products){
 
     const grid =
-        document.getElementById("amountGrid");
+        document.getElementById("productGrid");
 
     grid.innerHTML = "";
 
-    currentProduct.amounts.forEach(amount => {
+    if(!list.length){
 
-        const sellingPrice =
-            calculateSellingPrice(amount);
+        grid.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                text-align:center;
+                padding:60px;
+                color:#888;
+            ">
+                <div style="font-size:45px">🔎</div>
+                <h3>No gifts found</h3>
+                <p>Try another search.</p>
+            </div>
+        `;
+
+        return;
+    }
+
+    list.forEach(product => {
+
+        const card =
+            document.createElement("article");
+
+        card.className = "product";
+
+        card.dataset.category =
+            product.category;
+
+        card.dataset.name =
+            product.name.toLowerCase();
+
+        card.innerHTML = `
+
+            <div class="product-top">
+
+                <img
+                    class="product-logo"
+                    src="${product.logo}"
+                    alt="${product.name}"
+                >
+
+                ${
+                    product.badge
+                    ? `<span class="badge">
+                        ${product.badge}
+                       </span>`
+                    : ""
+                }
+
+            </div>
+
+            <h3>${product.name}</h3>
+
+            <p>${product.description}</p>
+
+            <div class="price">
+                From $${product.values[0].toFixed(2)}
+            </div>
+
+            <button
+                onclick="openProduct('${product.id}')"
+            >
+                Choose amount →
+            </button>
+        `;
+
+        grid.appendChild(card);
+    });
+}
+
+
+/* =========================================================
+   PRODUCT MODAL
+========================================================= */
+
+function openProduct(id){
+
+    selectedProduct =
+        products.find(p => p.id === id);
+
+    if(!selectedProduct) return;
+
+    selectedAmount =
+        selectedProduct.values[0];
+
+    document.getElementById("modalName")
+        .textContent =
+        selectedProduct.name;
+
+    document.getElementById("modalDescription")
+        .textContent =
+        selectedProduct.description;
+
+    const amounts =
+        document.getElementById("amounts");
+
+    amounts.innerHTML = "";
+
+    selectedProduct.values.forEach(value => {
 
         const button =
             document.createElement("button");
 
-        button.className =
-            "amount-button";
+        button.className = "amount";
 
-        if(amount === selectedAmount){
+        if(value === selectedAmount){
             button.classList.add("selected");
         }
 
-        button.innerHTML = `
-            $${amount}
-            <small style="
-                display:block;
-                color:#9999aa;
-                margin-top:4px
-            ">
-                ≈ ${(sellingPrice * usdToTnd).toFixed(0)} TND
-            </small>
-        `;
+        button.textContent =
+            `$${value.toFixed(2)}`;
 
         button.onclick = () => {
 
-            selectedAmount = amount;
+            selectedAmount = value;
 
-            renderAmounts();
+            document
+                .querySelectorAll(".amount")
+                .forEach(x =>
+                    x.classList.remove("selected")
+                );
 
+            button.classList.add("selected");
+
+            updateTotal();
         };
 
-        grid.appendChild(button);
+        amounts.appendChild(button);
+    });
+
+    document.getElementById("customerEmail")
+        .value = "";
+
+    document.getElementById("checkoutMessage")
+        .textContent = "";
+
+    updateTotal();
+
+    document
+        .getElementById("productModal")
+        .classList.remove("hidden");
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+function updateTotal(){
+
+    if(!selectedProduct) return;
+
+    const gift =
+        selectedAmount;
+
+    const fee =
+        selectedProduct.fee;
+
+    const total =
+        gift + fee;
+
+    document.getElementById("giftPrice")
+        .textContent =
+        `$${gift.toFixed(2)}`;
+
+    document.getElementById("fee")
+        .textContent =
+        `$${fee.toFixed(2)}`;
+
+    document.getElementById("total")
+        .textContent =
+        `$${total.toFixed(2)}`;
+
+    /*
+       TND is intentionally approximate on the frontend.
+       Your backend should be the source of truth for
+       real transaction/accounting rates.
+    */
+
+    const estimatedRate = 2.95;
+
+    document.getElementById("tndPrice")
+        .textContent =
+        `≈ ${(total * estimatedRate).toFixed(2)} TND`;
+}
+
+
+/* =========================================================
+   CART
+========================================================= */
+
+function addToCart(){
+
+    if(!selectedProduct || !selectedAmount)
+        return;
+
+    cart.push({
+
+        id:
+            Date.now(),
+
+        product:
+            selectedProduct.id,
+
+        name:
+            selectedProduct.name,
+
+        amount:
+            selectedAmount,
+
+        fee:
+            selectedProduct.fee,
+
+        logo:
+            selectedProduct.logo
 
     });
 
-}
-
-
-/* =========================================================
-QUANTITY
-========================================================= */
-
-function changeQuantity(amount){
-
-    currentQuantity += amount;
-
-    if(currentQuantity < 1){
-        currentQuantity = 1;
-    }
-
-    if(currentQuantity > 10){
-        currentQuantity = 10;
-    }
-
-    document
-        .getElementById("quantity")
-        .textContent =
-        currentQuantity;
-
-}
-
-
-/* =========================================================
-ADD CART
-========================================================= */
-
-function addCurrentToCart(){
-
-    if(!currentProduct || !selectedAmount){
-        return;
-    }
-
-    for(let i=0;i<currentQuantity;i++){
-
-        cart.push({
-
-            id:Date.now() + Math.random(),
-
-            productId:currentProduct.id,
-
-            name:currentProduct.name,
-
-            amount:selectedAmount,
-
-            price:calculateSellingPrice(selectedAmount),
-
-            logo:currentProduct.logo
-
-        });
-
-    }
-
     saveCart();
 
+    closeModal("productModal");
+
     updateCartCount();
-
-    showToast(
-        `${currentProduct.name} added 🛒`
-    );
-
-    showPage("checkout");
-
 }
 
-
-/* =========================================================
-CART
-========================================================= */
 
 function saveCart(){
 
@@ -2423,292 +1257,192 @@ function saveCart(){
         "gifty_cart",
         JSON.stringify(cart)
     );
-
-}
-
-
-function loadCart(){
-
-    try{
-
-        const saved =
-            localStorage.getItem("gifty_cart");
-
-        if(saved){
-            cart = JSON.parse(saved);
-        }
-
-    }catch(error){
-
-        cart = [];
-
-    }
-
 }
 
 
 function updateCartCount(){
 
-    document
-        .getElementById("cartCount")
+    document.getElementById("cartCount")
         .textContent =
         cart.length;
+}
 
+
+function openCart(){
+
+    renderCart();
+
+    document
+        .getElementById("cartModal")
+        .classList.remove("hidden");
+}
+
+
+function renderCart(){
+
+    const container =
+        document.getElementById("cartItems");
+
+    if(!cart.length){
+
+        container.innerHTML = `
+            <div style="
+                text-align:center;
+                padding:40px 10px;
+                color:#888;
+            ">
+                🛒<br><br>
+                Your cart is empty.
+            </div>
+        `;
+
+        document.getElementById("cartTotal")
+            .textContent = "$0.00";
+
+        return;
+    }
+
+    let total = 0;
+
+    container.innerHTML = "";
+
+    cart.forEach(item => {
+
+        total +=
+            item.amount + item.fee;
+
+        const row =
+            document.createElement("div");
+
+        row.className = "cart-item";
+
+        row.innerHTML = `
+
+            <div class="cart-item-info">
+
+                <img src="${item.logo}">
+
+                <div>
+                    <strong>${item.name}</strong>
+
+                    <div style="color:#888">
+                        $${item.amount.toFixed(2)}
+                        + $${item.fee.toFixed(2)} fee
+                    </div>
+                </div>
+
+            </div>
+
+            <button
+                class="remove"
+                onclick="removeCartItem(${item.id})"
+            >
+                Remove
+            </button>
+        `;
+
+        container.appendChild(row);
+    });
+
+    document.getElementById("cartTotal")
+        .textContent =
+        `$${total.toFixed(2)}`;
 }
 
 
 function removeCartItem(id){
 
     cart =
-        cart.filter(item => item.id !== id);
+        cart.filter(item =>
+            item.id !== id
+        );
 
     saveCart();
 
     updateCartCount();
 
     renderCart();
-
-}
-
-
-function renderCart(){
-
-    const empty =
-        document.getElementById("emptyCart");
-
-    const content =
-        document.getElementById("checkoutContent");
-
-    const items =
-        document.getElementById("cartItems");
-
-    if(cart.length === 0){
-
-        empty.classList.remove("hidden");
-
-        content.classList.add("hidden");
-
-        return;
-
-    }
-
-    empty.classList.add("hidden");
-
-    content.classList.remove("hidden");
-
-    items.innerHTML = "";
-
-    cart.forEach(item => {
-
-        items.innerHTML += `
-
-        <div class="order-item">
-
-            <div class="order-item-info">
-
-                <img
-                    src="${item.logo}"
-                    alt="${item.name}"
-                >
-
-                <div>
-
-                    <strong>
-                        ${item.name}
-                    </strong>
-
-                    <small>
-                        $${item.amount} card
-                    </small>
-
-                </div>
-
-            </div>
-
-            <div>
-
-                <strong>
-                    $${item.price.toFixed(2)}
-                </strong>
-
-                <br>
-
-                <button
-                    class="remove-btn"
-                    onclick="removeCartItem(${item.id})"
-                >
-                    Remove
-                </button>
-
-            </div>
-
-        </div>
-
-        `;
-
-    });
-
-    updateCheckout();
-
 }
 
 
 /* =========================================================
-CHECKOUT CALCULATIONS
+   CHECKOUT
 ========================================================= */
 
-function updateCheckout(){
-
-    const subtotalElement =
-        document.getElementById("subtotal");
-
-    if(!subtotalElement){
-        return;
-    }
-
-    const subtotal =
-        cart.reduce(
-            (total,item) =>
-            total + item.price,
-            0
-        );
-
-    const fee =
-        cart.length > 0
-        ? SERVICE_FEE
-        : 0;
-
-    const total =
-        subtotal + fee;
-
-    document
-        .getElementById("subtotal")
-        .textContent =
-        `$${subtotal.toFixed(2)}`;
-
-    document
-        .getElementById("serviceFee")
-        .textContent =
-        `$${fee.toFixed(2)}`;
-
-    document
-        .getElementById("total")
-        .textContent =
-        `$${total.toFixed(2)}`;
-
-    document
-        .getElementById("totalTnd")
-        .textContent =
-        `${(total * usdToTnd).toFixed(2)} TND`;
-
-}
-
-
-/* =========================================================
-STRIPE
-========================================================= */
-
-async function startStripeCheckout(){
-
-    if(cart.length === 0){
-
-        showToast("Your cart is empty.");
-
-        return;
-
-    }
+async function checkout(){
 
     const email =
-        document
-        .getElementById("email")
+        document.getElementById("customerEmail")
         .value
         .trim();
 
-    const recipient =
-        document
-        .getElementById("recipientEmail")
-        .value
-        .trim();
+    if(!email ||
+       !email.includes("@")){
 
-    if(!email){
-
-        showToast("Enter your email first.");
+        document.getElementById("checkoutMessage")
+            .textContent =
+            "Please enter a valid email address.";
 
         return;
-
     }
 
-    if(!recipient){
-
-        showToast(
-            "Enter the recipient email."
-        );
+    if(!selectedProduct ||
+       !selectedAmount){
 
         return;
-
     }
-
 
     /*
-    IMPORTANT:
-
-    You cannot securely create a Stripe Checkout Session
-    directly from this HTML file.
-
-    Your backend should have:
-
-        POST /create-checkout-session
-
-    and create the Stripe Checkout Session using your
-    Stripe SECRET KEY.
-
-    Then return:
-
-        { "url": "https://checkout.stripe.com/..." }
-
+       Your backend endpoint.
+       Replace with your deployed backend URL.
     */
 
+    const API_URL =
+        "https://YOUR-BACKEND-DOMAIN.com";
+
+    const message =
+        document.getElementById("checkoutMessage");
+
+    message.textContent =
+        "Creating secure checkout...";
 
     try{
 
         const response =
             await fetch(
-                "/create-checkout-session",
+                API_URL + "/create-checkout-session",
                 {
                     method:"POST",
 
                     headers:{
                         "Content-Type":
-                        "application/json"
+                            "application/json"
                     },
 
                     body:JSON.stringify({
 
-                        email:email,
+                        productId:
+                            selectedProduct.id,
 
-                        recipientEmail:
-                        recipient,
+                        amount:
+                            selectedAmount,
 
-                        items:cart
+                        email:
+                            email
 
                     })
-
                 }
             );
-
-
-        if(!response.ok){
-
-            throw new Error(
-                "Stripe backend unavailable"
-            );
-
-        }
-
 
         const data =
             await response.json();
 
+        if(!response.ok){
+            throw new Error(
+                data.error ||
+                "Checkout failed."
+            );
+        }
 
         if(data.url){
 
@@ -2718,92 +1452,158 @@ async function startStripeCheckout(){
         }else{
 
             throw new Error(
-                "Stripe URL missing"
+                "Stripe checkout URL missing."
             );
-
         }
 
     }catch(error){
 
-        console.error(error);
-
-        /*
-        This message appears until you connect
-        your Stripe backend.
-        */
-
-        showToast(
-            "Stripe backend isn't connected yet."
-        );
+        message.textContent =
+            error.message ||
+            "Something went wrong.";
 
     }
+}
+
+
+/* =========================================================
+   CART CHECKOUT
+========================================================= */
+
+async function checkoutCart(){
+
+    if(!cart.length){
+
+        alert("Your cart is empty.");
+
+        return;
+    }
+
+    /*
+       For the first production version,
+       single-product checkout is recommended.
+
+       This prevents accidentally processing
+       multiple digital codes without a proper
+       backend order system.
+    */
+
+    const first = cart[0];
+
+    closeModal("cartModal");
+
+    openProduct(first.product);
 
 }
 
 
 /* =========================================================
-FAQ
+   FILTER
 ========================================================= */
 
-function toggleFaq(element){
+function filterCategory(category, button){
 
-    const item =
-        element.parentElement;
+    document
+        .querySelectorAll(".category")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
 
-    item.classList.toggle("open");
+    if(button){
+        button.classList.add("active");
+    }
 
+    const filtered =
+        category === "all"
+        ? products
+        : products.filter(
+            p => p.category === category
+        );
+
+    renderProducts(filtered);
+
+    scrollShop();
 }
 
 
 /* =========================================================
-TOAST
+   SEARCH
 ========================================================= */
 
-let toastTimer;
+document
+    .getElementById("search")
+    .addEventListener(
+        "input",
+        function(){
 
-function showToast(message){
+            const query =
+                this.value
+                    .toLowerCase()
+                    .trim();
 
-    const toast =
-        document.getElementById("toast");
+            const results =
+                products.filter(product =>
 
-    toast.textContent =
-        message;
+                    product.name
+                        .toLowerCase()
+                        .includes(query)
 
-    toast.classList.add("show");
+                    ||
 
-    clearTimeout(toastTimer);
+                    product.description
+                        .toLowerCase()
+                        .includes(query)
 
-    toastTimer =
-        setTimeout(() => {
+                    ||
 
-            toast.classList.remove("show");
+                    product.category
+                        .toLowerCase()
+                        .includes(query)
+                );
 
-        },2500);
+            renderProducts(results);
+        }
+    );
 
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goHome(){
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+function scrollShop(){
+
+    document
+        .getElementById("shop")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+}
+
+
+function closeModal(id){
+
+    document
+        .getElementById(id)
+        .classList.add("hidden");
 }
 
 
 /* =========================================================
-INITIALIZE
+   INIT
 ========================================================= */
-
-loadCart();
 
 renderProducts();
 
 updateCartCount();
-
-updateExchangeRate();
-
-
-/*
-Refresh exchange rate every 24 hours.
-*/
-
-setInterval(
-    updateExchangeRate,
-    24 * 60 * 60 * 1000
-);
 
 </script>
 
