@@ -1,1005 +1,2222 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gifty — Digital Gift Cards</title>
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
+
+<title>GIFty TN — Digital Gift Cards</title>
+
+<meta
+name="description"
+content="GIFty TN — Digital gift cards for gaming, music, streaming and apps."
+>
 
 <style>
+
+/* =========================================================
+GIFty TN
+Complete single-file storefront
+========================================================= */
+
+:root {
+
+--bg: #07070d;
+--bg2: #0d0d17;
+
+--card: rgba(255,255,255,.045);
+
+--border: rgba(255,255,255,.10);
+
+--text: #ffffff;
+--muted: #9898aa;
+
+--purple: #9b5cff;
+--pink: #ff4fc3;
+--blue: #42a5ff;
+--cyan: #31e7ff;
+
+--green: #35e58a;
+
+--radius: 22px;
+
+}
+
 * {
 box-sizing: border-box;
+
+margin: 0;
+padding: 0;
+}
+
+html {
+scroll-behavior: smooth;
 }
 
 body {
-margin: 0;
-font-family: Arial, Helvetica, sans-serif;
-background: #f7f7fb;
-color: #151515;
+
+font-family:
+Inter,
+Arial,
+Helvetica,
+sans-serif;
+
+background:
+
+radial-gradient(
+circle at 10% 0%,
+rgba(155,92,255,.16),
+transparent 30%
+),
+
+radial-gradient(
+circle at 90% 10%,
+rgba(255,79,195,.12),
+transparent 28%
+),
+
+var(--bg);
+
+color: var(--text);
+
+min-height: 100vh;
+
 }
+
+/* =========================================================
+SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+width: 8px;
+}
+
+::-webkit-scrollbar-track {
+background: #07070d;
+}
+
+::-webkit-scrollbar-thumb {
+
+background:
+linear-gradient(
+var(--purple),
+var(--pink)
+);
+
+border-radius: 20px;
+}
+
+/* =========================================================
+GLOBAL
+========================================================= */
 
 button,
 input {
-font: inherit;
+
+font-family: inherit;
+
 }
 
 button {
 cursor: pointer;
-border: 0;
 }
 
-.nav {
-height: 70px;
-background: white;
-border-bottom: 1px solid #eee;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 0 6%;
+.hidden {
+display: none !important;
+}
+
+/* =========================================================
+TOP BAR
+========================================================= */
+
+.topbar {
+
+background:
+linear-gradient(
+90deg,
+rgba(155,92,255,.15),
+rgba(255,79,195,.10)
+);
+
+border-bottom:
+1px solid
+rgba(255,255,255,.06);
+
+text-align: center;
+
+padding: 8px;
+
+font-size: 12px;
+
+color: #d9d9e6;
+
+}
+
+.topbar strong {
+color: white;
+}
+
+/* =========================================================
+NAVBAR
+========================================================= */
+
+.navbar {
+
 position: sticky;
+
 top: 0;
-z-index: 5;
+
+z-index: 1000;
+
+display: flex;
+
+align-items: center;
+
+gap: 25px;
+
+padding: 16px 5%;
+
+background:
+rgba(7,7,13,.82);
+
+backdrop-filter:
+blur(20px);
+
+border-bottom:
+1px solid
+rgba(255,255,255,.07);
+
 }
 
 .logo {
-font-size: 24px;
-font-weight: 800;
-background: none;
+
+font-size: 27px;
+
+font-weight: 950;
+
+letter-spacing: -1.5px;
+
+white-space: nowrap;
+
+background:
+linear-gradient(
+90deg,
+#b86cff,
+#ff4fc3,
+#5eb8ff
+);
+
+-webkit-background-clip: text;
+
+background-clip: text;
+
+color: transparent;
+
 }
 
-.nav button:not(.logo) {
-background: none;
-margin-left: 18px;
-font-weight: bold;
-}
+.logo span {
 
-.screen {
-display: none;
-min-height: calc(100vh - 70px);
-padding: 50px 6%;
-}
-
-.screen.active {
-display: block;
-}
-
-.hero {
-text-align: center;
-padding: 80px 10px;
-}
-
-.hero h1 {
-font-size: clamp(42px, 7vw, 72px);
-margin: 0 0 15px;
-}
-
-.hero p {
-color: #707070;
-font-size: 20px;
-max-width: 650px;
-margin: 0 auto 30px;
-line-height: 1.5;
-}
-
-.primary {
-background: #111;
 color: white;
-border-radius: 30px;
-padding: 14px 23px;
-font-weight: bold;
+
+-webkit-text-fill-color: white;
+
 }
 
-.title {
-text-align: center;
-margin-bottom: 30px;
+.search-wrap {
+
+position: relative;
+
+flex: 1;
+
+max-width: 600px;
+
 }
 
-.title h1 {
-font-size: 40px;
-}
+.search-icon {
 
-.muted {
-color: #707070;
-}
+position: absolute;
 
-.grid {
-max-width: 1100px;
-margin: auto;
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(205px, 1fr));
-gap: 18px;
-}
+left: 15px;
 
-.card {
-background: white;
-border: 1px solid #e8e8ed;
-border-radius: 22px;
-padding: 25px;
-box-shadow: 0 7px 22px #00000008;
-transition: 0.2s;
-}
+top: 50%;
 
-.card:hover {
-transform: translateY(-3px);
-box-shadow: 0 12px 30px #00000012;
-}
+transform: translateY(-50%);
 
-.icon {
-font-size: 48px;
-margin-bottom: 12px;
-}
+opacity: .6;
 
-.card p {
-color: #707070;
-line-height: 1.45;
 }
 
 .search {
-max-width: 700px;
-margin: 0 auto 25px;
-}
 
-.search input {
 width: 100%;
-padding: 16px 20px;
-border: 1px solid #ddd;
-border-radius: 30px;
+
+padding:
+13px
+18px
+13px
+43px;
+
+border:
+1px solid
+rgba(255,255,255,.11);
+
+border-radius: 15px;
+
 outline: none;
-}
 
-.product {
-max-width: 800px;
-margin: auto;
-background: white;
-border: 1px solid #e8e8ed;
-border-radius: 25px;
-padding: 30px;
-display: grid;
-grid-template-columns: 170px 1fr;
-gap: 30px;
-}
+background: #11111b;
 
-.big {
-font-size: 100px;
-text-align: center;
-}
-
-.amounts {
-display: flex;
-gap: 10px;
-flex-wrap: wrap;
-margin: 15px 0;
-}
-
-.amount {
-padding: 12px 18px;
-border-radius: 12px;
-background: #eee;
-font-weight: bold;
-}
-
-.amount.selected {
-background: #111;
 color: white;
+
+transition: .2s;
+
 }
 
-.summary {
-background: #f6f6f6;
-padding: 18px;
-border-radius: 16px;
-margin: 18px 0;
+.search::placeholder {
+color: #777789;
 }
 
-.summary div {
+.search:focus {
+
+border-color:
+rgba(155,92,255,.7);
+
+box-shadow:
+0 0 25px
+rgba(155,92,255,.15);
+
+}
+
+.nav-actions {
+
 display: flex;
-justify-content: space-between;
-padding: 6px 0;
+
+align-items: center;
+
+gap: 12px;
+
+margin-left: auto;
+
 }
 
-.summary .total {
-border-top: 1px solid #ddd;
-margin-top: 8px;
-padding-top: 12px;
-font-weight: bold;
+.nav-button {
+
+background: transparent;
+
+color: white;
+
+border: none;
+
+padding: 9px 12px;
+
+font-weight: 700;
+
 }
 
-.checkout,
-.success {
-max-width: 600px;
-margin: auto;
-background: white;
-border: 1px solid #e8e8ed;
-border-radius: 25px;
-padding: 30px;
+.cart-button {
+
+display: flex;
+
+align-items: center;
+
+gap: 8px;
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+background: #151520;
+
+color: white;
+
+padding: 10px 14px;
+
+border-radius: 13px;
+
 }
 
-.checkout h1 {
-text-align: center;
+.cart-count {
+
+min-width: 21px;
+
+height: 21px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+border-radius: 50%;
+
+background:
+linear-gradient(
+135deg,
+var(--purple),
+var(--pink)
+);
+
+font-size: 11px;
+
+font-weight: 900;
+
 }
 
-.full {
-display: block;
-text-align: center;
-width: 100%;
-text-decoration: none;
+/* =========================================================
+CATEGORY NAV
+========================================================= */
+
+.category-bar {
+
+display: flex;
+
+align-items: center;
+
+gap: 8px;
+
+padding:
+13px
+5%;
+
+overflow-x: auto;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.05);
+
 }
 
-.notice {
-background: #fff6dc;
-padding: 12px;
+.category {
+
+border: none;
+
+background: transparent;
+
+color: #aaaabd;
+
+padding:
+9px
+15px;
+
 border-radius: 12px;
+
+font-weight: 800;
+
+white-space: nowrap;
+
+transition: .2s;
+
+}
+
+.category:hover {
+
+color: white;
+
+background: rgba(255,255,255,.06);
+
+}
+
+.category.active {
+
+color: white;
+
+background:
+linear-gradient(
+90deg,
+#8d4cff,
+#e946b8
+);
+
+box-shadow:
+0 0 25px
+rgba(155,92,255,.25);
+
+}
+
+/* =========================================================
+PAGES
+========================================================= */
+
+.page {
+
+min-height: calc(100vh - 130px);
+
+}
+
+.page-container {
+
+width: 90%;
+
+max-width: 1400px;
+
+margin: auto;
+
+}
+
+/* =========================================================
+HERO
+========================================================= */
+
+.hero {
+
+padding:
+80px
+0
+60px;
+
+display: grid;
+
+grid-template-columns:
+1.1fr
+.9fr;
+
+gap: 60px;
+
+align-items: center;
+
+}
+
+.hero h1 {
+
+font-size:
+clamp(
+48px,
+6vw,
+85px
+);
+
+line-height: .94;
+
+letter-spacing: -5px;
+
+max-width: 850px;
+
+}
+
+.gradient-text {
+
+background:
+linear-gradient(
+90deg,
+#b66cff,
+#ff4fc3,
+#59b4ff
+);
+
+-webkit-background-clip: text;
+
+background-clip: text;
+
+color: transparent;
+
+}
+
+.hero-description {
+
+color: #a2a2b5;
+
+font-size: 18px;
+
+line-height: 1.7;
+
+margin-top: 25px;
+
+max-width: 620px;
+
+}
+
+.hero-buttons {
+
+display: flex;
+
+gap: 12px;
+
+margin-top: 30px;
+
+flex-wrap: wrap;
+
+}
+
+.primary-btn {
+
+border: none;
+
+color: white;
+
+padding:
+15px
+23px;
+
+border-radius: 14px;
+
+font-weight: 900;
+
+background:
+linear-gradient(
+90deg,
+#8f4cff,
+#ec46b9
+);
+
+box-shadow:
+0 10px 35px
+rgba(155,92,255,.22);
+
+transition: .2s;
+
+}
+
+.primary-btn:hover {
+
+transform:
+translateY(-3px);
+
+box-shadow:
+0 15px 45px
+rgba(155,92,255,.35);
+
+}
+
+.secondary-btn {
+
+border:
+1px solid
+rgba(255,255,255,.12);
+
+color: white;
+
+background: #12121c;
+
+padding:
+15px
+23px;
+
+border-radius: 14px;
+
+font-weight: 800;
+
+}
+
+.hero-art {
+
+min-height: 420px;
+
+position: relative;
+
+overflow: hidden;
+
+border:
+1px solid
+rgba(255,255,255,.11);
+
+border-radius: 32px;
+
+background:
+
+radial-gradient(
+circle at 30% 30%,
+rgba(155,92,255,.4),
+transparent 35%
+),
+
+radial-gradient(
+circle at 80% 20%,
+rgba(255,79,195,.35),
+transparent 30%
+),
+
+#10101b;
+
+box-shadow:
+0 40px 100px
+rgba(0,0,0,.5);
+
+}
+
+.hero-art::before {
+
+content: "";
+
+position: absolute;
+
+width: 260px;
+
+height: 260px;
+
+background:
+linear-gradient(
+135deg,
+var(--purple),
+var(--pink)
+);
+
+filter: blur(90px);
+
+opacity: .35;
+
+left: 40px;
+
+top: 50px;
+
+}
+
+.floating-card {
+
+position: absolute;
+
+border:
+1px solid
+rgba(255,255,255,.15);
+
+background:
+rgba(255,255,255,.07);
+
+backdrop-filter:
+blur(15px);
+
+border-radius: 22px;
+
+padding: 22px;
+
+box-shadow:
+0 25px 70px
+rgba(0,0,0,.4);
+
+}
+
+.float-one {
+
+width: 210px;
+
+top: 50px;
+
+left: 45px;
+
+transform:
+rotate(-8deg);
+
+}
+
+.float-two {
+
+width: 210px;
+
+right: 45px;
+
+top: 105px;
+
+transform:
+rotate(8deg);
+
+}
+
+.float-three {
+
+width: 230px;
+
+bottom: 40px;
+
+left: 50%;
+
+transform:
+translateX(-50%)
+rotate(-2deg);
+
+}
+
+.float-logo {
+
+width: 55px;
+
+height: 55px;
+
+object-fit: contain;
+
+margin-bottom: 14px;
+
+}
+
+.floating-card strong {
+
+display: block;
+
+font-size: 19px;
+
+}
+
+.floating-card small {
+
+color: #a5a5b7;
+
+}
+
+/* =========================================================
+SECTION
+========================================================= */
+
+.section {
+
+padding:
+30px
+0
+90px;
+
+}
+
+.section-heading {
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: end;
+
+margin-bottom: 25px;
+
+gap: 20px;
+
+}
+
+.section-heading h2 {
+
+font-size: 34px;
+
+letter-spacing: -1px;
+
+}
+
+.section-heading p {
+
+color: #89899c;
+
+margin-top: 6px;
+
+}
+
+/* =========================================================
+FILTER PILLS
+========================================================= */
+
+.filter-row {
+
+display: flex;
+
+gap: 10px;
+
+overflow-x: auto;
+
+margin-bottom: 30px;
+
+}
+
+.filter {
+
+padding:
+9px
+14px;
+
+border:
+1px solid
+rgba(255,255,255,.09);
+
+background: #11111b;
+
+color: #aaaabd;
+
+border-radius: 12px;
+
+white-space: nowrap;
+
+}
+
+.filter.active {
+
+color: white;
+
+background:
+rgba(155,92,255,.18);
+
+border-color:
+rgba(155,92,255,.5);
+
+}
+
+/* =========================================================
+PRODUCT GRID
+========================================================= */
+
+.product-grid {
+
+display: grid;
+
+grid-template-columns:
+repeat(
+auto-fit,
+minmax(
+245px,
+1fr
+)
+);
+
+gap: 20px;
+
+}
+
+.product-card {
+
+position: relative;
+
+overflow: hidden;
+
+min-height: 340px;
+
+padding: 23px;
+
+border:
+1px solid
+rgba(255,255,255,.08);
+
+border-radius: 23px;
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.055),
+rgba(255,255,255,.018)
+);
+
+transition:
+transform .25s,
+border-color .25s,
+box-shadow .25s;
+
+}
+
+.product-card::after {
+
+content: "";
+
+position: absolute;
+
+width: 170px;
+
+height: 170px;
+
+right: -80px;
+
+top: -80px;
+
+border-radius: 50%;
+
+background:
+var(--product-glow);
+
+filter: blur(60px);
+
+opacity: .16;
+
+}
+
+.product-card:hover {
+
+transform:
+translateY(-8px);
+
+border-color:
+rgba(255,255,255,.18);
+
+box-shadow:
+0 25px 60px
+rgba(0,0,0,.35);
+
+}
+
+.product-top {
+
+display: flex;
+
+align-items: start;
+
+justify-content: space-between;
+
+}
+
+.brand-logo {
+
+width: 70px;
+
+height: 70px;
+
+padding: 14px;
+
+border-radius: 19px;
+
+object-fit: contain;
+
+background:
+var(--logo-bg);
+
+box-shadow:
+0 0 35px
+var(--product-glow);
+
+}
+
+.badge {
+
+font-size: 10px;
+
+font-weight: 900;
+
+padding:
+6px
+9px;
+
+border-radius: 20px;
+
+background:
+linear-gradient(
+90deg,
+#ec46b9,
+#8f4cff
+);
+
+}
+
+.product-card h3 {
+
+font-size: 22px;
+
+margin-top: 23px;
+
+}
+
+.product-card p {
+
+color: #9696a9;
+
+line-height: 1.5;
+
 font-size: 14px;
-color: #725900;
-margin: 15px 0;
+
+min-height: 45px;
+
+margin-top: 8px;
+
 }
 
-.success {
+.product-price {
+
+font-weight: 900;
+
+font-size: 18px;
+
+margin-top: 18px;
+
+}
+
+.product-button {
+
+width: 100%;
+
+margin-top: 16px;
+
+padding: 13px;
+
+border: none;
+
+border-radius: 13px;
+
+background: white;
+
+color: #09090f;
+
+font-weight: 900;
+
+transition: .2s;
+
+}
+
+.product-button:hover {
+
+background: #d7b5ff;
+
+transform: scale(1.015);
+
+}
+
+/* =========================================================
+EMPTY SEARCH
+========================================================= */
+
+.empty-state {
+
 text-align: center;
-padding: 60px 25px;
+
+padding: 70px 20px;
+
+color: #777789;
+
 }
 
-.check {
-font-size: 65px;
+.empty-state .emoji {
+
+font-size: 50px;
+
+margin-bottom: 15px;
+
 }
+
+/* =========================================================
+PRODUCT PAGE
+========================================================= */
+
+.product-page {
+
+padding:
+60px 0;
+
+}
+
+.back-button {
+
+border: none;
+
+background: transparent;
+
+color: #aaaabd;
+
+margin-bottom: 30px;
+
+font-weight: 800;
+
+}
+
+.product-detail {
+
+display: grid;
+
+grid-template-columns:
+.8fr
+1.2fr;
+
+gap: 50px;
+
+align-items: center;
+
+}
+
+.detail-logo-area {
+
+min-height: 420px;
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+border-radius: 30px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+background:
+radial-gradient(
+circle,
+rgba(155,92,255,.18),
+transparent 60%
+);
+
+}
+
+.detail-logo {
+
+width: 170px;
+
+height: 170px;
+
+object-fit: contain;
+
+filter:
+drop-shadow(
+0 0 40px
+rgba(155,92,255,.45)
+);
+
+}
+
+.detail-info h1 {
+
+font-size: 55px;
+
+letter-spacing: -3px;
+
+}
+
+.detail-info p {
+
+color: #9999aa;
+
+line-height: 1.7;
+
+margin-top: 15px;
+
+}
+
+.amount-title {
+
+margin-top: 30px;
+
+margin-bottom: 12px;
+
+font-weight: 900;
+
+}
+
+.amount-grid {
+
+display: grid;
+
+grid-template-columns:
+repeat(
+auto-fit,
+minmax(100px,1fr)
+);
+
+gap: 10px;
+
+}
+
+.amount-button {
+
+padding: 14px;
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+background: #11111b;
+
+color: white;
+
+border-radius: 13px;
+
+font-weight: 900;
+
+}
+
+.amount-button.selected {
+
+background:
+linear-gradient(
+90deg,
+#8f4cff,
+#ec46b9
+);
+
+border-color: transparent;
+
+}
+
+.email-input {
+
+width: 100%;
+
+margin-top: 15px;
+
+padding: 14px;
+
+background: #11111b;
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+color: white;
+
+border-radius: 13px;
+
+outline: none;
+
+}
+
+/* =========================================================
+CART / CHECKOUT
+========================================================= */
+
+.checkout-page {
+
+padding:
+55px 0
+90px;
+
+}
+
+.checkout-layout {
+
+display: grid;
+
+grid-template-columns:
+1.2fr
+.8fr;
+
+gap: 25px;
+
+}
+
+.checkout-box {
+
+background:
+rgba(255,255,255,.04);
+
+border:
+1px solid
+rgba(255,255,255,.09);
+
+border-radius: 22px;
+
+padding: 25px;
+
+}
+
+.checkout-box h2 {
+
+margin-bottom: 20px;
+
+}
+
+.field {
+
+margin-bottom: 18px;
+
+}
+
+.field label {
+
+display: block;
+
+font-size: 13px;
+
+font-weight: 800;
+
+color: #bdbdcd;
+
+margin-bottom: 8px;
+
+}
+
+.field input {
+
+width: 100%;
+
+padding: 14px;
+
+background: #11111b;
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+color: white;
+
+border-radius: 13px;
+
+outline: none;
+
+}
+
+.order-item {
+
+display: flex;
+
+justify-content: space-between;
+
+gap: 15px;
+
+padding:
+15px
+0;
+
+border-bottom:
+1px solid
+rgba(255,255,255,.06);
+
+}
+
+.order-item-info {
+
+display: flex;
+
+gap: 12px;
+
+align-items: center;
+
+}
+
+.order-item img {
+
+width: 45px;
+
+height: 45px;
+
+object-fit: contain;
+
+background: #171722;
+
+padding: 8px;
+
+border-radius: 12px;
+
+}
+
+.order-item small {
+
+color: #858598;
+
+}
+
+.summary-line {
+
+display: flex;
+
+justify-content: space-between;
+
+margin-top: 15px;
+
+color: #a5a5b7;
+
+}
+
+.summary-total {
+
+display: flex;
+
+justify-content: space-between;
+
+margin-top: 20px;
+
+padding-top: 20px;
+
+border-top:
+1px solid
+rgba(255,255,255,.08);
+
+font-size: 21px;
+
+font-weight: 950;
+
+}
+
+/* =========================================================
+CONFIRMATION
+========================================================= */
+
+.confirmation {
+
+min-height:
+calc(
+100vh - 160px
+);
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+padding: 50px 20px;
+
+}
+
+.confirmation-box {
+
+text-align: center;
+
+max-width: 650px;
+
+padding: 50px 30px;
+
+border:
+1px solid
+rgba(255,255,255,.1);
+
+background:
+rgba(255,255,255,.04);
+
+border-radius: 30px;
+
+}
+
+.success-icon {
+
+width: 90px;
+
+height: 90px;
+
+margin:
+0 auto
+25px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+border-radius: 50%;
+
+background:
+rgba(53,229,138,.12);
+
+color:
+var(--green);
+
+font-size: 45px;
+
+}
+
+.confirmation-box h1 {
+
+font-size: 45px;
+
+}
+
+.confirmation-box p {
+
+color: #9999aa;
+
+line-height: 1.7;
+
+margin-top: 12px;
+
+}
+
+/* =========================================================
+FOOTER
+========================================================= */
 
 footer {
-text-align: center;
-padding: 25px;
-color: #888;
-border-top: 1px solid #eee;
-background: white;
+
+border-top:
+1px solid
+rgba(255,255,255,.07);
+
+padding:
+50px 5%;
+
+color: #777789;
+
 }
 
-@media (max-width: 650px) {
+.footer-inner {
 
-.nav {
-padding: 0 4%;
+max-width: 1400px;
+
+margin: auto;
+
+display: flex;
+
+justify-content: space-between;
+
+gap: 30px;
+
+flex-wrap: wrap;
+
 }
 
-.nav button:not(.logo) {
-margin-left: 7px;
-font-size: 12px;
+.footer-brand {
+
+color: white;
+
+font-size: 20px;
+
+font-weight: 900;
+
 }
 
-.product {
+/* =========================================================
+MOBILE
+========================================================= */
+
+@media(max-width:900px) {
+
+.navbar {
+
+flex-wrap: wrap;
+
+}
+
+.search-wrap {
+
+order: 3;
+
+flex-basis: 100%;
+
+max-width: none;
+
+}
+
+.hero {
+
 grid-template-columns: 1fr;
-text-align: center;
+
+padding-top: 50px;
+
 }
 
-.amounts {
-justify-content: center;
+.hero-art {
+
+min-height: 330px;
+
 }
+
+.product-detail {
+
+grid-template-columns: 1fr;
+
 }
+
+.checkout-layout {
+
+grid-template-columns: 1fr;
+
+}
+
+}
+
+@media(max-width:600px) {
+
+.hero h1 {
+
+font-size: 48px;
+
+letter-spacing: -3px;
+
+}
+
+.hero-description {
+
+font-size: 16px;
+
+}
+
+.float-one {
+
+left: 15px;
+
+}
+
+.float-two {
+
+right: 15px;
+
+}
+
+.float-three {
+
+bottom: 25px;
+
+}
+
+.nav-button {
+
+display: none;
+
+}
+
+}
+
+/* =========================================================
+ANIMATIONS
+========================================================= */
+
+@keyframes pulse {
+
+0% {
+transform: scale(1);
+}
+
+50% {
+transform: scale(1.04);
+}
+
+100% {
+transform: scale(1);
+}
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<!-- NAVIGATION -->
 
-<nav class="nav">
+<!-- =======================================================
+TOP BAR
+======================================================= -->
 
-<button class="logo" onclick="show('home')">
-🎁 Gifty
+<div class="topbar">
+
+⚡ <strong>GIFty TN</strong>
+— Digital gifts made simple.
+
+</div>
+
+
+<!-- =======================================================
+NAVBAR
+======================================================= -->
+
+<nav class="navbar">
+
+<button
+class="nav-button"
+onclick="showPage('home')"
+>
+
+<div class="logo">
+GIFty <span>TN</span>
+</div>
+
 </button>
 
-<div>
-<button onclick="show('home')">
+
+<div class="search-wrap">
+
+<span class="search-icon">
+🔎
+</span>
+
+<input
+id="searchInput"
+class="search"
+type="text"
+placeholder="Search Steam, Spotify, Roblox..."
+autocomplete="off"
+>
+
+</div>
+
+
+<div class="nav-actions">
+
+<button
+class="nav-button"
+onclick="showPage('home')"
+>
 Home
 </button>
 
-<button onclick="show('search')">
-Search 🔎
+<button
+class="nav-button"
+onclick="scrollToShop()"
+>
+Shop
 </button>
 
-<button onclick="show('shop')">
-Shop Gifts
+<button
+class="cart-button"
+onclick="showPage('checkout')"
+>
+
+🛒
+
+<span>
+Cart
+</span>
+
+<span
+id="cartCount"
+class="cart-count"
+>
+0
+</span>
+
 </button>
+
 </div>
 
 </nav>
 
 
-<!-- HOME -->
+<!-- =======================================================
+CATEGORY BAR
+======================================================= -->
 
-<section id="home" class="screen active">
-
-<div class="hero">
-
-<h1>
-Give a gift they'll love.
-</h1>
-
-<p>
-Digital gift cards for gaming,
-entertainment and shopping —
-all in one place.
-</p>
+<div class="category-bar">
 
 <button
-class="primary"
-onclick="show('shop')"
+class="category active"
+onclick="filterProducts('all', this)"
 >
-Shop Gifts →
+✨ Everything
+</button>
+
+<button
+class="category"
+onclick="filterProducts('gaming', this)"
+>
+🎮 Gaming
+</button>
+
+<button
+class="category"
+onclick="filterProducts('music', this)"
+>
+🎵 Music
+</button>
+
+<button
+class="category"
+onclick="filterProducts('streaming', this)"
+>
+📺 Streaming
+</button>
+
+<button
+class="category"
+onclick="filterProducts('apps', this)"
+>
+📱 Apps
 </button>
 
 </div>
 
 
-<div class="grid">
+<!-- =======================================================
+HOME PAGE
+======================================================= -->
 
-<div class="card">
-
-<div class="icon">
-🎮
-</div>
-
-<h2>
-Gaming
-</h2>
-
-<p>
-Popular gaming gift cards.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">
-🎵
-</div>
-
-<h2>
-Entertainment
-</h2>
-
-<p>
-Music and streaming gifts.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="icon">
-🛍️
-</div>
-
-<h2>
-Shopping
-</h2>
-
-<p>
-Popular digital shopping gifts.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- SHOP -->
-
-<section id="shop" class="screen">
-
-<div class="title">
-
-<h1>
-Shop Gifts
-</h1>
-
-<p class="muted">
-Choose a gift card.
-</p>
-
-</div>
-
-<div
-id="shopGrid"
-class="grid"
-></div>
-
-</section>
-
-
-<!-- SEARCH -->
-
-<section id="search" class="screen">
-
-<div class="title">
-
-<h1>
-Find a Gift
-</h1>
-
-<p class="muted">
-Search by gift-card name.
-</p>
-
-</div>
-
-
-<div class="search">
-
-<input
-id="q"
-placeholder="Try Roblox, Apple, Spotify..."
-oninput="searchProducts()"
+<main
+id="homePage"
+class="page"
 >
 
-</div>
 
-
-<div
-id="results"
-class="grid"
-></div>
-
-</section>
-
-
-<!-- PRODUCT PAGE -->
-
-<section id="product" class="screen">
-
-<div id="productBox"></div>
-
-</section>
-
-
-<!-- CHECKOUT -->
-
-<section id="checkout" class="screen">
-
-<div class="checkout">
-
-<h1>
-Checkout
-</h1>
-
-<div id="checkoutBox"></div>
-
-
-<div class="notice">
-
-🔒 Test checkout only.
-
-No real gift card is being fulfilled yet.
-
-</div>
-
-
-<!-- YOUR CURRENT STRIPE TEST LINK -->
-
-<a
-class="primary full"
-href="https://buy.stripe.com/test_bJefZh6IT3en9va48ncEw00"
-target="_blank"
->
-Pay with Stripe
-</a>
-
-
-<p
-class="muted"
-style="text-align:center;font-size:13px"
->
-Real automatic delivery will be connected
-after the payment provider and gift-card
-supplier are ready.
-</p>
-
-</div>
-
-</section>
-
-
-<!-- CONFIRMATION -->
-
-<section id="confirmation" class="screen">
-
-<div class="success">
-
-<div class="check">
-✓
-</div>
-
-<h1>
-Order Confirmed
-</h1>
-
-<p class="muted">
-This is the demo confirmation screen.
-</p>
-
-<br>
-
-<button
-class="primary"
-onclick="show('shop')"
->
-Shop Again
-</button>
-
-</div>
-
-</section>
-
-
-<footer>
-© 2026 Gifty · Digital gifts made simple.
-</footer>
-
-
-<script>
-
-/* =========================
-GIFT CARD PRODUCTS
-========================= */
-
-const products = [
-
-{
-id: "roblox",
-name: "Roblox",
-icon: "🎮",
-category: "Gaming",
-amounts: [10, 25, 50, 100]
-},
-
-{
-id: "playstation",
-name: "PlayStation",
-icon: "🎮",
-category: "Gaming",
-amounts: [10, 25, 50, 75, 100]
-},
-
-{
-id: "xbox",
-name: "Xbox",
-icon: "🎮",
-category: "Gaming",
-amounts: [10, 25, 50, 100]
-},
-
-{
-id: "nintendo",
-name: "Nintendo",
-icon: "🕹️",
-category: "Gaming",
-amounts: [10, 20, 35, 50, 100]
-},
-
-{
-id: "apple",
-name: "Apple",
-icon: "🍎",
-category: "Shopping",
-amounts: [10, 25, 50, 100]
-},
-
-{
-id: "amazon",
-name: "Amazon",
-icon: "🛍️",
-category: "Shopping",
-amounts: [10, 25, 50, 100]
-},
-
-{
-id: "spotify",
-name: "Spotify",
-icon: "🎵",
-category: "Entertainment",
-amounts: [10, 25, 30, 60]
-},
-
-{
-id: "netflix",
-name: "Netflix",
-icon: "🎬",
-category: "Entertainment",
-amounts: [15, 25, 50, 100]
-},
-
-{
-id: "googleplay",
-name: "Google Play",
-icon: "▶️",
-category: "Shopping",
-amounts: [10, 25, 50, 100]
-},
-
-{
-id: "steam",
-name: "Steam",
-icon: "🖥️",
-category: "Gaming",
-amounts: [10, 20, 50, 100]
-}
-
-];
-
-
-/* =========================
-VARIABLES
-========================= */
-
-let selectedProduct = null;
-
-let selectedAmount = 0;
-
-let serviceFee = 2;
-
-
-/* =========================
-CHANGE SCREEN
-========================= */
-
-function show(screenName) {
-
-document
-.querySelectorAll(".screen")
-.forEach(screen => {
-
-screen.classList.remove("active");
-
-});
-
-
-document
-.getElementById(screenName)
-.classList.add("active");
-
-
-window.scrollTo({
-top: 0,
-behavior: "smooth"
-});
-
-
-if (screenName === "shop") {
-
-renderProducts(
-products,
-"shopGrid"
-);
-
-}
-
-
-if (screenName === "search") {
-
-searchProducts();
-
-}
-
-}
-
-
-/* =========================
-PRODUCT CARDS
-========================= */
-
-function renderProducts(list, elementId) {
-
-const container =
-document.getElementById(elementId);
-
-
-if (list.length === 0) {
-
-container.innerHTML =
-"<p class='muted'>No gifts found.</p>";
-
-return;
-
-}
-
-
-container.innerHTML =
-list.map(product => `
-
-<div class="card">
-
-<div class="icon">
-${product.icon}
-</div>
-
-<h2>
-${product.name}
-</h2>
-
-<p>
-${product.category}
-· From $${product.amounts[0]}
-</p>
-
-<button
-class="primary"
-onclick="openProduct('${product.id}')"
->
-View Gift →
-</button>
-
-</div>
-
-`).join("");
-
-}
-
-
-/* =========================
-OPEN PRODUCT
-========================= */
-
-function openProduct(id) {
-
-selectedProduct =
-products.find(
-product => product.id === id
-);
-
-
-selectedAmount =
-selectedProduct.amounts[0];
-
-
-renderProduct();
-
-show("product");
-
-}
-
-
-/* =========================
-PRODUCT SCREEN
-========================= */
-
-function renderProduct() {
-
-const product =
-selectedProduct;
-
-
-document.getElementById(
-"productBox"
-).innerHTML = `
-
-<div class="product">
-
-<div class="big">
-${product.icon}
-</div>
+<section class="hero page-container">
 
 
 <div>
 
 <h1>
-${product.name} Gift Card
+
+Your digital
+
+<span class="gradient-text">
+gift universe.
+</span>
+
 </h1>
 
 
-<p class="muted">
+<p class="hero-description">
 
-${product.category}
-gift card.
+Gaming credits, music, streaming
+and digital gift cards — all in one
+place.
 
-Choose your amount.
+Pick your world, choose your amount,
+and get ready to gift.
 
 </p>
 
+
+<div class="hero-buttons">
+
+<button
+class="primary-btn"
+onclick="scrollToShop()"
+>
+Explore Gifts →
+</button>
+
+<button
+class="secondary-btn"
+onclick="filterProducts('gaming')"
+>
+🎮 Gaming
+</button>
+
+</div>
+
+</div>
+
+
+<div class="hero-art">
+
+
+<div class="floating-card float-one">
+
+<img
+class="float-logo"
+src="https://cdn.simpleicons.org/steam/ffffff"
+alt="Steam"
+>
 
 <strong>
-Choose an amount
+Steam
 </strong>
 
+<small>
+Game credits
+</small>
 
-<div class="amounts">
+</div>
 
-${product.amounts.map(amount => `
+
+<div class="floating-card float-two">
+
+<img
+class="float-logo"
+src="https://cdn.simpleicons.org/spotify/ffffff"
+alt="Spotify"
+>
+
+<strong>
+Spotify
+</strong>
+
+<small>
+Music everywhere
+</small>
+
+</div>
+
+
+<div class="floating-card float-three">
+
+<img
+class="float-logo"
+src="https://cdn.simpleicons.org/roblox/ffffff"
+alt="Roblox"
+>
+
+<strong>
+Roblox
+</strong>
+
+<small>
+Robux for the squad 🎮
+</small>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =======================================================
+SHOP
+======================================================= -->
+
+<section
+id="shop"
+class="section page-container"
+>
+
+
+<div class="section-heading">
+
+<div>
+
+<h2>
+Pick your world
+</h2>
+
+<p>
+Your favorite digital gifts.
+</p>
+
+</div>
+
+</div>
+
+
+<div
+id="productGrid"
+class="product-grid"
+>
+
+
+<!-- STEAM -->
+
+<article
+class="product-card"
+data-category="gaming"
+data-name="Steam Wallet"
+data-product="Steam Wallet"
+data-logo="https://cdn.simpleicons.org/steam/ffffff"
+data-glow="#00d9ff"
+style="
+--product-glow:#00d9ff;
+--logo-bg:rgba(0,217,255,.12)
+"
+>
+
+<div class="product-top">
+
+<img
+class="brand-logo"
+src="https://cdn.simpleicons.org/steam/ffffff"
+alt="Steam"
+>
+
+<span class="badge">
+BEST SELLER
+</span>
+
+</div>
+
+<h3>
+Steam Wallet
+</h3>
+
+<p>
+Top up your Steam account
+and grab your next game.
+</p>
+
+<div class="product-price">
+From 20 TND
+</div>
 
 <button
-class="amount
-${amount === selectedAmount
-? "selected"
-: ""}"
-onclick="chooseAmount(${amount})"
+class="product-button"
+onclick="openProduct('Steam Wallet','https://cdn.simpleicons.org/steam/ffffff',[20,50,100])"
 >
-$${amount}
+Choose amount →
 </button>
 
-`).join("")}
+</article>
+
+
+<!-- PLAYSTATION -->
+
+<article
+class="product-card"
+data-category="gaming"
+data-name="PlayStation Store"
+data-product="PlayStation Store"
+style="
+--product-glow:#398cff;
+--logo-bg:rgba(57,140,255,.12)
+"
+>
+
+<div class="product-top">
+
+<img
+class="brand-logo"
+src="https://cdn.simpleicons.org/playstation/ffffff"
+alt="PlayStation"
+>
 
 </div>
 
+<h3>
+PlayStation Store
+</h3>
 
-<div class="summary">
+<p>
+PSN credit for games,
+add-ons and more.
+</p>
 
-<div>
-
-<span>
-Gift card
-</span>
-
-<b>
-$${selectedAmount}.00
-</b>
-
+<div class="product-price">
+From 30 TND
 </div>
-
-
-<div>
-
-<span>
-Gifty service fee
-</span>
-
-<b>
-$${serviceFee}.00
-</b>
-
-</div>
-
-
-<div class="total">
-
-<span>
-Total
-</span>
-
-<b>
-$${selectedAmount + serviceFee}.00
-</b>
-
-</div>
-
-</div>
-
 
 <button
-class="primary"
-onclick="openCheckout()"
+class="product-button"
+onclick="openProduct('PlayStation Store','https://cdn.simpleicons.org/playstation/ffffff',[30,50,100])"
 >
-Continue to Checkout →
+Choose amount →
 </button>
 
-</div>
-
-</div>
-
-`;
-
-}
+</article>
 
 
-/* =========================
-CHOOSE AMOUNT
-========================= */
+<!-- ROBLOX -->
 
-function chooseAmount(amount) {
+<article
+class="product-card"
+data-category="gaming"
+data-name="Roblox"
+data-product="Roblox"
+style="
+--product-glow:#ff304f;
+--logo-bg:rgba(255,48,79,.12)
+"
+>
 
-selectedAmount = amount;
+<div class="product-top">
 
-renderProduct();
+<img
+class="brand-logo"
+src="https://cdn.simpleicons.org/roblox/ffffff"
+alt="Roblox"
+>
 
-}
-
-
-/* =========================
-CHECKOUT
-========================= */
-
-function openCheckout() {
-
-document.getElementById(
-"checkoutBox"
-).innerHTML = `
-
-<div class="summary">
-
-<div>
-
-<span>
-${selectedProduct.icon}
-${selectedProduct.name}
+<span class="badge">
+TRENDING
 </span>
 
-<b>
-$${selectedAmount}.00
-</b>
+</div>
+
+<h3>
+Roblox
+</h3>
+
+<p>
+Robux for the whole squad.
+</p>
+
+<div class="product-price">
+From 15 TND
+</div>
+
+<button
+class="product-button"
+onclick="openProduct('Roblox','https://cdn.simpleicons.org/roblox/ffffff',[15,25,50,100])"
+>
+Choose amount →
+</button>
+
+</article>
+
+
+<!-- SPOTIFY -->
+
+<article
+class="product-card"
+data-category="music"
+data-name="Spotify"
+data-product="Spotify"
+style="
+--product-glow:#1ed760;
+--logo-bg:rgba(30,215,96,.12)
+"
+>
+
+<div class="product-top">
+
+<img
+class="brand-logo"
+src="https://cdn.simpleicons.org/spotify/ffffff"
+alt="Spotify"
+>
 
 </div>
 
+<h3>
+Spotify
+</h3>
 
-<div>
+<p>
+Music, playlists and
+premium listening.
+</p>
 
-<span>
-Gifty service fee
-</span>
+<div class="product-price">
+From 20 TND
+</div>
 
-<b>
-$${serviceFee}.00
-</b>
+<button
+class="product-button"
+onclick="openProduct('Spotify','https://cdn.simpleicons.org/spotify/ffffff',[20,40,60])"
+>
+Choose amount →
+</button>
+
+</article>
+
+
+<!-- APPLE -->
+
+<article
+class="product-card"
+data-category="apps"
+data-name="Apple Gift Card"
+data-product="Apple Gift Card"
+style="
+--product-glow:#ffffff;
+--logo-bg:rgba(255,255,255,.08)
+"
+>
+
+<div class="product-top">
+
+<img
+class="brand-logo"
+src="https://cdn.simpleicons.org/apple/ffffff"
+alt="Apple"
+>
 
 </div>
 
+<h3>
+Apple Gift Card
+</h3>
 
-<div class="total">
+<p>
+Apps, games, subscriptions
+and Apple services.
+</p>
 
-<span>
-Total
-</span>
+<div class="product-price">
+From 30 TND
+</div>
 
-<b>
-$${selectedAmount + serviceFee}.00
-</b>
+<button
+class="product-button"
+onclick="openProduct('Apple Gift Card','https://cdn.simpleicons.org/apple/ffffff',[30,50,100,200])"
+>
+Choose amount →
+</button>
+
+</article>
+
+
+<!-- GOOGLE PLAY -->
+
+<article
+class="product-card"
+data-category="apps"
+data-name="Google Play"
+data-product="Google Play"
+style="
+--product-glow:#34a853;
+--logo-bg:rgba(52,168,83,.12)
+"
+>
+
+<div class="product-top">
+
+<img
+class="brand-logo"
+src="https://cdn.simpleicons.org/googleplay/ffffff"
+alt="Google Play"
+>
 
 </div>
 
-</div>
+<h3>
+Google Play
+</h3>
 
-`;
-
-
-show("checkout");
-
-}
-
-
-/* =========================
-SEARCH
-========================= */
-
-function searchProducts() {
-
-const input =
-document.getElementById("q");
-
-
-const query =
-(input.value || "")
-.toLowerCase()
-.trim();
-
-
-const results =
-products.filter(product =>
-
-(
-product.name +
-" " +
-product.category
-)
-.toLowerCase()
-.includes(query)
-
-);
-
-
-renderProducts(
-results,
-"results"
-);
-
-}
-
-
-/* =========================
-START WEBSITE
-========================= */
-
-renderProducts(
-products,
-"shopGrid"
-);
-
-</script>
-
-</body>
-</html>
+<p>
+Games, apps, movies
+and more.
+</p>
